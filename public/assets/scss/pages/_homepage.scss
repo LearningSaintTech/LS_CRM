@@ -1,0 +1,397 @@
+/* Card Custom CSS */
+.card-title{
+    font-size: 1.125rem;
+}
+.card-header .card-title{
+    margin-bottom: 3px;
+}
+.card-header{
+    align-items: center;
+}
+.card-subtitle{
+    font-size: 13px;
+}
+
+/* worldMap */
+.worldMap{
+	min-height: 260px;
+	width: 100%;
+	
+	svg{
+		width: 100%;
+		height: 100%;
+	}
+	@include respond ('phone'){
+		height: 240px;
+	}
+}
+
+/* Custom Card */
+.custom-card-1{
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	
+	&::after{
+		content: "";
+		background: #F0B24D;
+		opacity: 0.35;
+		filter: blur(75px);
+		height: 175px;
+		width: 175px;
+		position: absolute;
+		right: -100px;
+		top: -100px;
+		z-index: -1;
+	}
+}
+.custom-card-2{
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	
+	&::before,
+	&::after{
+		content: "";
+		opacity: 0.35;
+		filter: blur(75px);
+		position: absolute;
+		z-index: -1;
+		height: 175px;
+		width: 175px;
+	}
+	&::before{
+		background: #EB602D;
+		left: -100px;
+		top: -100px;
+		opacity: 0.3;
+	}
+	&::after{
+		background: var(--bs-primary);
+		right: -100px;
+		bottom: -100px;
+	}
+}
+
+/* Card Reviews */
+.card-reviews{
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+	border-radius: var(--bs-border-radius-lg);
+	padding: 25px;
+}
+.card-reviews-wrapper{
+	position: relative;
+	z-index: 1;
+	margin-top: 10px;
+	
+	&::before{
+		content: "";
+		background: var(--bs-gray-100);
+		opacity: 0.5;
+		border: 1px solid var(--bs-border-color);
+		border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
+		position: absolute;
+		left: 20px;
+		top: -10px;
+		width: calc(100% - 40px);
+		height: 10px;
+		z-index: -1;
+	}
+	.swiper{
+		overflow: unset;
+		
+		.swiper-slide{
+			opacity: 0 !important;
+			
+			&.swiper-slide-active{
+				opacity: 1 !important;
+			}
+		}
+	}
+	.reviews-swiper-pagination{
+		z-index: 2;
+		position: absolute;
+		top: 18px;
+		right: 19px;
+		width: auto;
+		bottom: auto;
+		left: auto;
+		font-size: 0;
+		display: flex;
+		align-items: center;
+		gap: 3px;
+		
+		.swiper-pagination-current{
+		    color: var(--bs-gray-600);
+		}
+		.swiper-pagination-current,
+		.swiper-pagination-total{
+			font-size: 13px;
+		}
+		.swiper-pagination-total{
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+		    color: var(--bs-gray-300);
+	
+			&::before{
+				content: "";
+				background-color: var(--bs-dark);
+				height: 1px;
+				width: 20px;
+				display: inline-block;
+				margin-right: 5px;
+				opacity: 0.2;
+			}
+		}
+	}
+}
+
+/* Chart JS */
+#chartTotalSales,
+#chartRevenue{
+    margin-top: -25px;
+    margin-right: -15px;
+}
+
+// draggable-handle
+.draggable-handle{
+	cursor: move;
+}
+.list-group .list-group-item.draggable{
+	background-color: var(--bs-body-bg);
+}
+
+
+.widget-events{
+	.datepicker {
+		padding: 0;
+	}
+	.datepicker-days{
+		.picker-switch{
+			font-size: 15px;
+			font-weight: 500;
+			color: var(--bs-secondary);
+		}
+		.prev,
+		.next{
+			i{
+				height:32px;
+				width:32px;
+				border-radius: var(--bs-border-radius);
+				background: rgba(var(--bs-primary-rgb), 0.1);
+				color: var(--bs-primary);
+				line-height: 32px;
+			}
+			&:hover{
+				background:transparent;
+			}
+		}
+		.dow{
+			font-weight: 500;
+			color: var(--bs-heading-color);
+			background-color: var(--bs-light);
+			border-radius: 0;
+			text-transform: uppercase;
+			font-size: 13px;
+			height: auto;
+			line-height: normal;
+			padding: 8px;
+		}
+		tr{
+			.day.weekend:first-child{
+				color: var(--bs-danger);
+			}
+		}
+		.day{
+			color: var(--bs-heading-color);
+			height: 40px;
+			line-height: 40px;
+			box-sizing: initial;
+			max-width: 25px;
+			min-width: 25px;
+			width: 25px;
+			z-index: 1;
+			position: relative;
+			padding: 0;
+			
+			&:before,
+			&:after{
+				content: "";
+				position: absolute;
+				opacity: 0;
+			}
+			&:after{
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 40px;
+				height: 40px;
+				border-radius: var(--bs-border-radius);
+				background-color: var(--bs-primary);
+				z-index: -1;
+			}
+			&:before{
+				height: 12px;
+				width: 12px;
+				border: 2px solid #fff;
+				top: calc(50% - 20px);
+				right: calc(50% - 30px);
+				background: var(--bs-danger);
+				border-radius: 50%;
+				transform: translate(-50%, -50%);
+			}
+			&:hover{
+				&:not(.active),
+				&:not(.today){
+					&:after{
+						background-color: var(--bs-light);
+						opacity: 1;
+					}
+				}
+			}
+			&.active,
+			&.today{
+				background: var(--bs-body-bg) !important;
+				color: #fff !important;
+				
+				&:before,
+				&:after{
+					opacity: 1;
+				}
+				&:hover{
+					&:after{
+						background: var(--bs-primary) !important;
+					}
+				}
+			}
+		}
+		tr td.day:hover,
+		tr td.focused{
+			background: var(--bs-body-bg);
+		}
+	}
+	.bootstrap-datetimepicker-widget a[data-action]{
+		display:none;
+	}
+	.meta-date{
+		height: 55px;
+		width: 50px;
+		line-height: 1;
+		border-radius: var(--bs-border-radius);
+		background-color: var(--bs-primary-bg-subtle);
+		text-align: center;
+		padding: 7px 4px;
+		
+		.date{
+			font-size: 20px;
+			line-height: 1.2;
+			font-weight: 600;
+			color: var(--bs-primary);
+		}
+	}
+}
+.ps--active-x>.ps__rail-x, .ps--active-y>.ps__rail-y{
+	z-index: -1;
+}
+
+.card-carousel-dots{
+	.owl-dots{
+		position: absolute;
+		right: 0;
+		top: 0;
+	
+		.owl-dot{
+			width: 9px;
+			height: 9px;
+			border-radius: 50%;
+			background-color: var(--bs-secondary);
+			opacity: 0.2;
+			@include transitionMedium;
+			display: inline-block;
+			margin: 0 4px;
+			
+			&.active{
+				transform: scale(1.3);
+				opacity: 1;
+			}
+		}
+	}
+}
+
+// Custom Offcanvas 
+.custom-offcanvas{
+	--bs-offcanvas-padding-x: 40px;
+    --bs-offcanvas-padding-y: 30px;
+	--bs-offcanvas-width: 800px;
+
+	@include respond ('phone-land'){
+		--bs-offcanvas-padding-x: 15px;
+		--bs-offcanvas-padding-y: 15px;
+	}
+}
+
+.kanban-bx{
+	display: flex;
+    width: 100%;
+    overflow-x: auto;
+	flex-wrap:nowrap;
+	margin:0;
+	
+	.col{
+		width: 324px;
+		min-width: 324px;
+		padding-left: 0;
+	}
+	@include respond ('phone-land'){
+		display: block;
+		width: auto;
+		
+		.col{
+			width:100%;
+			min-width:100%;
+			flex-basis: 0;
+			flex-grow: 1;
+		}
+	}
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+.menu-title{
+	@include respond ('phone'){
+		display:none;
+	}
+}
+.chart-series{
+	cursor: pointer;
+	display: inline-block;
+	
+	label{
+		cursor: pointer;
+	}	
+	input[type="checkbox"]:checked + label{
+		opacity: 0.5;
+	}
+}
+.btn-docs{
+	padding: 10px 8px;
+    font-size: 13px;
+	
+	i{
+		transform: rotate(45deg);
+		margin-left: 2px;
+	}
+}

@@ -1,0 +1,147 @@
+:root{
+	--nav-headbg: var(--bs-secondary-bg);
+	--sidebar-bg: var(--bs-secondary-bg);
+	--headerbg: var(--bs-secondary-bg);
+}
+[data-bs-theme="dark"]{
+	--nav-headbg: var(--bs-secondary-bg);
+	--sidebar-bg: var(--bs-secondary-bg);
+	--headerbg: var(--bs-secondary-bg);
+}
+[data-bs-theme="dark"]{
+	&[data-nav-headerbg="color_5"]{
+		--nav-headbg: #0A0D10;
+	}
+	&[data-sidebarbg="color_5"]{
+		--sidebar-bg: #0A0D10;
+	}
+	&[data-headerbg="color_5"]{
+		--headerbg: #0A0D10;
+	}
+}
+
+
+// Sidebar, nav-header, header and primary Color Theme
+@each $name, $color in $theme_backgrounds{
+    [data-nav-headerbg="#{$name}"]{
+		@if $name != "color_1"  {
+			--nav-headbg: #{$color};
+		}
+	}
+	[data-sidebarbg="#{$name}"]{
+		@if $name != "color_1"  {
+			--sidebar-bg: #{$color};
+		}
+	}
+	[data-headerbg="#{$name}"]{
+		@if $name != "color_1" {
+			--headerbg: #{$color};
+		}
+	}
+}
+	
+@each $name, $color in $theme_backgrounds{
+	
+	// Data Sidebarbg
+    [data-sidebarbg="#{$name}"] {
+        @if $name != "color_1"{
+			&[data-sidebar-style="full"] .menu-toggle,
+			&[data-sidebar-style="icon-hover"][data-layout="horizontal"],
+			&[data-sidebar-style="full"][data-layout="horizontal"]{
+				.icnav{
+					.metismenu li ul{
+						background-color: lighten($color: $color, $amount: 5%);
+					}
+				}
+			}
+		}
+	}
+}
+
+body:not([data-sidebarbg="color_1"]):not([data-sidebarbg="color_5"]){
+	.icnav {
+		.metismenu{
+			a{
+				color: rgba($white, 0.8);
+			}
+			i{
+				color: rgba($white, 0.8);
+			}
+		}
+		li{
+			ul{
+				a{
+					&:hover,
+					&:focus,
+					&.mm-active {
+						color: $white;
+					}
+				}
+			}
+		}
+		&>li{
+			&>a{
+				
+				color: rgba($white,0.85);
+				
+				i{
+					color: rgba($white,0.85);
+				}
+			}
+			&.mm-active{
+				&>a{
+					color: $white;
+					
+					i{
+						color: $white;
+					}
+				}
+			}
+		}
+		.has-arrow:after{
+			border-color: rgba($white,0.85) transparent transparent rgba($white,0.85) !important;
+		}	
+	}
+}
+[data-sidebarbg="color_5"]{
+	.icnav {
+		.metismenu{
+			a{
+				color: var(--bs-gray-400);
+			}
+			li{
+				ul{
+					a{
+						&:hover,
+						&:focus,
+						&.mm-active {
+							color: $white;
+						}
+					}
+				}
+			}
+			&>li{
+				&>a{
+					
+					color: var(--bs-gray-400);
+					
+					i{
+						color: var(--bs-gray-400);
+					}
+				}
+				&.mm-active{
+					&>a{
+						color: $white;
+						
+						i{
+							color: var(--bs-gray-400);
+						}
+					}
+				}
+			}
+			.has-arrow:after{
+				border-color: var(--bs-gray-500) transparent transparent var(--bs-gray-500) !important;
+			}
+		}
+	}
+}

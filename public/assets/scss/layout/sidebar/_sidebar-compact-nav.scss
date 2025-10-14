@@ -1,0 +1,44 @@
+// Compact Nav
+@media (min-width:47.9375rem) {
+    [data-sidebar-style="compact"] {
+		--ic-sidebar-width: 170px;
+		--ic-side-nav-padding : 1rem 0.5rem;
+		--ic-side-nav-size : 0.9375rem;
+		--ic-side-info : none;
+		--ic-side-copyright : none;
+		--ic-side-sub_nav-padding : .5rem 0.5rem;
+		--ic-side-sub_nav-size : 0.85rem;
+	}
+}
+
+@media (min-width:47.9375rem) {
+	[data-sidebar-style="compact"] {
+		.icnav .metismenu {
+			margin-right: calc(-1 * var(--ic-frame-spacing));
+			
+			ul {
+				padding: 2px 15px;
+				
+				a {
+					padding: 5px 15px 5px 30px;
+					font-size: 12px;
+				}
+			}
+			a {
+				padding: 10px 15px;
+			}
+			& > li > a {
+				font-size: 13px;
+				
+				i {
+					font-size: 14px;
+					margin-right: 8px;
+				}
+			}
+		}
+		.icnav .metismenu .menu-title {
+			font-size: 10px;
+			padding: 8px 15px;
+		}
+	}
+}

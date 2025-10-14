@@ -1,0 +1,343 @@
+[data-sidebar-style="mini"],
+[data-layout="horizontal"] {
+    .nav-control {
+        display: none;
+    }
+}
+[data-header-position="fixed"] {
+    .nav-header {
+        position: fixed;
+    }
+}
+.nav-header {
+    --nav-logo-primary: var(--bs-primary);
+	--nav-logo-white: #fff;
+	
+	height: calc(var(--ic-header-height) + var(--ic-frame-spacing));
+    width: calc(var(--ic-sidebar-width) + var(--ic-frame-spacing));
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    background-color: var(--nav-headbg);
+    transition: all .2s ease;
+    z-index: 8;
+	
+	@include respond ('phone-land-min'){
+		body:not([data-nav-headerbg="color_1"]):not([data-nav-headerbg="color_5"]) &{
+			--nav-logo-primary: #fff;
+		}
+		[data-nav-headerbg="color_1"] &{
+			--nav-logo-white: var(--bs-dark);
+		}
+	}
+	@include respond ('phone-land'){
+		body:not([data-headerbg="color_1"]):not([data-headerbg="color_5"]) &{
+			--nav-logo-primary: #fff;
+		}
+		[data-headerbg="color_1"] &{
+			--nav-logo-white: var(--bs-dark);
+		}
+	}
+	
+	&::after{
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 15px;
+		right: 15px;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 0%);
+		background-size: 10px 1px;
+		background-repeat: repeat-x;
+	}
+    .brand-logo {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 1.125rem;
+        color: $white;
+        text-decoration: none;
+		padding-left: 1.1rem;
+		padding-right: 3rem;
+        font-weight: 700;
+		
+		@include respond('laptop') {
+			padding-left: 1.25rem;
+			padding-right:1.25rem;
+		}
+		
+        [data-sidebar-style="compact"] &,
+        [data-sidebar-style="mini"] & {
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: center;
+        }
+        @include respond('phone-land') {
+            padding-left: 0;
+            padding-right: 0;
+            justify-content: center;
+        }
+    }
+    .brand-title {
+		margin-left: 0.6375rem;
+		max-width: 10.15rem;
+		margin-top: 0.2rem;
+		font-size: 2.375rem;
+    }
+	@include respond ('phone-land'){
+		top:0;
+		background:transparent;
+	}
+}
+
+@include custommq($max:63.9375rem) {
+    .nav-header {
+        width: 70px;
+		
+        .brand-title{
+            display: none;
+        }
+    }
+}
+
+// Nav Control
+.nav-control{
+	cursor: pointer;
+	position: absolute;
+	right: 15px;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%) rotateY(180deg);
+	z-index: 9999;
+	font-size: 1.4rem;
+	width: 28px;
+	height: 28px;
+	border-radius: 6px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--bs-gray-100);
+	
+	body:not([data-headerbg="color_1"]) &{
+		background-color: rgba(255, 255, 255, 0.1);
+		
+		.hamburger .line{
+			border-top: 8px solid #fff;
+			border-left: 8px solid #fff;
+			border-bottom: 8px solid transparent;
+			border-right: 8px solid transparent;
+			border-width: 2px;
+		}
+	}
+	.menu-toggle &{
+		body:not([data-headerbg="color_1"]) &{
+			background-color: rgba(255, 255, 255, 0.1);
+			
+			.hamburger .line{
+				border-top: 8px solid #fff;
+				border-left: 8px solid #fff;
+				border-bottom: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-width: 2px;
+			}
+		}
+	}
+	@include respond('phone-land-min') {
+		body:not([data-nav-headerbg="color_1"]) &{
+			background-color: rgba(255, 255, 255, 0.1);
+			
+			.hamburger .line{
+				border-top: 8px solid #fff;
+				border-left: 8px solid #fff;
+				border-bottom: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-width: 2px;
+			}
+		}
+		.menu-toggle &{
+			body:not([data-nav-headerbg="color_1"]) &{
+				background-color: var(--bs-gray-100);
+				
+				.hamburger .line{
+					border-top: 8px solid var(--bs-gray-300);
+					border-left: 8px solid var(--bs-gray-300);
+					border-bottom: 8px solid transparent;
+					border-right: 8px solid transparent;
+					border-width: 2px;
+				}
+			}
+		}
+		body[data-sidebar-style="overlay"]:not([data-nav-headerbg="color_1"]) &{
+			background-color: rgba(255, 255, 255, 0.1);
+			
+			.hamburger .line{
+				border-top: 8px solid #fff;
+				border-left: 8px solid #fff;
+				border-bottom: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-width: 2px;
+			}
+		}
+	}
+    @include respond('phone-land') {
+        right: -30px;
+		transform: unset;
+		top: 16px;
+	}
+}
+
+// Humbuger Icon
+.hamburger {
+	position: relative;
+    transition: all 0.3s ease-in-out 0s;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+	cursor: pointer;
+	
+	.line {
+		display: block;
+		-webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+		width: 10px;
+		height: 10px;
+		border-top: 8px solid var(--bs-gray-300);
+		border-left: 8px solid var(--bs-gray-300);
+		border-bottom: 8px solid transparent;
+		border-right: 8px solid transparent;
+		transform: rotate(-225deg);
+		border-width: 2px;
+		border-radius: 2px;
+	}
+	&.is-active{
+		.line{
+			opacity:1;
+		}
+	}
+	.line:nth-child(1) {
+		margin-right: -4px;
+		margin-left: -2px;
+	}
+	.line:nth-child(2) {
+	    margin-right: 5px;
+	}
+	&:hover{
+		.line {
+			animation-name: bounceAlpha;
+			animation-duration: 1.4s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+		.line:nth-child(1) {
+			animation-name: bounceAlpha;
+			animation-duration: 1.4s;
+			animation-delay: 0.2s;
+			animation-iteration-count:infinite;
+			animation-timing-function:linear;
+		}
+	}
+	@include respond('phone-land') {
+		&.is-active{
+			&::after{
+				content: "";
+				position: fixed;
+				background-color: #000;
+				height: 100vh;
+				width: 100vw;
+				left: 0;
+				top: 0;
+				opacity: 0.5;
+			}
+		}
+	}
+}
+@keyframes bounceAlpha {
+	0% {
+		opacity: 1;
+		transform: translateX(0px) scale(1) rotate(-225deg);
+	}
+	25%{
+		opacity: 0;
+		transform: translateX(10px) scale(0.9) rotate(-225deg);
+	}
+	26%{
+		opacity: 0;
+		transform: translateX(-10px) scale(0.9) rotate(-225deg);
+	}
+	55% {
+		opacity: 1;
+		transform: translateX(0px) scale(1) rotate(-225deg);
+	}
+}
+[data-sidebar-style="mini"],
+[data-sidebar-style="full"]{
+	.menu-toggle .nav-control{
+		right: -75px;
+		transform: translateY(-50%);
+		
+		@media only screen and (max-width: 1480px) {
+			right: -18px;
+		}
+	}
+}
+.menu-toggle .nav-control{
+	@media only screen and (max-width: 1480px) {
+		right: -18px;
+	}
+}
+
+
+@media (min-width:47.9375rem) {
+    [data-sidebar-style="modern"][data-layout="vertical"]{
+	    .nav-control {
+            display: none;
+        }
+		.nav-header .brand-logo {
+			padding-left: 15px;
+			padding-right: 15px;
+			justify-content: center;
+		}
+	}
+    [data-sidebar-style="compact"][data-layout="vertical"]{
+        .nav-control {
+            display: none;
+        }
+    }
+}
+[data-sidebar-style="full"][data-layout="vertical"] {
+    .menu-toggle {
+        .brand-title {
+            display: none;
+        }
+    }
+}
+[data-sidebar-style="compact"][data-layout="vertical"] {
+    .nav-header {
+        .brand-title{
+            display: none;
+        }
+    }
+}
+[data-sidebar-style="compact"][data-layout="horizontal"] {
+    .nav-header .brand-logo {
+        padding-left: 1.875rem;
+		padding-right: 1.875rem;
+		justify-content: start;
+    }
+}
+[data-sidebar-style="modern"][data-layout="vertical"] {
+    .nav-header {
+        .brand-title{
+            display: none;
+        }
+    }
+}
+[data-sidebar-style="full"] .menu-toggle{
+	.nav-header .brand-logo{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}

@@ -1,0 +1,103 @@
+@media (min-width: 47.9375rem) {
+    [data-sidebar-style="icon-hover"][data-layout="vertical"]{
+		--ic-side-nav-padding : .85rem 1rem;
+        --ic-side-sub_nav-padding : .5rem 1.2rem;
+		--ic-side-nav-size : 0.9375rem;
+		--ic-side-sub_nav-size : 0.85rem;
+		--ic-side-info : none;
+		--ic-side-copyright : none;
+		--ic-sidebar-over: 75px;
+	}
+}
+
+@media (min-width: 47.9375rem) {
+	[data-sidebar-style="icon-hover"][data-layout="vertical"] {
+		.content-body {
+           margin-left: var(--ic-sidebar-over);
+        }
+		.nav-control{
+			display: none;
+		}
+		.header {
+			padding-left: calc(var(--ic-sidebar-over) + var(--ic-frame-spacing));
+		}
+		.nav-header{
+			width: calc(var(--ic-sidebar-over) + var(--ic-frame-spacing));
+			
+			.brand-logo{
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+			.brand-title{
+				display: none;
+			}
+		}
+		.icnav{
+			width: calc(var(--ic-sidebar-over) + var(--ic-frame-spacing));
+			overflow: hidden;
+			
+			.metismenu .has-arrow:after,
+			.nav-text{
+				opacity: 0;
+				transition: all 0.2s ease;
+			}
+			.menu-title,
+			.icnav-footer{
+				display: none;
+			}
+			.icnav-footer,
+			.icnav-scroll{
+				width: calc(var(--ic-sidebar-width) + var(--ic-frame-spacing));
+			}
+			.metismenu{
+				li.mm-active{
+					&>ul{
+						display: none;
+					}
+				}
+				& > li > a .menu-icon {
+					margin-left: 5px;
+					transition: all 0.2s ease;
+				}
+			}
+		}
+        
+		.iconhover-toggle{
+			.nav-header{
+				width: calc(var(--ic-sidebar-width) + var(--ic-frame-spacing));
+				
+				.brand-logo{
+					padding-left: 20px;
+					padding-right: 20px;
+				}
+				.brand-title{
+					display: block;
+				}
+			}
+			.icnav{
+				width: calc(var(--ic-sidebar-width) + var(--ic-frame-spacing));
+				
+				.metismenu .has-arrow:after,
+				.nav-text{
+					opacity: 1;
+				}
+				.menu-title,
+				.icnav-footer{
+					display: block;
+				}
+				.metismenu{
+					li.mm-active{
+						&>ul{
+							display: block;
+						}
+					}
+				}
+			}
+			.metismenu{
+				& > li > a .menu-icon {
+					margin-left: 0;
+				}
+			}
+        }
+    }
+}

@@ -1,0 +1,109 @@
+/////////////////
+// Header
+/////////////////
+.header{
+	height: calc(var(--ic-header-height) + var(--ic-frame-spacing));
+    z-index: 1;
+    position: relative;
+    padding: 0rem;
+    background: var(--nav-headbg);
+    z-index: 7;
+    padding-left: calc(var(--ic-sidebar-width) + var(--ic-frame-spacing));
+    padding-top: var(--ic-frame-spacing);
+    transition: all 0.2s ease;
+    padding-right: var(--ic-frame-spacing);
+	
+    .header-content {
+		height: 100%;
+		align-items: center;
+		display: flex;
+		position: relative;
+		border-radius: 15px 15px 0 0;
+		background-color: var(--headerbg);
+		border-left: 1px solid rgba(255, 255, 255, 0.1);
+		border-right: 1px solid rgba(255, 255, 255, 0.1);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		transition: all 0.2s ease;
+	
+        @include respond('phone-land') {
+    		&:after{
+				left: -5rem;
+				width: calc(100% + 5rem);
+			}
+        }
+    }
+    .navbar{
+		padding: 0 30px;
+		height: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		
+        .navbar-collapse{
+            height: 100%;
+            width: 100%;
+        }
+		
+		@include respond ('phone-land'){
+			padding: 0 20px;
+		}
+		@include respond ('phone'){
+			padding: 0 15px;
+		}
+    }
+	@include respond ('phone-land'){
+		padding-top: 0;
+		padding-left: 0;
+	}
+}
+.main-title{
+	font-size: 20px;
+    margin-bottom: 0;
+    font-weight: 600;
+	
+	body:not([data-headerbg="color_1"]) &{
+		color: $white;
+	}
+	@include respond ('phone-land'){
+		display: none;
+	}
+}
+
+
+[data-sidebar-style="full"],
+[data-sidebar-style="overlay"] {
+    .header {
+        width: 100%;
+    }
+}
+[data-header-position="fixed"] {
+    .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+    }
+    .content-body {
+		padding-top: calc(var(--ic-header-height) + var(--ic-frame-spacing));
+    }
+    .icnav{
+        margin-top: 0;
+    }
+}
+[data-sidebar-style="compact"][data-header-position="fixed"][data-container="boxed"][data-layout="vertical"] {
+    .header {
+        width: 74.9375rem;
+    }
+}
+[data-sidebar-style="modern"] {
+    .header {
+		width: 100%;
+	}
+	&[data-layout="horizontal"] {
+		.nav-header .brand-logo{
+		    justify-content: start;
+		}
+		.header .header-content{
+            padding-left: 1.875rem;
+        }
+	}
+}

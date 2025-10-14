@@ -1,0 +1,35 @@
+[data-sidebar-position="fixed"][data-layout="vertical"] {
+    .nav-header {
+        position: fixed;
+    }
+    .icnav {
+        position: fixed;
+        
+		
+    }
+    .menu-toggle {
+        .icnav {
+            position: fixed;
+        }
+    }
+	@include respond('tab-port') {
+		.icnav{
+			position: absolute;
+		}
+		.menu-toggle .icnav{
+			position: absolute;
+		}
+	}
+}
+[data-sidebar-style="icon-hover"][data-layout="vertical"][data-container="wide-boxed"],
+[data-sidebar-style="icon-hover"][data-layout="vertical"][data-container="boxed"],
+[data-header-position="fixed"][data-sidebar-position="fixed"][data-sidebar-style="icon-hover"][data-layout="vertical"][data-container="wide-boxed"],
+[data-header-position="fixed"][data-sidebar-position="fixed"][data-sidebar-style="icon-hover"][data-layout="vertical"][data-container="boxed"],
+[data-sidebar-style="overlay"][data-layout="vertical"][data-container="wide-boxed"],
+[data-sidebar-style="overlay"][data-layout="vertical"][data-container="boxed"],
+[data-header-position="fixed"][data-sidebar-position="fixed"][data-sidebar-style="overlay"][data-layout="vertical"][data-container="wide-boxed"],
+[data-header-position="fixed"][data-sidebar-position="fixed"][data-sidebar-style="overlay"][data-layout="vertical"][data-container="boxed"] {
+    .icnav {
+        position: absolute;
+    }
+}

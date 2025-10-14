@@ -1,0 +1,207 @@
+// Horizontal Nav
+@media (min-width: 64rem) {
+    [data-layout="horizontal"] {
+		.icnav-scroll {
+			overflow: visible!important;
+			max-width: max-content;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.metismenu > li > .has-arrow::after{
+			content: none;
+		}
+		.icnav{
+			width: 100%;
+			position: relative;
+			height: auto;
+			padding-top: 0;
+			padding-bottom: 0;
+			padding-left: 15px;
+			padding-right: 15px;
+			top: 0;
+			
+			.metismenu{
+				flex-direction: row;
+				display: inline-flex;
+				margin-bottom: 0;
+				flex-wrap: wrap;
+				
+				.has-arrow:after,
+				.mm-active > .has-arrow:after{
+					right: 25px;
+					transform: rotate(-225deg) translateY(-50%);
+				}
+				a {
+					padding: 14px 10px;			
+					
+					&::before{
+						content: none;
+					}
+				}
+				.menu-title {
+					display: none;
+				}
+				ul{
+					padding: 15px 0;
+					position: absolute;
+					background-color: #000;
+					border-radius: 0 0 var(--bs-border-radius) var(--bs-border-radius);
+					width: 175px;
+					transform: translateX(-5px);
+					transition: all 0.2s;
+					visibility: hidden;
+					opacity: 0;
+					display: block !important;
+					height: auto !important;
+					top: 100%;
+					
+					
+					ul{
+						border-radius: var(--bs-border-radius);
+					}
+					a{
+						padding: 10px 25px;
+					}
+				}
+				& > li{
+					flex: 0 0 auto;
+					position: relative;
+					
+					&:hover{
+						& > ul{
+							transform: translateX(0);
+							opacity: 1;
+							visibility: visible;
+						}
+					}
+					& > ul > li:hover > ul{
+						transform: translateX(0);
+						opacity: 1;
+						visibility: visible;
+					}
+					&>a {
+						.nav-badge{
+							display: none;
+						}
+						&:after{
+							right: 1.25rem;
+							transform: rotate(-135deg) translateY(-50%);
+							display:none;
+						}
+					}
+					&:last-child{
+						&>ul {
+							ul {
+								left: -100%;
+							}
+							&.left{
+								ul{
+									left: 100%;
+								}
+							}
+							
+						}
+					}
+				}
+				li {
+					flex-direction: column;
+					position: relative;
+					
+					&:hover {
+						&>ul {
+							display: block;
+						}
+					}
+					&>ul{
+						ul{
+							left: 100%;
+							top: 0;
+						}
+					}
+				}
+			}  
+		}  
+		.content-body {
+            margin-left: var(--ic-frame-spacing);
+        }
+		.footer{
+			margin-left: 0;
+		}
+	}
+	[data-header-position="fixed"][data-layout="horizontal"] {
+        .icnav {
+            top: calc(var(--ic-header-height) + var(--ic-frame-spacing));
+        }
+    }
+	[data-header-position="fixed"][data-sidebar-position="fixed"] {
+        .icnav {
+            position: fixed;
+        }
+    }
+	[data-layout="horizontal"]{
+		.header-content{
+			border-radius: 0 15px 0 0;
+			border-left: 0;
+		}
+		.nav-header {
+			height: var(--ic-header-height);
+			width: var(--ic-sidebar-width);
+			top: var(--ic-frame-spacing);
+			border-radius: 15px 0 0 0;
+			margin-left: var(--ic-frame-spacing);
+		}
+		.icnav{
+			width: calc(100% - 12px);
+			margin-left: var(--ic-frame-spacing);
+		}
+		@each $name, $color in $theme_backgrounds{
+			&[data-sidebarbg="#{$name}"] {
+				@if $name != "color_1"{
+					#main-wrapper, .header, .footer{
+						background-color: lighten($color: $color, $amount: 8%);
+					}
+				}
+			}
+		}
+		
+		.nav-header{
+			display: none;
+		}
+		.header {
+			padding-left: var(--ic-frame-spacing);
+		}
+		.header-content{
+			border-radius: 15px 15px 0 0;
+		}
+		.header .header-content{
+			.header-left{
+				display: none;
+			}
+			.brand-logo{
+				display: block;
+			}
+		}
+	}
+}
+.header .header-content .brand-logo{
+	--nav-logo-primary: var(--bs-primary);
+    --nav-logo-white: #fff;
+	display: none;
+	
+	.logo-abbr{
+		margin-right: 5px;
+	}
+	@each $name, $color in $theme_backgrounds{
+		&[data-primary="#{$name}"] {
+			@if $name != "color_1"{			
+				--nav-logo-primary: #{$color};
+			}
+		}
+	}
+}
+[data-primary="color_1"],
+[data-nav-headerbg="color_1"]{
+	.header .header-content .brand-logo{
+		--nav-logo-white: var(--bs-dark);
+	}
+}

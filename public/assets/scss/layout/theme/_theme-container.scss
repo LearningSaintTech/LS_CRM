@@ -1,0 +1,27 @@
+[data-container-width="wide"] {
+	.content-body{
+		& > .container,
+		& > .container-fluid{
+			max-width: 100%;
+		}
+	}
+	.page-title{
+		max-width: 100%;
+	}
+	.header .navbar{
+		max-width: 100%;
+	}
+}
+[data-container-width="boxed"] {
+	.content-body{
+		& > .container-fluid{
+			max-width: 1320px;
+		}
+	}
+	.page-title{
+		max-width: 1320px;
+	}
+	.header .navbar{
+		max-width: 1320px;
+	}
+}

@@ -1,0 +1,50 @@
+[data-sidebar-style="overlay"][data-layout="vertical"]{
+	.icnav{
+        left: -100%;
+        @include transitionMedium;
+		height: calc(100% - (var(--ic-header-height) + var(--ic-frame-spacing) + var(--ic-frame-spacing)));
+		border-radius: 0 0 0 15px;
+		
+		@include respond ('phone-land'){
+			border-radius: 0;
+		}
+    }
+    .content-body{
+        margin-left: var(--ic-frame-spacing);
+    }
+	.menu-toggle{
+        .icnav{
+            left: var(--ic-frame-spacing);
+		}
+    }
+	.header .header-content {
+		border-radius: 0 15px 0 0;
+		border-left: 0;
+		
+		@include respond ('phone-land'){
+			border-radius: 0;
+		}
+	}
+	.nav-header {
+		height: var(--ic-header-height);
+		top: var(--ic-frame-spacing);
+		margin-left: var(--ic-frame-spacing);
+		border-radius: 15px 0 0 0;
+		
+		@include respond ('phone-land'){
+			border-radius: 0;
+		}
+	}
+	.header{
+		background: var(--sidebar-bg);
+	}
+	@each $name, $color in $theme_backgrounds{
+		&[data-sidebarbg="#{$name}"] {
+			@if $name != "color_1"{
+				#main-wrapper, .header, .footer{
+					background-color: lighten($color: $color, $amount: 8%);
+				}
+			}
+		}
+	}
+}

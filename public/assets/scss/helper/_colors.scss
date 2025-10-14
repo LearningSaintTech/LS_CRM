@@ -1,0 +1,36 @@
+/* Text Color And Background Variant */
+@each $color, $value in $colors{
+	.text-#{$color}{
+		color: $value;
+	}
+	.bg-#{$color}{
+		background: $value;
+	}
+}
+.text-gray-100{
+	color: var(--bs-gray-100);
+}
+.text-gray-200{
+	color: var(--bs-gray-200);
+}
+.text-gray-300{
+	color: var(--bs-gray-300);
+}
+.text-gray-400{
+	color: var(--bs-gray-400);
+}
+.text-gray-500{
+	color: var(--bs-gray-500);
+}
+.text-gray-600{
+	color: var(--bs-gray-600);
+}
+.text-gray-700{
+	color: var(--bs-gray-700);
+}
+.text-gray-800{
+	color: var(--bs-gray-800);
+}
+.text-gray-900{
+	color: var(--bs-gray-900);
+}
