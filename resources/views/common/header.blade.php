@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{ url('assets/images/favicon.png') }}">
+    <link rel="shortcut icon" type="image/png" href="{{ url('assets/images/learning_logo.svg') }}">
 
     <!-- Canonical -->
     <link rel="canonical" href="{{ url()->current() }}">

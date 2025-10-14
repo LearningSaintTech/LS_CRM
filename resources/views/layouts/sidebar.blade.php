@@ -1,7 +1,7 @@
 <div class="icnav">
     <div class="icnav-scroll">
         <ul class="metismenu" id="menu">
-            <li class="menu-title" data-i18n="Learning Saint">Learning Saint</li>
+            {{-- <li class="menu-title" data-i18n="Learning Saint">Learning Saint</li> --}}
             <li>
                 <a class="has-arrow" href="{{ route('dashboard') }}" aria-expanded="false">
                     <div class="menu-icon">
@@ -104,13 +104,13 @@
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false"
                             data-i18n="Users Manager">Users Manager</a>
                         <ul aria-expanded="false">
-                            <li><a href="user.html" data-i18n="User">User</a></li>
-                            <li><a href="user-roles.html" data-i18n="Roles Listing">Roles Listing </a></li>
-                            <li><a href="add-role.html" data-i18n="Add Roles">Add Roles</a></li>
-                            <li><a href="app-profile.html" data-i18n="App Profile">App Profile</a></li>
-                            <li><a href="app-profile-2.html" data-i18n="App Profile 2">App Profile 2</a></li>
-                            <li><a href="edit-profile.html" data-i18n="Edit Profile">Edit Profile</a></li>
-                            <li><a href="post-details.html" data-i18n="Post Details">Post Details</a></li>
+                            <li><a href="#" data-i18n="User">User</a></li>
+                            <li><a href="#" data-i18n="Roles Listing">Roles Listing </a></li>
+                            <li><a href="#" data-i18n="Add Roles">Add Roles</a></li>
+                            <li><a href="#" data-i18n="App Profile">App Profile</a></li>
+                            <li><a href="#" data-i18n="App Profile 2">App Profile 2</a></li>
+                            <li><a href="#" data-i18n="Edit Profile">Edit Profile</a></li>
+                            <li><a href="#" data-i18n="Post Details">Post Details</a></li>
                         </ul>
                     </li>
                     <li>
