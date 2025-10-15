@@ -14,7 +14,7 @@
                     <li><a href="{{ route('dashboard') }}" data-i18n="Dashboard Dark">Dashboard Dark</a></li>
                 </ul> --}}
             </li>
-            {{-- start  by amarjeet kushwaha --}}
+            {{-- start  by amarjeet kushwaha all menu should be same --}}
 
                 <x-sidebar-menu-item  route="employee.list" icon="fi fi-rs-employees"  text="Employees" />
 
@@ -117,7 +117,7 @@
                         <a class="has-arrow" href="javascript:void(0);" aria-expanded="false"
                             data-i18n="Customer Manager">Customer Manager</a>
                         <ul aria-expanded="false">
-                            <li><a href="customer.html" data-i18n="Customer List">Customer List</a></li>
+                            <li><a href="#" data-i18n="Customer List">Customer List</a></li>
                             <li><a href="customer-profile.html" data-i18n="Customer Profile">Customer Profile</a></li>
                         </ul>
                     </li>
