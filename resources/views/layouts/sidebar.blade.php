@@ -16,7 +16,12 @@
             </li>
             {{-- start  by amarjeet kushwaha all menu should be same --}}
 
-                <x-sidebar-menu-item  route="employee.list" icon="fi fi-rs-employees"  text="Employees" />
+
+            @can('View Customer')
+             <x-sidebar-menu-item  route="employee.list" icon="fi fi-rs-employees"  text="Employees" />
+            @endcan    
+
+            <x-sidebar-menu-item  route="settings.index" icon="fi fi-rr-settings"  text="Setting" />
 
             {{-- end  by amarjeet kushwaha --}}
 

@@ -39,17 +39,26 @@
     <link href="{{ url('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap/dist/css/jsvectormap.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}">
-    <link class="main-plugins" href="{{ url('assets/css/plugins.css') }}" rel="stylesheet">
+    <link class="main-plugins" href="{{ asset('assets/css/plugins.css') }}" rel="stylesheet">
     <link class="main-css" href="{{ url('assets/css/style.css') }}" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     @stack('styles')
 </head>
 <body>
-
+    {{-- @include('common.toster') --}}
+    
     @include('layouts.spinner')
     <div id="main-wrapper">
-
+        
     @include('layouts.navbar')
-
+    
     @include('layouts.topbar')
-
+    
     @include('layouts.sidebar')
+

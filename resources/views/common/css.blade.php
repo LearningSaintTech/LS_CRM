@@ -1,5 +1,6 @@
 <style>
-    body, html {
+    body,
+    html {
         height: 100%;
         margin: 0;
         font-family: 'Segoe UI', sans-serif;
@@ -18,9 +19,17 @@
     }
 
     @keyframes gradientBG {
-        0% {background-position: 0% 50%;}
-        50% {background-position: 100% 50%;}
-        100% {background-position: 0% 50%;}
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
     /* ==== AUTH WRAPPER ==== */
@@ -50,9 +59,17 @@
     }
 
     @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
     .auth-info .brand-logo svg {
@@ -60,8 +77,15 @@
     }
 
     @keyframes fadeInDown {
-        0% { opacity: 0; transform: translateY(-20px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .auth-media img {
@@ -71,8 +95,15 @@
     }
 
     @keyframes floatUp {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
 
     .info-text {
@@ -86,7 +117,8 @@
     .auth-form {
         position: relative;
         animation: fadeInUp 1s ease forwards;
-        background: rgba(190, 112, 33, 0.85); /* dark background for contrast */
+        background: rgba(190, 112, 33, 0.85);
+        /* dark background for contrast */
         backdrop-filter: blur(10px);
         border-radius: 1rem;
         padding: 2rem;
@@ -95,13 +127,21 @@
     }
 
     @keyframes fadeInUp {
-        0% { opacity: 0; transform: translateY(40px); }
-        100% { opacity: 1; transform: translateY(0); }
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .auth-form h3 {
         font-weight: 700;
-        color: #f39513; /* orange for headings */
+        color: #f39513;
+        /* orange for headings */
         margin-bottom: 1rem;
         text-align: center;
     }
@@ -110,26 +150,45 @@
     .floating-shapes span {
         position: absolute;
         border-radius: 50%;
-        background: rgba(243, 149, 19, 0.2); /* light orange */
+        background: rgba(243, 149, 19, 0.2);
+        /* light orange */
         animation: float 6s ease-in-out infinite;
     }
 
     .floating-shapes span:nth-child(1) {
-        width: 80px; height: 80px; top: -20px; left: 10%;
+        width: 80px;
+        height: 80px;
+        top: -20px;
+        left: 10%;
         animation-delay: 0s;
     }
+
     .floating-shapes span:nth-child(2) {
-        width: 50px; height: 50px; bottom: 20px; right: 15%;
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 15%;
         animation-delay: 2s;
     }
+
     .floating-shapes span:nth-child(3) {
-        width: 60px; height: 60px; top: 30%; right: 30%;
+        width: 60px;
+        height: 60px;
+        top: 30%;
+        right: 30%;
         animation-delay: 4s;
     }
 
     @keyframes float {
-        0%,100% {transform: translateY(0);}
-        50% {transform: translateY(-20px);}
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
     }
 
     /* Buttons hover */
@@ -151,9 +210,55 @@
             border-radius: 1.5rem 1.5rem 0 0;
             padding: 2rem 1rem;
         }
+
         .auth-form {
             margin-top: 1rem;
             border-radius: 0 0 1.5rem 1.5rem;
         }
+    }
+
+
+    /* 🔹 DataTables Search & Length Styling */
+    .dataTables_wrapper .dataTables_length select {
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 4px 10px;
+        background-color: #fff;
+        margin-right: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_filter input {
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 5px 10px;
+        margin-left: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_filter label,
+    .dataTables_wrapper .dataTables_length label {
+        font-weight: 500;
+        color: #444;
+    }
+
+    /* 🔹 Pagination Styling */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 4px 10px;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        margin: 0 2px;
+        color: #444 !important;
+        background-color: #fff;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background-color: #007bff !important;
+        color: #fff !important;
+        border: 1px solid #007bff !important;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+        font-size: 13px;
+        color: #666;
+        padding-top: 8px;
     }
 </style>
