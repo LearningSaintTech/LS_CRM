@@ -1,6 +1,5 @@
 @include('common.header')
 
-
 <main class="content-body">
     <!-- Page Title & Breadcrumb -->
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -20,7 +19,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
-            <a href="" class="btn btn-info btn-sm shadow-sm">
+            <a href="{{route('create-role')}}"" class="btn btn-info btn-sm shadow-sm">
                 <i class="fas fa-plus me-1"></i> Add
             </a>
         </div>
@@ -44,8 +43,8 @@
                                 <td style="width:10%">{{ $loop->iteration }}</td>
                                 <td style="width: 20%">{{ $role->name }}</td>
                                 <td style="width: 15%">
-                                    <span class="badge rounded-pill badge-soft-primary ">
-                                        {{ $role->permissions->count() }}</span>
+                                    <span class=" ">
+                                        {{ $role->permissions_count }}</span>
                                 </td>
                                 <td class="width: 5%">
                                     <a href="" class="btn btn-square btn-warning btn-sm me-1">

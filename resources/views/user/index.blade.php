@@ -1,6 +1,4 @@
 @include('common.header')
-
-
 <main class="content-body">
     <!-- Page Title & Breadcrumb -->
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -25,8 +23,6 @@
             </a>
         </div>
     </div>
-    @include('common.toster')
-
 
     <div class="card shadow-sm border-0">
         <div class="card-body table-card-body px-3 pt-2 pb-3">

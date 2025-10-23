@@ -20,7 +20,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
-            <a href="{{route('permission.create')}}" class="btn btn-info btn-sm shadow-sm">
+            <a href="{{ route('permission.create') }}" class="btn btn-info btn-sm shadow-sm">
                 <i class="fas fa-plus me-1"></i> Add
             </a>
         </div>
@@ -32,27 +32,33 @@
                 <table id="employeesTable" class="table table-striped align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Sr-No</th>
-                            <th>Permission Name</th>
-                            <th>Reference</th>
-                            {{-- @canany(['Edit Permission', 'Delete Permission']) --}}
-                            <th>Action</th>
-                            {{-- @endcanany --}}
+                            <th style="width:10%">Sr-No</th>
+                            <th style="width:10%">Permission Name</th>
+                            <th style="width:10%">Reference</th>
+                            <th style="width:10%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($all_permission as $permission)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $permission->name }}</td>
-                                <td>{{ $permission?->Menu_details?->menu_name }}</td>
-                                <td>
-                                    <a href="" class="btn btn-square btn-warning btn-sm me-1">
+                                <td style="width:10%">{{ $loop->iteration }}</td>
+                                <td style="width:10%">{{ $permission->name }}</td>
+                                <td style="width:10%">{{ $permission?->Menu_details?->menu_name }}</td>
+                                <td style="width:10%">
+                                    <a href="{{ route('permission.edit', ['id' => $permission->id]) }}"
+                                        class="btn btn-square btn-warning btn-sm me-1">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="" class="btn btn-square btn-danger btn-sm delete-user">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form action="{{ route('permission.destroy', $permission->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="permission_id" value="{{ $permission->id }}">
+                                        <button type="submit" class="btn btn-square btn-danger btn-sm delete-user"
+                                            onclick="return confirm('Are you sure you want to delete this permission?')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

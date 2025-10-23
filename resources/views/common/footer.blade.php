@@ -55,3 +55,13 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script>
+$(document).ready(function() {
+    $('#multiple-menus').select2({
+        placeholder: "Select Menu",
+        allowClear: true,
+        width: '100%'
+    });
+});
+</script>

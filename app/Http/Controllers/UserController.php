@@ -29,8 +29,23 @@ class UserController extends Controller
         $users = User::select('users.*');
         return DataTables::of($users)
             ->addColumn('role', function ($user) {
-                return implode(', ', $user->roles->pluck('name')->toArray());
-            })
+                    $roleColors = [
+                        'Super Admin' => '#6610f2',
+                        'Admin' => '#0d6efd',
+                        'Manager' => '#198754',
+                        'User' => '#6c757d',
+                    ];
+
+                    $badges = '';
+                    foreach ($user->roles as $r) {
+                        $name = $r->name;
+                        $color = $roleColors[$name] ?? '#6c757d'; // fallback color
+                        $textColor = '#ffffff';
+                        $badges .= '<span style="background-color: '. $color .'; color: '. $textColor .'; padding: 2px 6px; border-radius: 7px; margin-right: 5px; display:inline-block;">'. e($name) .'</span>';
+                    }
+
+                    return $badges ?: '<span class="text-muted">—</span>';
+                })
             ->addColumn('status', function ($user) {
                 if ($user->status === 'Active') {
                     return '<span class="badge bg-success">Active</span>';
@@ -53,7 +68,7 @@ class UserController extends Controller
                 </td>
             ';
             })
-            ->rawColumns(['status' ,'action'])
+            ->rawColumns(['status' ,'action' ,'role'])
             ->make(true);
     }
 
