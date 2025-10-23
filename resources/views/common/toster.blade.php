@@ -1,38 +1,38 @@
 <script>
-    @if (session('success'))
-        toastr.success("{{ session('success') }}", "Success", {
-            closeButton: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-        });
+    // Safe helper to print messages (escape quotes)
+    const _toast = (type, message) => {
+        if (!message) return;
+        // unescape any existing HTML entities
+        const escaped = String(message).replace(/"/g, '\\"').replace(/\n/g, '\\n');
+        toastr[type](escaped);
+    };
+
+    @if ($errors->any())
+        // show the first validation error
+        _toast('error', "{{ $errors->first() }}");
     @endif
 
-    @if (session('error'))
-        toastr.error("{{ session('error') }}", "Error", {
-            closeButton: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-        });
+    @if (Session::has('success'))
+        _toast('success', "{{ addslashes(session('success')) }}");
     @endif
 
-    @if (session('info'))
-        toastr.info("{{ session('info') }}", "Info", {
-            closeButton: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-        });
+    @if (Session::has('error'))
+        _toast('error', "{{ addslashes(session('error')) }}");
     @endif
 
-    @if (session('warning'))
-        toastr.warning("{{ session('warning') }}", "Warning", {
-            closeButton: true,
-            progressBar: true,
-            positionClass: "toast-top-right",
-        });
+    @if (Session::has('info'))
+        _toast('info', "{{ addslashes(session('info')) }}");
+    @endif
+
+    @if (Session::has('warning'))
+        _toast('warning', "{{ addslashes(session('warning')) }}");
     @endif
 </script>
-<style>
-    .toast {
-        z-index: 999999 !important;
-    }
-</style>
+
+{{-- @dd(session('success')); --}}
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+@if($errors->any())
+    <div class="alert alert-danger">{{ $errors->first('permission') }}</div>
+@endif

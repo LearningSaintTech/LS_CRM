@@ -11,6 +11,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Role extends SpatieRole
 {
     use HasFactory, SoftDeletes;
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($role) {
+            if (empty($role->guard_name)) {
+                $role->guard_name = config('auth.defaults.guard');
+            }
+        });
+        
+        static::updating(function ($role) {
+            $role->guard_name = config('auth.defaults.guard');
+        });
+    }
 
     /**
      * Mass assignable attributes.
@@ -20,6 +35,7 @@ class Role extends SpatieRole
      */
     protected $fillable = [
         'name',
+        'guard_name',
         'slug',
         'description',
     ];
