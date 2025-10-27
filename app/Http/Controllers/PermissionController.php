@@ -38,15 +38,13 @@ class PermissionController extends Controller
                 $permission->guard_name = 'web'; // Ensure guard is set on update
                 $permission->save();
 
-                return redirect()->back()->with('success', 'Permission Updated Successfully');
+                return redirect()->back()->withSuccess(['success', 'Permission Updated Successfully']);
             } else {
                 $permissionName = $request->permission_name;
-                // Check if permission is for enabling Claude Sonnet 3.5
                 if ($permissionName === 'Enable Claude Sonnet 3.5 for all clients') {
                     $permissionName = 'enable_claude_sonnet';
                 }
 
-                // Check if permission already exists
                 if (Permission::where('name', $permissionName)->exists()) {
                     return redirect()->back()->with('error', 'Permission already exists!');
                 }
@@ -58,7 +56,7 @@ class PermissionController extends Controller
                 ];
 
                 $permission = Permission::create($permissionData);
-                return redirect()->back()->with('success', 'Permission Created Successfully');
+                return redirect()->back()->withSuccess(['success', 'Permission Add Successfully']);
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
@@ -78,11 +76,11 @@ class PermissionController extends Controller
         $permission = Permission::findOrFail($id);
 
         if ($permission->roles->count() > 0) {
-            return redirect()->back()->withErrors(provider: ['permission' => 'Cannot delete this permission because it is assigned to one or more roles.']);
+            return redirect()->back()->withErrors(['permission' => 'Cannot delete this permission because it is assigned to one or more roles.']);
         }
 
         $permission->delete();
-        return redirect()->route(route: 'permission.index')->with('success', 'Permission deleted successfully.');
+        return redirect()->route(route: 'permission.index')->withSuccess(['success', 'Permission deleted successfully.']);
     }
 
 

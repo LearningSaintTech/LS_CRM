@@ -25,8 +25,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('roles.store') }}" class="custom-validation needs-validation" novalidate>
+                    <form method="post" 
+                          action="{{ isset($role) ? route('roles.update', $role->id) : route('roles.store') }}" 
+                          class="custom-validation needs-validation" 
+                          novalidate>
                         @csrf
+                        @if(isset($role))
+                            @method('PUT')
+                            <input type="hidden" name="role_id" value="{{ base64_encode(convert_uuencode($role->id)) }}">
+                        @endif
 
                         <div class="row">
                             <!-- Menu Selection -->
@@ -51,7 +58,6 @@
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control alphabets-space" name="name" required>
                             </div>
-
                             <div class="mb-3 col-md-6">
                                   <label for="" class="mb-0">Description</label>
                                 <input type="text" class="form-control" name="description">
@@ -80,7 +86,9 @@
                       <div class="col-lg-12 col-md-12 mb-3">
                             <div class="text-end">
                                 <button type="submit"
-                                    class="btn btn-primary btn-sm waves-effect waves-light" id="createRoleButton">Save</button>
+                                    class="btn btn-primary btn-sm waves-effect waves-light" id="createRoleButton">
+                                    {{ isset($role) ? 'Update Role' : 'Save Role' }}
+                                </button>
                                 <button type="reset"
                                     class="btn btn-sm btn-secondary waves-effect waves-light">Reset</button>
                             </div>
@@ -95,53 +103,89 @@
 @include('common.footer')
 
 <script>
-        $(document).ready(function() {
-            $("#multiple-menus").change(function() {
-                var ids = $(this).val();
-                $.ajax({
-                    url: "{{ route('role-menusetting') }}",
-                    type: "get",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        ids: ids,
-                    },
-                    cache: false,
-                    async: false,
-                    success: function(response) {
-                        $('#permessions_list').html('');
-                        $.each(response, function(index, data) {
-                            $('#permessions_list').append(
-                                '<tr><td><input type="checkbox" class="checkone" value=' +
-                                data['id'] + ' name="permission[]"></td>' +
-                                '<td>' + data['name'] + '</td><td>' + data[
-                                    'menu_details']['menu_name'] + '</td></tr>');
-                        });
-                    }
-                });
-            });
-            $("#selectAll").click(function() {
-                // Check or uncheck all other checkboxes based on the state of "select all" checkbox
-                $(".checkone").prop('checked', $(this).prop('checked'));
-            });
+    $(document).ready(function() {
+        // Initialize select2
+        $('.select2-multiple').select2();
 
-            // When any checkbox is clicked
-            $(".checkone").click(function() {
-                // Check if all checkboxes are checked and update "select all" checkbox accordingly
-                if ($(".checkone:checked").length === $(".checkone").length) {
-                    $("#selectAll").prop('checked', true);
-                } else {
-                    $("#selectAll").prop('checked', false);
-                }
-            });
+        // Load initial permissions if in edit mode
+        @if(isset($role))
+            loadPermissions($("#multiple-menus").val());
+        @endif
 
-            // When "select all" checkbox is unchecked
-            $("#selectAll").change(function() {
-                if (!$(this).prop('checked')) {
-                    $(".checkone").prop('checked', false);
-                }
-            });
+        $("#multiple-menus").change(function() {
+            loadPermissions($(this).val());
         });
-    </script>
+
+        function loadPermissions(ids) {
+            if (!ids || ids.length === 0) return;
+
+            $.ajax({
+                url: "{{ route('role-menusetting') }}",
+                type: "get",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    ids: ids,
+                    @if(isset($role))
+                    role_id: '{{ base64_encode(convert_uuencode($role->id)) }}'
+                    @endif
+                },
+                cache: false,
+                success: function(response) {
+                    $('#permessions_list').html('');
+                    $.each(response, function(index, data) {
+                        var isChecked = '';
+                        @if(isset($permission_list))
+                            if (@json($permission_list).includes(data.id)) {
+                                isChecked = 'checked';
+                            }
+                        @endif
+
+                        $('#permessions_list').append(
+                            '<tr><td><input type="checkbox" class="checkone" value="' +
+                            data.id + '" name="permission[]" ' + isChecked + '></td>' +
+                            '<td>' + data.name + '</td><td>' + 
+                            (data.menu_details ? data.menu_details.menu_name : '') + '</td></tr>'
+                        );
+                    });
+                    updateSelectAllCheckbox();
+                }
+            });
+        }
+
+        // Select All functionality
+        $("#selectAll").click(function() {
+            $(".checkone").prop('checked', $(this).prop('checked'));
+        });
+
+        $(document).on('click', '.checkone', function() {
+            updateSelectAllCheckbox();
+        });
+
+        function updateSelectAllCheckbox() {
+            var totalCheckboxes = $(".checkone").length;
+            var checkedCheckboxes = $(".checkone:checked").length;
+            $("#selectAll").prop('checked', totalCheckboxes > 0 && totalCheckboxes === checkedCheckboxes);
+        }
+
+        // Initialize select all state
+        updateSelectAllCheckbox();
+
+        // Form validation
+        $('form').on('submit', function(e) {
+            if ($(".checkone:checked").length === 0) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Please select at least one permission!',
+                    showConfirmButton: true,
+                });
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @if(session('error'))

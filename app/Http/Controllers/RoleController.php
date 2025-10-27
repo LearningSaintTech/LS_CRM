@@ -114,9 +114,9 @@ class RoleController extends Controller
             $role = Role::create($roleData);
             $role->syncPermissions($permissions);
             return redirect()->route('role.index')
-                ->with('success', 'Role created successfully');
+                ->withSuccess(['success', 'Role created successfully']);
         } else {
-            return redirect()->back()->with('error', 'Please select permission!');
+            return redirect()->back()->withErrors(['error', 'Please select permission!']);
         }
 
     }
@@ -147,28 +147,30 @@ class RoleController extends Controller
      * @param int $id
      * @return View
      */
-    public function edit($id): View
+    public function edit(Role $role,Request $request): View
     {
-        $role = Role::findOrFail($id);
-        $all_menus = Menu::all();
-        $role->load('permissions');
+        // $role = Role::with(['permissions.Menu_details'])->findOrFail($id);
+        // $all_menus = Menu::all();
+        // $permission_list = $role->permissions->pluck('id')->toArray();
+        // $permissions = Permission::whereIn('id', $permission_list)->get();
+        // $selected_menus = $role->permissions->pluck('menu_id')->unique()->values()->toArray();
+        
+        // \Log::info('Edit Role Data:', [
+        //     'role_id' => $id,
+        //     'role_name' => $role->name,
+        //     'permission_list' => $permission_list,
+        //     'selected_menus' => $selected_menus
+        // ]);
 
+        $all_menus = Menu::get();
+        $all_permissions= $role->permissions;
         $permission_list = $role->permissions->pluck('id')->toArray();
-        $permissions = Permission::with('Menu_details')
-            ->whereIn('id', $permission_list)
-            ->get();
-
-        $selected_menus = $permissions->pluck('menu_id')
-            ->unique()
-            ->values()
-            ->toArray();
-
-        if (!view()->exists('setting.role.edit')) {
-            abort(404, 'View setting.role.edit not found');
-        }
-
-        return view('setting.role.edit', compact('role', 'all_menus', 'permissions', 'selected_menus'));
+        $permission = Permission::with('Menu_details')->whereIn('id', $permission_list)->get();
+        $selected_menus = array_unique($permission->pluck('menu_id')->toArray());
+        
+        return view('setting.role.edit', compact('role', 'all_menus', 'permissions', 'selected_menus', 'permission_list' ,'all_permissions'));
     }
+
 
     /**
      * Get menu-specific permissions for editing.
@@ -218,11 +220,11 @@ class RoleController extends Controller
             DB::commit();
 
             return redirect()->route('roles.index')
-                ->with('success', 'Role updated successfully');
+                ->withSuccess(['success', 'Role updated successfully']);
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()
-                ->with('error', 'Failed to update role. ' . $e->getMessage())
+                ->withErrors('error', 'Failed to update role. ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -236,21 +238,17 @@ class RoleController extends Controller
     public function destroy($id): RedirectResponse
     {
         $role = Role::findOrFail($id);
-
         if ($role->users()->exists()) {
             return redirect()->back()
-                ->with('error', 'Cannot delete role with assigned users.');
+                ->withErrors(['error', 'Cannot delete role with assigned users.']);
         }
-
         try {
             $role->delete();
             return redirect()->back()
-                ->with('success', 'Role deleted successfully');
+                ->withSuccess(['success', 'Role deleted successfully']);
         } catch (Exception $e) {
             return redirect()->back()
-                ->with('error', 'Failed to delete role. ' . $e->getMessage());
+                ->withErrors('error', 'Failed to delete role. ' . $e->getMessage());
         }
     }
-
-
 }

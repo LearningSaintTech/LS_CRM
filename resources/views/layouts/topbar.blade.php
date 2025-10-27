@@ -1,4 +1,5 @@
 <!-- Start - Sidebar Chat Box  -->
+
 <div class="chatbox">
     <div class="chatbox-close"></div>
     <div class="clearfix">
@@ -668,9 +669,32 @@
                     </svg>
                 </a>
                 <div class="header-left">
-                    <h1 class="main-title">CRM Dashboard</h1>
-                    
+                    <h1 class="main-title">{{ __('message.dashboard') }}</h1>
+
                 </div>
+                <li class="nav-item dropdown" style="margin-left: 2rem">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        🌐 {{ strtoupper(app()->getLocale()) }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li>
+                            <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                                href="{{ route('lang.switch', 'en') }}">
+                                🇬🇧 English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ app()->getLocale() == 'hi' ? 'active' : '' }}"
+                                href="{{ route('lang.switch', 'hi') }}">
+                                🇮🇳 हिन्दी
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <ul class="navbar-nav header-right">
                     <li class="nav-item">
                         <select class="selectpicker form-select i18n-select" id="langSwitcher">

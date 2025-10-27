@@ -21,6 +21,10 @@ class UserController extends Controller
     public function userlist(Request $request)
     {
         $users = User::all();
+        // Flash any old messages again to ensure they show up
+        if (session('success')) {
+            session()->flash('success', session('success'));
+        }
         return view('user.index', compact('users'));
     }
 
@@ -39,7 +43,7 @@ class UserController extends Controller
                     $badges = '';
                     foreach ($user->roles as $r) {
                         $name = $r->name;
-                        $color = $roleColors[$name] ?? '#6c757d'; // fallback color
+                        $color = $roleColors[$name] ?? '#6c757d'; 
                         $textColor = '#ffffff';
                         $badges .= '<span style="background-color: '. $color .'; color: '. $textColor .'; padding: 2px 6px; border-radius: 7px; margin-right: 5px; display:inline-block;">'. e($name) .'</span>';
                     }
@@ -85,6 +89,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
+            'email' => 'required',
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
@@ -95,15 +100,18 @@ class UserController extends Controller
         }else{
             $input = Arr::except($input,array('password'));
         }
-
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('user.list')
-                        ->with('success','User updated successfully');
+        try {
+            $user = User::find($id);
+            $user->update($input);
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $user->assignRole($request->input('roles'));
+            
+            // session(['success' => 'User updated successfully']);
+            return redirect()->route('user.list')->withSuccess(['success', 'User updated successfully']);
+        } catch (\Exception $e) {
+            session(['error' => 'Error updating user: ' . $e->getMessage()]);
+            return redirect()->back();
+        }
     }
 
 }

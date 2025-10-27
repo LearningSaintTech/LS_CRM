@@ -19,7 +19,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
-            <a href="{{route('create-role')}}"" class="btn btn-info btn-sm shadow-sm">
+            <a href="{{ route('create-role') }}"" class="btn btn-info btn-sm shadow-sm">
                 <i class="fas fa-plus me-1"></i> Add
             </a>
         </div>
@@ -46,13 +46,25 @@
                                     <span class=" ">
                                         {{ $role->permissions_count }}</span>
                                 </td>
-                                <td class="width: 5%">
-                                    <a href="" class="btn btn-square btn-warning btn-sm me-1">
+                                <td style="width: 5%">
+                                    <a href="{{ route('create-role', [ 'id' , $role->id]) }}" class="btn btn-square btn-warning btn-sm me-1" title="Edit Role">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="" class="btn btn-square btn-danger btn-sm delete-user">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    @if($role->name !== 'Super Admin')
+                                        <a href="#" 
+                                           onclick="if(confirm('Are you sure you want to delete this role?')) { event.preventDefault(); document.getElementById('delete-role-{{ $role->id }}').submit(); }"
+                                           class="btn btn-square btn-danger btn-sm"
+                                           title="Delete Role">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                        <form id="delete-role-{{ $role->id }}" 
+                                              action="{{ route('roles.destroy', $role->id) }}" 
+                                              method="POST" 
+                                              style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -64,3 +76,18 @@
 </main>
 
 @include('common.footer')
+
+<script>
+    // Initialize DataTables
+    $(document).ready(function() {
+        $('#employeesTable').DataTable({
+            language: {
+                search: "_INPUT_",_INPUT_
+                searchPlaceholder: "Search roles...",
+                lengthMenu: "Show _MENU_ entries"
+            },
+            order: [[0, 'asc']],
+            pageLength: 10
+        });
+    });
+</script>

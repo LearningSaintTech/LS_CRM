@@ -1,4 +1,13 @@
 @include('common.header')
+
+@if(session('success'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            toastr.success("{{ session('success') }}");
+        });
+    </script>
+@endif
+
 <main class="content-body">
     <!-- Page Title & Breadcrumb -->
     <div class="d-flex justify-content-between align-items-center mb-4">

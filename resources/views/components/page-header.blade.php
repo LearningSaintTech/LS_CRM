@@ -1,25 +1,26 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                @foreach($breadcrumbs as $label => $url)
-                    @if($loop->last)
-                        <li class="breadcrumb-item active" aria-current="page">{{ $label }}</li>
-                    @else
-                        <li class="breadcrumb-item"><a href="{{ $url }}">{{ $label }}</a></li>
-                    @endif
-                @endforeach
-            </ol>
-        </nav>
-        <h4 class="mt-2">{{ $title }}</h4>
+        <div class="page-title mb-4">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="{{ $homeUrl ?? url('/') }}">{{ $homeText ?? 'Home' }}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-    
-    @if($buttonText && $buttonUrl)
-        <a href="{{ $buttonUrl }}" class="btn btn-primary">
-            @if($buttonIcon)
-                <i class="{{ $buttonIcon }}"></i>
-            @endif
-            {{ $buttonText }}
-        </a>
-    @endif
+    <div class="me-3">
+        @if(!empty($back))
+            <a href="{{ $back }}" class="btn btn-secondary btn-sm shadow-sm">
+                <i class="fas fa-arrow-left me-1"></i> Back
+            </a>
+        @endif
+        @if(!empty($addRoute))
+            <a href="{{ $addRoute }}" class="btn btn-info btn-sm shadow-sm">
+                <i class="fas fa-plus me-1"></i> Add
+            </a>
+        @endif
+    </div>
 </div>

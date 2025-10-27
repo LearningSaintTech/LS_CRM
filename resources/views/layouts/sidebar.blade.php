@@ -21,6 +21,8 @@
              <x-sidebar-menu-item  route="employee.list" icon="fi fi-rs-employees"  text="Employees" />
             @endcan    
 
+            <x-sidebar-menu-item route="blog.list" icon="fi fi-rs-book" text="BLog"/>
+
             <x-sidebar-menu-item  route="settings.index" icon="fi fi-rr-settings"  text="Setting" />
 
             {{-- end  by amarjeet kushwaha --}}
