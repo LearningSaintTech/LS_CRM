@@ -53,15 +53,16 @@
 
                             <!-- Email Input -->
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Permission Name</label>
-                                <label for="" class="mb-0">Role Name<span
-                                        class="text-danger">*</span></label>
+                                {{-- <label for="email" class="form-label">Permission Name</label> --}}
+                                <label for="" class="mb-0">Role Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control alphabets-space" name="name" required>
                             </div>
+
                             <div class="mb-3 col-md-6">
                                   <label for="" class="mb-0">Description</label>
                                 <input type="text" class="form-control" name="description">
                             </div>
+
                             <div class="col-md-12 col-md-12">
                                 <div class="mb-3">
                                     <div class="table-responsive">
@@ -69,8 +70,7 @@
                                             style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead class="">
                                                 <tr>
-                                                    <th><input type="checkbox" class="form-control-sm"
-                                                            id="selectAll" style="min-height: 10px;"></th>
+                                                    <th><input type="checkbox" class="form-control-sm" id="selectAll" style="min-height: 10px;"></th>
                                                     <th>Permission</th>
                                                     <th>Reference</th>
                                                 </tr>
@@ -89,8 +89,7 @@
                                     class="btn btn-primary btn-sm waves-effect waves-light" id="createRoleButton">
                                     {{ isset($role) ? 'Update Role' : 'Save Role' }}
                                 </button>
-                                <button type="reset"
-                                    class="btn btn-sm btn-secondary waves-effect waves-light">Reset</button>
+                                <button type="reset" class="btn btn-sm btn-secondary waves-effect waves-light">Reset</button>
                             </div>
                         </div>
                     </form>

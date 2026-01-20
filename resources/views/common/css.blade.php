@@ -32,7 +32,6 @@
         }
     }
 
-    /* ==== AUTH WRAPPER ==== */
     .auth-wrapper {
         position: relative;
         z-index: 1;
@@ -113,7 +112,6 @@
         margin: 1rem auto 0 auto;
     }
 
-    /* ==== RIGHT PANEL (LOGIN FORM) ==== */
     .auth-form {
         position: relative;
         animation: fadeInUp 1s ease forwards;

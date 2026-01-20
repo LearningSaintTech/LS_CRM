@@ -72,9 +72,7 @@ class RoleController extends Controller
         if (!$request->has('ids')) {
             return collect();
         }
-
         $query = Permission::with('Menu_details');
-
         if (in_array('All', $request->ids)) {
             return $query->latest()->get();
         }
@@ -147,28 +145,29 @@ class RoleController extends Controller
      * @param int $id
      * @return View
      */
-    public function edit(Role $role,Request $request): View
+    public function editroles(Role $role, $id, Request $request): View
     {
-        // $role = Role::with(['permissions.Menu_details'])->findOrFail($id);
-        // $all_menus = Menu::all();
-        // $permission_list = $role->permissions->pluck('id')->toArray();
-        // $permissions = Permission::whereIn('id', $permission_list)->get();
-        // $selected_menus = $role->permissions->pluck('menu_id')->unique()->values()->toArray();
-        
-        // \Log::info('Edit Role Data:', [
-        //     'role_id' => $id,
-        //     'role_name' => $role->name,
-        //     'permission_list' => $permission_list,
-        //     'selected_menus' => $selected_menus
-        // ]);
 
+        $role = Role::with(['permissions.Menu_details'])->findOrFail($id);
+        $all_menus = Menu::all();
+        $permission_list = $role->permissions->pluck('id')->toArray();
+        $permissions = Permission::whereIn('id', $permission_list)->get();
+        $selected_menus = $role->permissions->pluck('menu_id')->unique()->values()->toArray();
+
+        \Log::info('Edit Role Data:', [
+            'role_id' => $id,
+            'role_name' => $role->name,
+            'permission_list' => $permission_list,
+            'selected_menus' => $selected_menus
+        ]);
         $all_menus = Menu::get();
-        $all_permissions= $role->permissions;
+        $all_permissions = $role->permissions;
         $permission_list = $role->permissions->pluck('id')->toArray();
         $permission = Permission::with('Menu_details')->whereIn('id', $permission_list)->get();
         $selected_menus = array_unique($permission->pluck('menu_id')->toArray());
-        
-        return view('setting.role.edit', compact('role', 'all_menus', 'permissions', 'selected_menus', 'permission_list' ,'all_permissions'));
+        // dd($all_permissions);
+
+        return view('setting.role.edit', compact('role', 'all_menus', 'permissions', 'selected_menus', 'permission_list', 'all_permissions'));
     }
 
 

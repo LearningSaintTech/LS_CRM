@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\BlogTraits;
 
 class BLogController extends Controller
 {
-    //
-    public function bloglist(){
-        return view('blog.index');
-    }
+    use BlogTraits;
+    
 }

@@ -1,15 +1,7 @@
 @include('common.header')
-
-@if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.success("{{ session('success') }}");
-        });
-    </script>
-@endif
+{{-- @include('common.toster') --}}
 
 <main class="content-body">
-    <!-- Page Title & Breadcrumb -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <div class="page-title mb-4">
@@ -27,7 +19,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
-            <a href="" class="btn btn-info btn-sm shadow-sm">
+            <a href="{{ route('add.user') }}" class="btn btn-info btn-sm shadow-sm">
                 <i class="fas fa-plus me-1"></i> Add
             </a>
         </div>

@@ -28,28 +28,39 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
+    public function adduser(Request $request)
+    {
+        $user = null;
+        $roles = Role::get(['id', 'name']);
+        $userRole = $user ? $user->roles->pluck('name', 'name')->all() : [];
+        return view('user.addEdit', compact('roles', 'user', 'userRole'));
+
+    }
+
     public function getUsers()
     {
-        $users = User::select('users.*');
+        $users = User::orderBy('id' ,'Desc')->select('users.*');
         return DataTables::of($users)
             ->addColumn('role', function ($user) {
-                    $roleColors = [
-                        'Super Admin' => '#6610f2',
-                        'Admin' => '#0d6efd',
-                        'Manager' => '#198754',
-                        'User' => '#6c757d',
-                    ];
+                $roleColors = [
+                    'Super Admin' => '#6610f2',
+                    'Admin' => '#f3b95a',
+                    'Manager' => '#198754',
+                    'User' => 'hsl(207, 18%, 78%)',
+                    'sub-admin' => '#f74900d9',
+                    'vendor' => '#000',
+                ];
 
-                    $badges = '';
-                    foreach ($user->roles as $r) {
-                        $name = $r->name;
-                        $color = $roleColors[$name] ?? '#6c757d'; 
-                        $textColor = '#ffffff';
-                        $badges .= '<span style="background-color: '. $color .'; color: '. $textColor .'; padding: 2px 6px; border-radius: 7px; margin-right: 5px; display:inline-block;">'. e($name) .'</span>';
-                    }
+                $badges = '';
+                foreach ($user->roles as $r) {
+                    $name = $r->name;
+                    $color = $roleColors[$name] ?? '#6c757d';
+                    $textColor = '#ffffff';
+                    $badges .= '<span style="background-color: ' . $color . '; color: ' . $textColor . '; padding: 2px 6px; border-radius: 7px; margin-right: 5px; display:inline-block;">' . e($name) . '</span>';
+                }
 
-                    return $badges ?: '<span class="text-muted">—</span>';
-                })
+                return $badges ?: '<span class="text-muted">—</span>';
+            })
             ->addColumn('status', function ($user) {
                 if ($user->status === 'Active') {
                     return '<span class="badge bg-success">Active</span>';
@@ -62,7 +73,7 @@ class UserController extends Controller
                 $deleteUrl = route('users.destroy', $user->id);
                 return '
                 <td class="text-end">
-                    <a href="' . $editUrl . '" class="btn btn-square btn-warning btn-sm me-1">
+                    <a href="' . $editUrl . '" class="btn btn-square btn-info btn-sm me-1">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
                     <a href="" data-id="' . $user->id . '" 
@@ -72,45 +83,54 @@ class UserController extends Controller
                 </td>
             ';
             })
-            ->rawColumns(['status' ,'action' ,'role'])
+            ->rawColumns(['status', 'action', 'role'])
             ->make(true);
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $id = convert_uudecode(base64_decode($request->userId));
-        $user = User::where('id' ,$id)->first();
+        $user = User::where('id', '=', $id)->first();
         // dd($user);
-        $roles = Role::get();
-        $userRole = $user?->roles->pluck('name','name')->all() ?? [];
+        $roles = Role::get(['id', 'name']);
+        $userRole = $user?->roles->pluck('name', 'name')->all() ?? [];
         // dd($userRole);
-        return view('user.addEdit' ,compact('user' ,'roles','userRole'));
+        return view('user.addEdit', compact('user', 'roles', 'userRole'));
     }
-    public function userupdate(Request $request, $id): RedirectResponse
+    public function userupdate(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|max:100',
+            'phone' => 'required|max:12',
+            'email' => 'required|max:70|unique:users,email',
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
-
+        DB::beginTransaction();
+        $id = $request->id;
         $input = $request->all();
-        if(!empty($input['password'])){
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = Arr::except($input,array('password'));
+        } else {
+            $input = Arr::except($input, array('password'));
         }
         try {
-            $user = User::find($id);
-            $user->update($input);
-            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $user = $id ? User::findOrFail($id) : new User();
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->phone = $request->input('phone');
+            if (!empty($input['password'])) {
+                $user->password = $input['password'];
+            }
+            // $user->status = $request->input('status');
+            $user->save();
+            DB::table('model_has_roles')->where('model_id', $id)->delete();
             $user->assignRole($request->input('roles'));
-            
-            // session(['success' => 'User updated successfully']);
-            return redirect()->route('user.list')->withSuccess(['success', 'User updated successfully']);
+            return redirect()->route('user.list')->withSuccess(['success', 'Role updated successfully']);
         } catch (\Exception $e) {
-            session(['error' => 'Error updating user: ' . $e->getMessage()]);
-            return redirect()->back();
+            // session(['error' => 'Error updating user: ' . $e->getMessage()]);
+            // dd($e->getMessage());
+            return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();
         }
     }
 

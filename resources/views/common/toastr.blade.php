@@ -1,14 +1,17 @@
 <script>
-    const _toast = (type, message) => {
-        if (!message) return;
-        toastr[type](message);
-    };
-
-    @if (session('toast_type') && session('toast_message'))
-        _toast("{{ session('toast_type') }}", "{{ addslashes(session('toast_message')) }}");
+    @if (session('success'))
+        toastr.success("{{ session('success') }}");
     @endif
 
-    @if ($errors->any())
-        _toast('error', "{{ $errors->first() }}");
+    @if (session('error'))
+        toastr.error("{{ session('error') }}");
+    @endif
+
+    @if (session('warning'))
+        toastr.warning("{{ session('warning') }}");
+    @endif
+
+    @if (session('info'))
+        toastr.info("{{ session('info') }}");
     @endif
 </script>

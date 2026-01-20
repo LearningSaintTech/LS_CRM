@@ -47,7 +47,7 @@
                                         {{ $role->permissions_count }}</span>
                                 </td>
                                 <td style="width: 5%">
-                                    <a href="{{ route('create-role', [ 'id' , $role->id]) }}" class="btn btn-square btn-warning btn-sm me-1" title="Edit Role">
+                                    <a href="{{ route('roles.edit', $role?->id) }}" class="btn btn-square btn-warning btn-sm me-1" title="Edit Role">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     @if($role->name !== 'Super Admin')

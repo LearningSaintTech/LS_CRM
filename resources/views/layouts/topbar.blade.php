@@ -4,15 +4,19 @@
     <div class="chatbox-close"></div>
     <div class="clearfix">
         <ul class="nav nav-underline">
+
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#notes">Notes</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#alerts">Alerts</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#chat">Chat</a>
             </li>
+            
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active show" id="chat">
@@ -44,7 +48,8 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="card-body contacts_body p-0 ic-scroll  " id="ic_W_Contacts_Body">
+
+                    {{-- <div class="card-body contacts_body p-0 ic-scroll  " id="ic_W_Contacts_Body">
                         <ul class="contacts">
                             <li class="name-first-letter">A</li>
                             <li class="active ic-chat-user">
@@ -247,7 +252,8 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
+                    
                 </div>
                 <div class="card chat ic-chat-history-box d-none">
                     <div class="card-header chat-list-header text-center">
@@ -296,157 +302,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card-body msg_card_body ic-scroll" id="ic_W_Contacts_Body3">
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="assets/images/avatar/small/avatar1.webp" class="rounded-circle user_img_msg"
-                                    alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                Hi, how are you samim?
-                                <span class="msg_time">8:40 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                Hi Khalid i am good tnx how about you?
-                                <span class="msg_time_send">8:55 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="assets/images/avatar/small/avatar2.webp" class="rounded-circle user_img_msg"
-                                    alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="assets/images/avatar/small/avatar1.webp" class="rounded-circle user_img_msg"
-                                    alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                I am good too, thank you for your chat template
-                                <span class="msg_time">9:00 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                You are welcome
-                                <span class="msg_time_send">9:05 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar2.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar1.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                I am looking for your next templates
-                                <span class="msg_time">9:07 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                Ok, thank you have a good day
-                                <span class="msg_time_send">9:10 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar2.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar1.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                Bye, see you
-                                <span class="msg_time">9:12 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar1.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                Hi, how are you samim?
-                                <span class="msg_time">8:40 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                Hi Khalid i am good tnx how about you?
-                                <span class="msg_time_send">8:55 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar2.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="assets/images/avatar/small/avatar1.webp" class="rounded-circle user_img_msg"
-                                    alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                I am good too, thank you for your chat template
-                                <span class="msg_time">9:00 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                You are welcome
-                                <span class="msg_time_send">9:05 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar2.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar1.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                I am looking for your next templates
-                                <span class="msg_time">9:07 AM, Today</span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-end mb-4">
-                            <div class="msg_cotainer_send">
-                                Ok, thank you have a good day
-                                <span class="msg_time_send">9:10 AM, Today</span>
-                            </div>
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar2.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-start mb-4">
-                            <div class="img_cont_msg">
-                                <img src="{{ url('assets/images/avatar/small/avatar1.webp') }}"
-                                    class="rounded-circle user_img_msg" alt="">
-                            </div>
-                            <div class="msg_cotainer">
-                                Bye, see you
-                                <span class="msg_time">9:12 AM, Today</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer type_msg">
-                        <div class="input-group">
-                            <textarea class="form-control" placeholder="Type your message..."></textarea>
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-primary"><i
-                                        class="fa fa-location-arrow"></i></button>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="tab-pane fade" id="alerts">
@@ -482,7 +338,7 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="card-body contacts_body p-0 ic-scroll" id="ic_W_Contacts_Body1">
+                    {{-- <div class="card-body contacts_body p-0 ic-scroll" id="ic_W_Contacts_Body1">
                         <ul class="contacts">
                             <li class="name-first-letter">SEVER STATUS</li>
                             <li class="active">
@@ -524,11 +380,12 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="card-footer"></div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="notes">
+
+            {{-- <div class="tab-pane fade" id="notes">
                 <div class="card mb-sm-3 mb-md-0 note_card">
                     <div class="card-header chat-list-header text-center">
                         <a href="javascript:void(0);" class="ic-chatbox-btn">
@@ -631,13 +488,12 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+
         </div>
     </div>
 </div>
-<!-- End - Sidebar Chat Box  -->
 
-<!-- Start - Header -->
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -669,12 +525,11 @@
                     </svg>
                 </a>
                 <div class="header-left">
-                    <h1 class="main-title">{{ __('message.dashboard') }}</h1>
-
+                    <h1 class="main-title">{{ __('messages.dashboard') }}</h1>
                 </div>
                 <li class="nav-item dropdown" style="margin-left: 2rem">
 
-                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+                    {{-- <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         🌐 {{ strtoupper(app()->getLocale()) }}
                     </a>
@@ -691,12 +546,13 @@
                                 🇮🇳 हिन्दी
                             </a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
 
                 <ul class="navbar-nav header-right">
-                    <li class="nav-item">
+
+                    {{-- <li class="nav-item">
                         <select class="selectpicker form-select i18n-select" id="langSwitcher">
                             <option value="en_GB" title="English"
                                 data-content="<img src='assets/images/flags/gb-eng.svg' alt=''> English">
@@ -726,6 +582,7 @@
                             </option>
                         </select>
                     </li>
+
                     <li class="nav-item dropdown notification_dropdown">
                         <div class="dropdown">
                             <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false"
@@ -824,6 +681,7 @@
                             </div>
                         </div>
                     </li>
+
                     <li class="nav-item notification_dropdown">
                         <a class="nav-link btn-chatbox" href="javascript:void(0);" aria-label="Sidabar Chatbox">
                             <i class="fi fi-rr-comment"></i>
@@ -834,7 +692,7 @@
                             <i id="icon-full" class="fi fi-rr-expand"></i>
                             <i id="icon-minimize" class="fi fi-rr-compress"></i>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown header-profile-dropdown">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -854,12 +712,11 @@
                                         {{-- <small>{{ Auth::user()->role ?? 'User' }}</small> --}}
                                     </div>
                                 </div>
-
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a class="dropdown-item" href="app-profile.html">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -874,8 +731,8 @@
                                     </svg>
                                     <span class="ms-2">Profile</span>
                                 </a>
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a class="dropdown-item" href="app-profile.html">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -889,8 +746,8 @@
                                     <span class="ms-2">My Project</span>
                                     <span class="badge badge-sm badge-primary light rounded-circle float-end">4</span>
                                 </a>
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a href="javascript:void(0);" class="dropdown-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -905,8 +762,8 @@
                                     </svg>
                                     <span class="ms-2">Message </span>
                                 </a>
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a href="email-inbox.html" class="dropdown-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -920,7 +777,7 @@
                                     </svg>
                                     <span class="ms-2">Notification </span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="javascript:void(0);" class="dropdown-item">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -939,17 +796,7 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
-                                {{-- <a href="page-login.html" class="dropdown-item"> --}}
-                                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                        viewBox="0 0 24 24" fill="none" stroke="var(--bs-danger)"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="var(--bs-danger)" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4">
-                                        </path>
-                                        <polyline stroke="var(--bs-danger)" points="16 17 21 12 16 7">
-                                        </polyline>
-                                        <line x1="21" y1="12" x2="9" y2="12">
-                                        </line>
-                                    </svg> --}}
+
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                             <li>
@@ -966,7 +813,7 @@
                                 </a>
                             </li>
                             </form>
-                            {{-- </a> --}}
+
                     </li>
                 </ul>
                 </li>

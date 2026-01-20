@@ -1,9 +1,5 @@
 @include('common.header')
-
-<!-- Start - Content Body -->
 <main class="content-body">
-
-    <!-- Start - Page Title & Breadcrumb -->
     <div class="page-title">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -14,7 +10,6 @@
             </ol>
         </nav>
     </div>
-    <!-- End - Page Title & Breadcrumb -->
 
     <div class="container-fluid">
 
@@ -51,7 +46,7 @@
                     </div>
                     <div class="col-xxl-12 col-md-6">
                         <div class="card overflow-hidden z-1">
-                            <img src="assets/images/card-bg1.png" alt=""
+                            <img src="{{ asset('assets/images/card-bg1.png') }}" alt="xyz"
                                 class="position-absolute top-0 start-0 z-n1">
                             <div class="card-header pb-0 border-0 align-items-start pt-4">
                                 <h4 class="card-title">Total Sales</h4>
@@ -178,7 +173,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar1.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar1.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">James Carter</p>
                                             </div>
@@ -221,7 +216,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar2.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar2.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">Michael Thompson</p>
                                             </div>
@@ -264,8 +259,8 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar3.webp"
-                                                    class="avatar avatar-xs" alt="">
+                                                <img src="{{ asset('assets/images/avatar/small/avatar3.webp') }}"
+                                                    class="avatar avatar-xs" alt="ayz">
                                                 <p class="mb-0 ms-2">Daniel Rivera</p>
                                             </div>
                                         </td>
@@ -307,7 +302,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar4.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar4.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">Robert Bennett</p>
                                             </div>
@@ -350,7 +345,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar5.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar5.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">Anthony Wallace</p>
                                             </div>
@@ -393,7 +388,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar6.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar6.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">Noah Bennett</p>
                                             </div>
@@ -436,7 +431,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="assets/images/avatar/small/avatar7.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar7.webp') }}"
                                                     class="avatar avatar-xs" alt="">
                                                 <p class="mb-0 ms-2">Ethan Carter</p>
                                             </div>
@@ -476,9 +471,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End - Customer Transaction -->
-
-            <!-- Start - Recent Reviews -->
+            
             <div class="col-xxl-4 col-xl-4 col-md-6">
                 <div class="card custom-card-2">
                     <div class="card-header border-0 align-items-center pb-2">
@@ -500,7 +493,7 @@
                                         <div class="card-reviews">
                                             <div
                                                 class="d-flex gap-2 align-items-center border-bottom pb-4 mb-4 border-light">
-                                                <img src="assets/images/avatar/small/avatar1.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar1.webp') }}"
                                                     class="avatar avatar-xs rounded-circle" alt="">
                                                 <div class="clearfix">
                                                     <h6 class="fw-semibold mb-0">Ethan Carter</h6>
@@ -523,7 +516,7 @@
                                         <div class="card-reviews">
                                             <div
                                                 class="d-flex gap-2 align-items-center border-bottom pb-4 mb-4 border-light">
-                                                <img src="assets/images/avatar/small/avatar2.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar2.webp') }}"
                                                     class="avatar avatar-xs rounded-circle" alt="">
                                                 <div class="clearfix">
                                                     <h6 class="fw-semibold mb-0">James Carter</h6>
@@ -569,7 +562,7 @@
                                         <div class="card-reviews">
                                             <div
                                                 class="d-flex gap-2 align-items-center border-bottom pb-4 mb-4 border-light">
-                                                <img src="assets/images/avatar/small/avatar4.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar4.webp') }}"
                                                     class="avatar avatar-xs rounded-circle" alt="">
                                                 <div class="clearfix">
                                                     <h6 class="fw-semibold mb-0">Robert Bennett</h6>
@@ -592,7 +585,7 @@
                                         <div class="card-reviews">
                                             <div
                                                 class="d-flex gap-2 align-items-center border-bottom pb-4 mb-4 border-light">
-                                                <img src="assets/images/avatar/small/avatar5.webp"
+                                                <img src="{{ asset('assets/images/avatar/small/avatar5.webp') }}"
                                                     class="avatar avatar-xs rounded-circle" alt="">
                                                 <div class="clearfix">
                                                     <h6 class="fw-semibold mb-0">Anthony Wallace</h6>
@@ -619,16 +612,16 @@
                     <div class="card-footer border-0 d-flex justify-content-between align-items-center pb-4 pt-1">
                         <div class="d-flex gap-2">
                             <div class="avatar-list avatar-list-stacked">
-                                <img src="assets/images/avatar/small/avatar6.webp"
+                                <img src="{{ asset('assets/images/avatar/small/avatar6.webp') }}"
                                     class="avatar avatar-xs rounded-circle border border-2 border-white"
                                     alt="">
-                                <img src="assets/images/avatar/small/avatar7.webp"
+                                <img src="{{ asset('assets/images/avatar/small/avatar7.webp') }}"
                                     class="avatar avatar-xs rounded-circle border border-2 border-white"
                                     alt="">
-                                <img src="assets/images/avatar/small/avatar8.webp"
+                                <img src="{{ asset('assets/images/avatar/small/avatar8.webp') }}"
                                     class="avatar avatar-xs rounded-circle border border-2 border-white"
                                     alt="">
-                                <img src="assets/images/avatar/small/avatar9.webp"
+                                <img src="{{ asset('assets/images/avatar/small/avatar9.webp') }}"
                                     class="avatar avatar-xs rounded-circle border border-2 border-white"
                                     alt="">
                             </div>
@@ -643,9 +636,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End - Recent Reviews -->
-
-            <!-- Start - Sales Analytics -->
+         
             <div class="col-xxl-7 col-xl-7">
                 <div class="card">
                     <div class="card-header pb-0 border-0 align-items-start">
@@ -663,9 +654,7 @@
                     </div>
                 </div>
             </div>
-            <!-- End - Sales Analytics -->
-
-            <!-- Start - World Sales -->
+          
             <div class="col-xxl-5 col-xl-5">
                 <div class="card">
                     <div class="card-header border-0 pb-0 d-block">
@@ -677,13 +666,10 @@
                     </div>
                 </div>
             </div>
-            <!-- End - World Sales -->
-
         </div>
     </div>
-
 </main>
-<!-- End - Content Body -->
+
 
 @include('common.footer')
 </body>

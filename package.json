@@ -19,6 +19,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "tinymce": "^8.2.0",
         "tostr": "^0.1.0"
     }
 }

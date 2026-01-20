@@ -20,3 +20,15 @@
         @endforeach
     @endif
 </script>
+{{-- @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: "{{ session('success') }}",
+            iconColor: '#28a745',
+            showConfirmButton: false,
+            timer: 2500,
+            heightAuto: false,
+        });
+    </script>
+@endif --}}

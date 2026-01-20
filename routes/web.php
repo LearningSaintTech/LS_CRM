@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Role management routes with permissions
     Route::prefix('users')->group(function () {
-        Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+        Route::get('roles/edit/{id}', [RoleController::class, 'editroles'])->name('roles.edit');
         Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
         Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
         Route::resource('roles', RoleController::class)->except(['edit', 'update', 'destroy']);
@@ -30,16 +30,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('settings', [SettingController::class, 'settingIndex'])->name('settings.index');
     Route::get('user-list', [UserController::class, 'userlist'])->name('user.list');
+    Route::get('add-user' ,[UserController::class , 'adduser'])->name('add.user');
     Route::get('/users/data', [UserController::class, 'getUsers'])->name('users.data');
     Route::get('users-edit', [UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::patch('/{user}/user-update', [UserController::class, 'userupdate'])->name('users.role.update');
+    Route::post('user-update', [UserController::class, 'userupdate'])->name('users.role.update');
     Route::get('role-list', [RoleController::class, 'index'])->name('role.index');
     // Route::get('permission', [PermissionController::class ,'index'])->name('permission.index');
     Route::get('/permissioncreate', [PermissionController::class, 'create'])->name('permission.create');
     Route::get('/permissionedit', [PermissionController::class, 'edit'])->name('permission.edit');
     Route::get('/create-role', [RoleController::class, 'create'])->name(name: 'create-role');
     Route::get('/role-menusetting', [RoleController::class, 'rolemenusetting'])->name('role-menusetting');
+    
 
     Route::resource('permission', PermissionController::class);
 

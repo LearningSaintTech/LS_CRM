@@ -5,4 +5,5 @@ return [
     'blog_list' => 'Blog List',
     'add_button' => 'Add New',
     'dashboard' => 'CRM Dashboard',
+    'select_website' => 'Select Website',
 ];
