@@ -38,7 +38,7 @@ class PermissionController extends Controller
                 $permission->guard_name = 'web'; // Ensure guard is set on update
                 $permission->save();
 
-                return redirect()->back()->withSuccess(['success', 'Permission Updated Successfully']);
+                return redirect()->back()->with('success', 'Permission Updated Successfully');
             } else {
                 $permissionName = $request->permission_name;
                 if ($permissionName === 'Enable Claude Sonnet 3.5 for all clients') {
@@ -56,7 +56,7 @@ class PermissionController extends Controller
                 ];
 
                 $permission = Permission::create($permissionData);
-                return redirect()->back()->withSuccess(['success', 'Permission Add Successfully']);
+                return redirect()->back()->with('success', 'Permission Add Successfully');
             }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
@@ -80,7 +80,7 @@ class PermissionController extends Controller
         }
 
         $permission->delete();
-        return redirect()->route(route: 'permission.index')->withSuccess(['success', 'Permission deleted successfully.']);
+        return redirect()->route(route: 'permission.index')->with('success', 'Permission deleted successfully.');
     }
 
 

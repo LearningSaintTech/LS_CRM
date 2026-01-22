@@ -11,6 +11,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Route::get('/mail-test', function () {
+//     Mail::raw('Test Mail Working', function ($msg) {
+//         $msg->to('amarjeet@learningsaint.com')
+//             ->subject('SMTP Test');
+//     });
+// });
+
 Route::get('/dashboard', function () {
     return view('new_dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -57,3 +64,4 @@ Route::get('lang/{lang}', function ($lang) {
 require __DIR__ . '/auth.php';
 require __DIR__ . '/employee.php';
 require __DIR__ . '/blog.php';
+require __DIR__ . '/vendor.php';

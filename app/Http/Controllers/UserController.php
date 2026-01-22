@@ -122,14 +122,12 @@ class UserController extends Controller
             if (!empty($input['password'])) {
                 $user->password = $input['password'];
             }
-            // $user->status = $request->input('status');
             $user->save();
             DB::table('model_has_roles')->where('model_id', $id)->delete();
             $user->assignRole($request->input('roles'));
-            return redirect()->route('user.list')->withSuccess(['success', 'Role updated successfully']);
+            return redirect()->route('user.list')->with('success', 'User updated successfully');
         } catch (\Exception $e) {
-            // session(['error' => 'Error updating user: ' . $e->getMessage()]);
-            // dd($e->getMessage());
+            DB::rollBack();
             return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();
         }
     }

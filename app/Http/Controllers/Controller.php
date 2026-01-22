@@ -45,4 +45,11 @@ class Controller extends BaseController
             session()->flash('success', $message);
         }
     }
+
+    protected function alertRedirect($route, $type, $message)
+    {
+        return redirect()
+            ->route($route)
+            ->with($type, $message);
+    }
 }

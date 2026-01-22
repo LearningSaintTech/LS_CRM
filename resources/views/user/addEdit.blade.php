@@ -74,7 +74,7 @@
                                 <label class="form-label">Confirm Password</label>
 
                                 <div class="input-group">
-                                    <input type="password" maxlength="12" class="form-control" name="confirm_password"
+                                    <input type="password" maxlength="12" class="form-control" name="confirm-password"
                                         id="confirm_password" placeholder="Confirm Password"
                                         @if (!$user?->id) required @endif>
 

@@ -1,3 +1,10 @@
+<style>
+    .sidebar-item.active>.sidebar-link {
+        background-color: #3d3984;
+        color: #fff;
+        border-radius: .5rem;
+    }
+</style>
 <div class="icnav">
     <div class="icnav-scroll">
         <ul class="metismenu" id="menu">
@@ -23,7 +30,16 @@
 
             <x-sidebar-menu-item route="blog.list" icon="fi fi-rs-book" text="BLog" />
 
-            <x-sidebar-menu-item route="settings.index" icon="fi fi-rr-settings" text="Setting"/>
+            <x-sidebar-menu-item route="settings.index" icon="fi fi-rr-settings" text="Setting" />
+
+            {{-- <x-sidebar-menu-item route="vendor.list" icon="fi fi-rr-users" text="Vendor"/> --}}
+
+            <li class="sidebar-item {{ request()->routeIs('vendor.list') ? 'active' : '' }}">
+                <a href="{{ route('vendor.list') }}" class="sidebar-link">
+                    <i class="fi fi-rr-users"></i>
+                    <span>Vendor</span>
+                </a>
+            </li>
 
         </ul>
     </div>

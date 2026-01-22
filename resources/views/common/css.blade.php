@@ -217,7 +217,8 @@
 
 
     /* 🔹 DataTables Search & Length Styling */
-    .dataTables_wrapper .dataTables_length select {
+    
+    /* .dataTables_wrapper .dataTables_length select {
         border: 1px solid #d1d5db;
         border-radius: 6px;
         padding: 4px 10px;
@@ -238,7 +239,6 @@
         color: #444;
     }
 
-    /* 🔹 Pagination Styling */
     .dataTables_wrapper .dataTables_paginate .paginate_button {
         padding: 4px 10px;
         border: 1px solid #dee2e6;
@@ -258,5 +258,5 @@
         font-size: 13px;
         color: #666;
         padding-top: 8px;
-    }
+    } */
 </style>

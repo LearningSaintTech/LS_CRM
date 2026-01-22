@@ -22,7 +22,12 @@ var W3Crm = function(){
 
     var handleMetisMenu = function() {
 		if(jQuery('#menu').length > 0 ){
-			$("#menu").metisMenu();
+			// Check if metisMenu plugin is loaded
+			if(jQuery.fn.metisMenu){
+				$("#menu").metisMenu();
+			} else {
+				console.warn('metisMenu plugin not loaded');
+			}
 		}
 		jQuery('.metismenu > .mm-active ').each(function(){
 			if(!jQuery(this).children('ul').length > 0)

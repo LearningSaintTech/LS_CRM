@@ -112,7 +112,7 @@ class RoleController extends Controller
             $role = Role::create($roleData);
             $role->syncPermissions($permissions);
             return redirect()->route('role.index')
-                ->withSuccess(['success', 'Role created successfully']);
+                ->with('success', 'Role created successfully');
         } else {
             return redirect()->back()->withErrors(['error', 'Please select permission!']);
         }
@@ -219,7 +219,7 @@ class RoleController extends Controller
             DB::commit();
 
             return redirect()->route('roles.index')
-                ->withSuccess(['success', 'Role updated successfully']);
+                ->with('success', 'Role updated successfully');
         } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()
@@ -244,7 +244,7 @@ class RoleController extends Controller
         try {
             $role->delete();
             return redirect()->back()
-                ->withSuccess(['success', 'Role deleted successfully']);
+                ->with('success', 'Role deleted successfully');
         } catch (Exception $e) {
             return redirect()->back()
                 ->withErrors('error', 'Failed to delete role. ' . $e->getMessage());

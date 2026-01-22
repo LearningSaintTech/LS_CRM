@@ -77,29 +77,6 @@ trait BlogTraits
     public function insertblog(Request $request)
     {
 
-        $rows = 5;
-        for ($i = 1; $i <= $rows; $i++) {
-            for ($j = $i; $j < $rows; $j++) {
-                echo "&nbsp;&nbsp;&nbsp;&nbsp";
-            }
-            for ($k = 1; $k <= (2 * $i - 1); $k++) {
-                echo "*";
-            }
-            echo "<br>";
-        }
-
-
-        $strdata = 10;
-        for ($i =1; $i <= $strdata; $i++){
-            for($j = $i; $j < $strdata; $j++){
-                echo "&nbsp;&nbsp;";
-            }
-             for ($K = 1; $k <=(2* $i -1); $k++){
-                echo "*";
-             }
-             echo "<br>";
-
-        }
 
     }
 
