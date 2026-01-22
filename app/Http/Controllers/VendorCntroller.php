@@ -30,7 +30,6 @@ class VendorCntroller extends Controller
             $data = Vendor::select('*')->orderBy('id', 'DESC');
             return datatables()->of($data)
 
-
                 ->addColumn('status', function ($row) {
                     if ($row->status == '1') {
                         return '<span class="badge bg-success">Active</span>';
@@ -149,14 +148,14 @@ class VendorCntroller extends Controller
             $user->save();
             DB::commit();
 
-            // if ($request?->vendor_user_id) {
-            //     $user = UserHelper::update_user($user);
-            // } else {
-            //     $user = UserHelper::store_user($user, $password, $role = 'vendor');
-            //     if ($user) {
-            //         Mail::to($user->email)->send(new UserCredentialsMail($user, $password));
-            //     }
-            // }
+            if ($request?->vendor_user_id) {
+                $user = UserHelper::update_user($user);
+            } else {
+                $user = UserHelper::store_user($user, $password, $role = 'vendor');
+                if ($user) {
+                    Mail::to($user->email)->send(new UserCredentialsMail($user, $password));
+                }
+            }
             // session()->flash('test', 'working');
             // dd(session()->all());
 
@@ -173,9 +172,6 @@ class VendorCntroller extends Controller
     {
         session(['vendor_id' => $request->id]);
     }
-
-
-
 
     public function addvendor()
     {

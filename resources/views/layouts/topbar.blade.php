@@ -552,42 +552,12 @@
 
                 <ul class="navbar-nav header-right">
 
-                    {{-- <li class="nav-item">
-                        <select class="selectpicker form-select i18n-select" id="langSwitcher">
-                            <option value="en_GB" title="English"
-                                data-content="<img src='assets/images/flags/gb-eng.svg' alt=''> English">
-                                English</option>
-                            <option value="pt_BR" title="Portuguese"
-                                data-content="<img src='assets/images/flags/pt.svg' alt=''> Português">
-                                Português</option>
-                            <option value="fr_FR" title="French"
-                                data-content="<img src='assets/images/flags/fr.svg' alt=''> Français">Français
-                            </option>
-                            <option value="de_DE" title="German"
-                                data-content="<img src='assets/images/flags/de.svg' alt=''> Deutsch">Deutsch
-                            </option>
-                            <option value="it_IT" title="Italian"
-                                data-content="<img src='assets/images/flags/it.svg' alt=''> Italiano">Italiano
-                            </option>
-                            <option value="jp_JP" title="Japanese"
-                                data-content="<img src='assets/images/flags/jp.svg' alt=''> 日本語">日本語</option>
-                            <option value="es_ES" title="Spanish"
-                                data-content="<img src='assets/images/flags/es.svg' alt=''> Español">Español
-                            </option>
-                            <option value="ar_TN" title="Arabic"
-                                data-content="<img src='assets/images/flags/arab.svg' alt=''> العربية">العربية
-                            </option>
-                            <option value="tr_TR" title="Turkish"
-                                data-content="<img src='assets/images/flags/tr.svg' alt=''> Türkçe">Türkçe
-                            </option>
-                        </select>
-                    </li>
-
                     <li class="nav-item dropdown notification_dropdown">
                         <div class="dropdown">
                             <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 aria-label="Notification Dropdown">
                                 <i class="fi fi-rr-bell"></i>
+                                <span class="badge badge-sm badge-primary rounded-circle position-absolute" style="top: 5px; right: 5px;">3</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end py-0">
                                 <div class="ic-scroll p-2" style="height: 380px;">
@@ -597,8 +567,8 @@
                                                 class="rounded-circle avatar avatar-sm">
                                         </div>
                                         <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Dr sultads Send you Photo</h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
+                                            <h6 class="fs-13 mb-0 fw-semibold">New Vendor Registration</h6>
+                                            <small>Today - 02:26 PM</small>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center p-2 bg-action-light rounded">
@@ -607,72 +577,19 @@
                                             </div>
                                         </div>
                                         <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Resport created successfully
+                                            <h6 class="fs-13 mb-0 fw-semibold">Report created successfully
                                             </h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
+                                            <small>Today - 01:15 PM</small>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center p-2 bg-action-light rounded">
                                         <div class="d-inline-block">
                                             <div class="avatar avatar-sm avatar-primary rounded-circle"><i
-                                                    class="fa fa-home"></i></div>
+                                                    class="fa fa-bell"></i></div>
                                         </div>
                                         <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Reminder : Treatment Time!</h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <img src="assets/images/avatar/small/avatar2.webp" alt=""
-                                                class="rounded-circle avatar avatar-sm">
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Resport created successfully
-                                            </h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <img src="assets/images/avatar/small/avatar3.webp" alt=""
-                                                class="rounded-circle avatar avatar-sm">
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Dr sultads Send you Photo</h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <div class="avatar avatar-sm avatar-success rounded-circle">KG
-                                            </div>
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Resport created successfully
-                                            </h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <div class="avatar avatar-sm avatar-primary rounded-circle"><i
-                                                    class="fa fa-home"></i></div>
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Reminder : Treatment Time!</h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <img src="assets/images/avatar/small/avatar4.webp" alt=""
-                                                class="rounded-circle avatar avatar-sm">
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Resport created successfully
-                                            </h6>
-                                            <small>29 July 2020 - 02:26 PM</small>
+                                            <h6 class="fs-13 mb-0 fw-semibold">System Update Complete!</h6>
+                                            <small>Yesterday - 10:30 AM</small>
                                         </div>
                                     </div>
                                 </div>
@@ -692,7 +609,7 @@
                             <i id="icon-full" class="fi fi-rr-expand"></i>
                             <i id="icon-minimize" class="fi fi-rr-compress"></i>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item dropdown header-profile-dropdown">
                         <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

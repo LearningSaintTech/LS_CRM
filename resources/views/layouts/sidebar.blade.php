@@ -9,18 +9,26 @@
     <div class="icnav-scroll">
         <ul class="metismenu" id="menu">
             {{-- <li class="menu-title" data-i18n="Learning Saint">Learning Saint</li> --}}
-            <li>
-                <a class="has-arrow" href="{{ route('dashboard') }}" aria-expanded="false">
+            {{-- <li> --}}
+                {{-- <a class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}" aria-expanded="false">
                     <div class="menu-icon">
                         <i class="fi fi-rr-home"></i>
                     </div>
                     <span class="nav-text" data-i18n="Dashboard">Dashboard</span>
-                </a>
+                </a> --}}
+
+
+                <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="sidebar-link">
+                        <i class="fi fi-rr-home"></i>
+                        <span class="nav-text" data-i18n="Dashboard">Dashboard</span>
+                    </a>
+                </li>
                 {{-- <ul aria-expanded="false">
                     <li><a href="{{ route('dashboard') }}" data-i18n="Dashboard Light">Dashboard Light</a></li>
                     <li><a href="{{ route('dashboard') }}" data-i18n="Dashboard Dark">Dashboard Dark</a></li>
                 </ul> --}}
-            </li>
+            {{-- </li> --}}
             {{-- start  by amarjeet kushwaha all menu should be same --}}
 
 
@@ -28,9 +36,9 @@
                 <x-sidebar-menu-item route="employee.list" icon="fi fi-rs-employees" text="Employees" />
             @endcan
 
-            <x-sidebar-menu-item route="blog.list" icon="fi fi-rs-book" text="BLog" />
+            {{-- <x-sidebar-menu-item route="blog.list" icon="fi fi-rs-book" text="BLog" /> --}}
 
-            <x-sidebar-menu-item route="settings.index" icon="fi fi-rr-settings" text="Setting" />
+            {{-- <x-sidebar-menu-item route="settings.index" icon="fi fi-rr-settings" text="Setting" /> --}}
 
             {{-- <x-sidebar-menu-item route="vendor.list" icon="fi fi-rr-users" text="Vendor"/> --}}
 
@@ -38,6 +46,13 @@
                 <a href="{{ route('vendor.list') }}" class="sidebar-link">
                     <i class="fi fi-rr-users"></i>
                     <span>Vendor</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->routeIs('settings.index') ? 'active' : '' }}">
+                <a href="{{ route('settings.index') }}" class="sidebar-link">
+                    <i class="fi fi-rr-settings"></i>
+                    <span>Setting</span>
                 </a>
             </li>
 

@@ -24,7 +24,7 @@
         <div class="card-body table-card-body pt-0 px-0 pb-1">
             {{-- <div class="table-responsive check-wrapper"> --}}
                 <table id="vendorTable" class="table table-striped table-hover table-bordered mb-0">
-                    <thead class="table-light sticky-top">
+                    <thead class="table-light">
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
