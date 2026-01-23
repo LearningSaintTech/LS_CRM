@@ -1,5 +1,9 @@
 @include('common.header')
+
+
 <main class="content-body">
+
+
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <div class="page-title mb-4">
@@ -20,15 +24,15 @@
         </div>
     </div>
 
-    
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{ route('permission.store') }}" method="post" enctype="multipart/form-data"
-                            class="custom-validation" novalidate>
+                    <form method="post" action="{{ route('permission.store') }}" method="post"
+                        enctype="multipart/form-data" class="custom-validation" novalidate>
                         @csrf
-                       
+
                         <div class="row">
                             <!-- Name Input -->
                             <div class="mb-3 col-md-6">
@@ -63,7 +67,8 @@
                         @if ($permission)
                             <input type="hidden" name="permission_id"
                                 value="{{ base64_encode(convert_uuencode($permission?->id)) }}">
-                            <button type="submit"class="btn btn-sm btn-primary waves-light"><span class="me-1"><i class="mdi mdi-plus-circle-outline"></i></span>Update Permission
+                            <button type="submit"class="btn btn-sm btn-primary waves-light"><span class="me-1"><i
+                                        class="mdi mdi-plus-circle-outline"></i></span>Update Permission
                             </button>
                         @else
                             <button type="submit" class="btn btn-primary btn-sm">Save Permission</button>

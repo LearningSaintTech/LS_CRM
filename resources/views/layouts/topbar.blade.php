@@ -22,6 +22,7 @@
             <div class="tab-pane fade active show" id="chat">
                 <div class="card mb-sm-3 mb-md-0 contacts_card ic-chat-user-box">
                     <div class="card-header chat-list-header text-center">
+
                         <a href="javascript:void(0);">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -33,6 +34,7 @@
                                 </g>
                             </svg>
                         </a>
+                        
                         <div class="clearfix">
                             <h6 class="mb-1">Chat List</h6>
                             <p class="mb-0">Show All</p>

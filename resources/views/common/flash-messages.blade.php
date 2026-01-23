@@ -1,3 +1,4 @@
+
 @if(session()->has('success'))
     <script>
         window.onload = function() {

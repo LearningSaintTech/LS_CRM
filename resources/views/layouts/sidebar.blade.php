@@ -10,7 +10,7 @@
         <ul class="metismenu" id="menu">
             {{-- <li class="menu-title" data-i18n="Learning Saint">Learning Saint</li> --}}
             {{-- <li> --}}
-                {{-- <a class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}" aria-expanded="false">
+            {{-- <a class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}" aria-expanded="false">
                     <div class="menu-icon">
                         <i class="fi fi-rr-home"></i>
                     </div>
@@ -18,13 +18,13 @@
                 </a> --}}
 
 
-                <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}" class="sidebar-link">
-                        <i class="fi fi-rr-home"></i>
-                        <span class="nav-text" data-i18n="Dashboard">Dashboard</span>
-                    </a>
-                </li>
-                {{-- <ul aria-expanded="false">
+            <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="sidebar-link">
+                    <i class="fi fi-rr-home"></i>
+                    <span class="nav-text" data-i18n="Dashboard">Dashboard</span>
+                </a>
+            </li>
+            {{-- <ul aria-expanded="false">
                     <li><a href="{{ route('dashboard') }}" data-i18n="Dashboard Light">Dashboard Light</a></li>
                     <li><a href="{{ route('dashboard') }}" data-i18n="Dashboard Dark">Dashboard Dark</a></li>
                 </ul> --}}
@@ -49,12 +49,14 @@
                 </a>
             </li>
 
-            <li class="sidebar-item {{ request()->routeIs('settings.index') ? 'active' : '' }}">
-                <a href="{{ route('settings.index') }}" class="sidebar-link">
-                    <i class="fi fi-rr-settings"></i>
-                    <span>Setting</span>
-                </a>
-            </li>
+            @can('view-setting')
+                <li class="sidebar-item {{ request()->routeIs('settings.index') ? 'active' : '' }}">
+                    <a href="{{ route('settings.index') }}" class="sidebar-link">
+                        <i class="fi fi-rr-settings"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+            @endcan
 
         </ul>
     </div>

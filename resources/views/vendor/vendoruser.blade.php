@@ -5,6 +5,7 @@
     </div>
 @endif
 
+
 <main class="content-body">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -33,30 +34,28 @@
         <div class="card-body table-card-body pt-0 px-0 pb-1">
 
             {{-- <div class="table-responsive check-wrapper table-container"> --}}
-                <table id="vendoruserTable" class="table table-striped table-hover table-bordered mb-0">
-                    <thead class="table-light sticky-top">
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            {{-- <th>Company Name</th> --}}
-                            <th> Status</th>
-                            <th> Created At </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table id="vendoruserTable" class="table table-striped table-hover table-bordered mb-0">
+                <thead class="table-light sticky-top">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        {{-- <th>Company Name</th> --}}
+                        <th> Status</th>
+                        <th> Created At </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
 
 
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
             {{-- </div> --}}
         </div>
     </div>
 </main>
-
-
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

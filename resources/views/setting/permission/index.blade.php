@@ -1,6 +1,4 @@
 @include('common.header')
-
-
 <main class="content-body">
     <!-- Page Title & Breadcrumb -->
     <div class="d-flex justify-content-between align-items-center mb-4">
