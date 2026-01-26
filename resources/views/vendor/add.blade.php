@@ -41,6 +41,9 @@
                             </label>
                             <input type="email" name="email" class="form-control" value="{{ old('email' , $vender?->email) }}" placeholder="Email" required
                                 maxlength="100" @if($vender?->email)disabled @else @endif>
+                                @if($vender?->email)
+                                    <input type="hidden" name="email" id="">
+                                @endif
                         </div>
 
                         <div class="col-md-4">

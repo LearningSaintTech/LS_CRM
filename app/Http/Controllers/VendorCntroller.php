@@ -250,6 +250,7 @@ class VendorCntroller extends Controller
 
     public function insertvender(VendorRequest $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
         try {
             if ($request->id) {
@@ -271,15 +272,15 @@ class VendorCntroller extends Controller
             $vendor->fill([
                 'name' => $request->name,
                 'phone' => $request?->phone,
-                'email' => $request->email,
-                'company_name' => $request->company_name,
-                'gst_number' => $request->gst_number,
-                'pan_number' => $request->pan_number,
-                'address' => $request->address,
-                'city' => $request->city,
-                'state' => $request->state,
-                'pincode' => $request->pincode,
-                'opening_balance' => $request->opening_balance,
+                'email' => $request?->email,
+                'company_name' => $request?->company_name,
+                'gst_number' => $request?->gst_number,
+                'pan_number' => $request?->pan_number,
+                'address' => $request?->address,
+                'city' => $request?->city,
+                'state' => $request?->state,
+                'pincode' => $request?->pincode,
+                'opening_balance' => $request?->opening_balance,
                 'status' => 1,
                 'registered_at' => now(),
             ]);
@@ -300,6 +301,7 @@ class VendorCntroller extends Controller
             );
 
         } catch (\Exception $e) {
+            // dd($e);  
             DB::rollBack();
             return $this->alertRedirect(
                 'vendor.list',

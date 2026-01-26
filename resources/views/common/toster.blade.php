@@ -9,6 +9,7 @@
     @if (session('success'))
         _toast('success', "{{ addslashes(session('success')) }}");
     @endif
+    
     @if ($errors->any())
         _toast('error', "{{ $errors->first() }}");
     @endif
