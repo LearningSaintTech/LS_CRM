@@ -37,9 +37,8 @@
 <script src="{{ url('assets/js/custom.js') }}"></script>
 <script src="{{ url('assets/js/icnav-init.js') }}"></script>
 
-
-
-
+<!-- Vite App JS (includes Echo configuration) -->
+@vite(['resources/js/app.js'])
 
 <script>
     $(document).ready(function() {

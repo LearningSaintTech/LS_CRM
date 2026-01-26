@@ -1,10 +1,4 @@
 @include('common.header')
-@if (session()->has('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
 
 <main class="content-body">
     <div class="d-flex justify-content-between align-items-center mb-4">
