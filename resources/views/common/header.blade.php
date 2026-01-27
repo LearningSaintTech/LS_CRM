@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     {{-- Toastr CSS --}}
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     @stack('styles')
@@ -38,9 +37,7 @@
                 @auth
                 try {
                     window.Echo.private('App.Models.User.{{ auth()->id() }}')
-                       
                         .notification((notification) => {
-                            console.log('Notification received:', notification);
                             Swal.fire({
                                 toast: true,
                                 position: 'top-end',
@@ -48,7 +45,7 @@
                                 title: notification.title,
                                 text: notification.message,
                                 showConfirmButton: false,
-                                timer: 4000
+                                timer: 40000
                             });
                             console.log('Notification:', notification);
                         });
@@ -59,7 +56,6 @@
             @endauth
         } else {
             console.warn('Echo not available yet, will retry');
-            // Retry after 1 second
             setTimeout(initializeEchoNotifications, 1000);
         }
         }

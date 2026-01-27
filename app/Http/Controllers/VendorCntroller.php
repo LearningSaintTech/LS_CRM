@@ -60,6 +60,7 @@ class VendorCntroller extends Controller
                                         <li><a class="dropdown-item" href="' . route('vendor.edit', ['id' => $row->id]) . '">Edit</a></li>
                                         <li><a class="dropdown-item" href="javascript:void(0);">View</a></li>
                                         <li><a class="dropdown-item" href="' . route('user.view', ['id' => $row->id]) . '">View User</a></li>
+                                        <li><a class="dropdown-item" href="' . route('websites.list', ['id' => $row->id]) . '">View Websites</a></li>
 
                                         <li>
                                             <a class="dropdown-item toggle-status"
@@ -93,7 +94,6 @@ class VendorCntroller extends Controller
 
     public function userview(Request $request)
     {
-        // dd($request->all());
         $vendor = Vendor::where('id', $request?->id)->first();
         $this->setId($request);
         return view('vendor.vendoruser', compact('vendor'));

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Observers;
-
 use App\Models\Vendoruser;
 use App\Models\User;
 use App\Notifications\AssignDataNotification;
@@ -25,9 +24,10 @@ class VendorUserObserver
     /**
      * Handle the Vendoruser "updated" event.
      */
+
     public function updated(Vendoruser $vendoruser): void
     {
-        //
+
     }
 
     /**

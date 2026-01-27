@@ -31,7 +31,7 @@
             <table id="vendoruserTable" class="table table-striped table-hover table-bordered mb-0">
                 <thead class="table-light sticky-top">
                     <tr>
-                        <th>ID</th>
+                        <th>ID </th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>

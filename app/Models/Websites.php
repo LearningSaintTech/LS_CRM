@@ -9,4 +9,25 @@ class Websites extends Model
 {
     use HasFactory;
     protected $table = "websites";
+
+    protected $fillable = [
+        'sitename',
+        'url',
+        'email',
+        'vendor_id',
+        'status',
+        'logoUrl',
+        'smtpPassword',
+        'smtpHost',
+        'smtpPort',
+        'smtpEmail',
+        'ccEmail',
+        'bccEmail',
+        'certificateAuthority',
+        'certificateUrl',
+    ];
+
+    public function vendor(){
+        return $this->belongsTo(Vendor::class ,'vendor_id');
+    }
 }
