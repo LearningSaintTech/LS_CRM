@@ -29,7 +29,6 @@ class VendorCntroller extends Controller
         if ($request->ajax()) {
             $data = Vendor::select('*')->orderBy('id', 'DESC');
             return datatables()->of($data)
-
                 ->addColumn('status', function ($row) {
                     if ($row->status == '1') {
                         return '<span class="badge bg-success">Active</span>';
@@ -76,19 +75,15 @@ class VendorCntroller extends Controller
                                         </li>   
                                     </ul>
                                 </div>';
-                })
-                ->rawColumns(['created_at', 'action', 'status'])
-                ->make(true);
+                })->rawColumns(['created_at', 'action', 'status'])->make(true);
         }
     }
-
 
     public function toggleStatus($id)
     {
         $vendor = Vendor::findOrFail($id);
         $vendor->status = $vendor->status ? 0 : 1;
         $vendor->save();
-
         return back()->with('success', 'Vendor status updated successfully');
     }
 
