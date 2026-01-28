@@ -565,7 +565,7 @@
                                 <div class="ic-scroll p-2" style="height: 380px;">
                                     <div class="d-flex align-items-center p-2 bg-action-light rounded">
                                         <div class="d-inline-block">
-                                            <img src="assets/images/avatar/small/avatar1.webp" alt=""
+                                            <img src="{{ asset('assets/images/avatar/small/avatar1.webp') }}" alt=""
                                                 class="rounded-circle avatar avatar-sm">
                                         </div>
                                         <div class="clearfix ms-2">

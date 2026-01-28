@@ -23,7 +23,6 @@ class VendorCntroller extends Controller
         return view('vendor.index');
     }
 
-
     public function vendordata(Request $request)
     {
         if ($request->ajax()) {
@@ -60,6 +59,7 @@ class VendorCntroller extends Controller
                                         <li><a class="dropdown-item" href="javascript:void(0);">View</a></li>
                                         <li><a class="dropdown-item" href="' . route('user.view', ['id' => $row->id]) . '">View User</a></li>
                                         <li><a class="dropdown-item" href="' . route('websites.list', ['id' => $row->id]) . '">View Websites</a></li>
+                                        <li><a class="dropdown-item" href="' . route('course.list', ['id' => $row->id]) . '">View Course</a></li>
 
                                         <li>
                                             <a class="dropdown-item toggle-status"
@@ -177,7 +177,6 @@ class VendorCntroller extends Controller
     public function vendoredit(Request $request)
     {
         $vender = Vendor::where('id', $request->id)->first();
-
         return view('vendor.add', compact('vender'));
     }
 

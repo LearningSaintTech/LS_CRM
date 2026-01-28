@@ -1,7 +1,7 @@
 @include('common.header')
 
 <main class="content-body">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 rounded">
         <div>
             <div class="page-title mt-0">
                 <nav aria-label="breadcrumb">
@@ -9,7 +9,7 @@
                         <li class="breadcrumb-item">
                             <a href="{{ url('/') }}">Vendor</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page"> Vendor User List </li>
+                        <li class="breadcrumb-item active" aria-current="page"> Course List </li>
                     </ol>
                 </nav>
             </div>
@@ -28,14 +28,13 @@
         <div class="card-body table-card-body pt-0 px-0 pb-1">
 
             {{-- <div class="table-responsive check-wrapper table-container"> --}}
-            <table id="vendoruserTable" class="table table-striped table-hover table-bordered mb-0">
+            <table id="courseTable" class="table table-striped table-hover table-bordered mb-0">
                 <thead class="table-light">
                     <tr>
                         <th>ID </th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        {{-- <th>Company Name</th> --}}
+                        <th>URL</th>
+                        <th>Vendor Name</th>
                         <th> Status</th>
                         <th> Created At </th>
                         <th>Action</th>
@@ -59,15 +58,15 @@
                 <button type="reser" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div> --}}
             <div class="modal-body">
-                <form id="vendoruser" action="{{ route('vendoruser.insert') }}" method="post"
+                <form id="vendoruser" action="{{ route('course.insert') }}" method="post"
                     onSubmit="document.getElementById('submit').disabled=true;">
                     @csrf
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <input type="hidden" value="{{ $vendor?->id }}" name="vendor_id">
-                                    <input type="hidden" name="vendor_user_id" id="vendor_user_id">
+                                    <input type="hidden" name="vendor_id" value="{{ $vendor ?? '' }}">
+                                    <input type="hidden" name="course_id" id="id">
                                     <label for="recipient-name" class="col-form-label">Name: <strong
                                             class="text-danger"> * </strong> </label>
                                     <input type="text" class="form-control" name="name" maxlength="200"
@@ -77,10 +76,10 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Email: <strong
+                                    <label for="recipient-name" class="col-form-label">URL: <strong
                                             class="text-danger"> * </strong></label>
-                                    <input type="email" class="form-control" name="email" maxlength="100"
-                                        placeholder="Email" id="email" required>
+                                    <input type="url" class="form-control" name="url" maxlength="100"
+                                        placeholder="url" id="url" required>
                                 </div>
                             </div>
                         </div>
@@ -91,10 +90,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label">Phone: <strong
+                                    <label for="recipient-name" class="col-form-label">Price: <strong
                                             class="text-danger"> * </strong></label>
-                                    <input type="text" class="form-control" name="phone" maxlength="20"
-                                        placeholder="Phone" id="phone" required>
+                                    <input type="text" class="form-control" name="price" maxlength="20"
+                                        placeholder="Price" id="price" required>
                                 </div>
                             </div>
 
@@ -102,8 +101,8 @@
                                 <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">Status: <strong
                                             class="text-danger"> * </strong></label>
-                                    <select name="status" id="status" class="form-control"required>
-                                        <option value="" class="form-control" disabled selected>Please select
+                                    <select name="status" id="status" class="form-select"required>
+                                        <option value="" class="form-select" disabled selected>Please select
                                             status </option>
                                         <option value="1">Active</option>
                                         <option value="0">In-Active</option>
@@ -111,11 +110,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="description" name="description" maxlength="500"></textarea>
                     </div>
             </div>
             <div class="modal-footer">
@@ -132,10 +126,10 @@
 
 <script>
     $(function() {
-        $('#vendoruserTable').DataTable({
+        $('#courseTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('vendor.user.data') }}",
+            ajax: "{{ route(name: 'course.data') }}",
             columns: [{
                     data: 'id',
                     name: 'id'
@@ -145,13 +139,10 @@
                     name: 'name'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
+                    data: 'url',
+                    name: 'url'
                 },
-                {
-                    data: 'phone',
-                    name: 'phone',
-                },
+                { data: 'vendor', name: 'vendor_id' },
 
                 {
                     data: 'status',
@@ -176,25 +167,46 @@
 
 <script>
     document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('edit-vendor-user')) {
-
+       
+        if (e.target.classList.contains('edit-course')) {
             let id = e.target.dataset.id;
             let url = e.target.dataset.url;
             console.log(id);
-            document.getElementById('vendor_user_id').value = id;
+            document.getElementById('id').value = id;
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('name').value = data.name;
-                    document.getElementById('email').value = data.email;
-                    document.getElementById('phone').value = data.phone;
+                    document.getElementById('url').value = data.url;
+                    document.getElementById('price').value = data.price;
                     document.getElementById('status').value = data.status;
-                    document.getElementById('description').value = data.description;
+                    document.getElementById('vendor_id').value = data.vendor_id;
                 })
                 .catch(error => {
                     console.error(error);
                 });
         }
+    });
+
+
+    $(document).on('click', '.toggle-status', function(e) {
+        e.preventDefault();
+        let url = $(this).data('url');
+        let vendorId = $(this).data('id');
+        
+        
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `Do you want to delete this ?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
     });
 </script>

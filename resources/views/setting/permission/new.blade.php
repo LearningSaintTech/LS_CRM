@@ -1,9 +1,5 @@
 @include('common.header')
-
-
 <main class="content-body">
-
-
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <div class="page-title mb-4">
@@ -79,5 +75,4 @@
         </div>
     </div>
 </main>
-
 @include('common.footer')
