@@ -42,7 +42,7 @@
 
             {{-- <x-sidebar-menu-item route="vendor.list" icon="fi fi-rr-users" text="Vendor"/> --}}
 
-            <li class="sidebar-item {{ request()->routeIs('vendor.list') ? 'active' : '' }}">
+            <li class="sidebar-item {{ request()->routeIs('vendor.*' ,'user.view' ,'websites.list' ,'add.websites','website.edit' ,'course.*') ? 'active' : '' }}">
                 <a href="{{ route('vendor.list') }}" class="sidebar-link">
                     <i class="fi fi-rr-users"></i>
                     <span>Vendor</span>
@@ -50,7 +50,7 @@
             </li>
 
             @can('view-setting')
-                <li class="sidebar-item {{ request()->routeIs('settings.index') ? 'active' : '' }}">
+                <li class="sidebar-item {{ request()->routeIs('settings.*' ,'user.list','role-list' ,'permission') ? 'active' : '' }}">
                     <a href="{{ route('settings.index') }}" class="sidebar-link">
                         <i class="fi fi-rr-settings"></i>
                         <span>Setting</span>

@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link active" data-bs-toggle="tab" href="#chat">Chat</a>
             </li>
-            
+
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active show" id="chat">
@@ -34,7 +34,7 @@
                                 </g>
                             </svg>
                         </a>
-                        
+
                         <div class="clearfix">
                             <h6 class="mb-1">Chat List</h6>
                             <p class="mb-0">Show All</p>
@@ -255,13 +255,12 @@
                             </li>
                         </ul>
                     </div> --}}
-                    
+
                 </div>
                 <div class="card chat ic-chat-history-box d-none">
                     <div class="card-header chat-list-header text-center">
                         <a href="javascript:void(0);" class="ic-chat-history-back">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                     <polygon points="0 0 24 0 24 24 0 24" />
                                     <rect fill="var(--bs-heading-color)" opacity="0.3"
@@ -279,8 +278,8 @@
                             <p class="mb-0 text-success">Online</p>
                         </div>
                         <div class="dropdown">
-                            <a href="javascript:void(0);" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false" class="ic-chat-dropdown ic-chatbox-btn">
+                            <a href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                class="ic-chat-dropdown ic-chatbox-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 24 24">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -556,50 +555,55 @@
 
                     <li class="nav-item dropdown notification_dropdown">
                         <div class="dropdown">
-                            <button class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                                aria-label="Notification Dropdown">
+                            <button class="nav-link position-relative" type="button" data-bs-toggle="dropdown">
                                 <i class="fi fi-rr-bell"></i>
-                                <span class="badge badge-sm badge-primary rounded-circle position-absolute" style="top: 5px; right: 5px;">3</span>
+
+                                @if (auth()->user()->unreadNotifications->count())
+                                    <span id="notif-count" class="badge badge-sm badge-danger rounded-circle position-absolute"
+                                        style="top:0px; right:0px; background-color: red;">
+                                        {{ auth()->user()->unreadNotifications->count() }}
+                                    </span>
+                                @else
+                                    <span id="notif-count" class="d-none"></span>
+                                @endif
                             </button>
+
                             <div class="dropdown-menu dropdown-menu-end py-0">
-                                <div class="ic-scroll p-2" style="height: 380px;">
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <img src="{{ asset('assets/images/avatar/small/avatar1.webp') }}" alt=""
-                                                class="rounded-circle avatar avatar-sm">
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">New Vendor Registration</h6>
-                                            <small>Today - 02:26 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <div class="avatar avatar-sm avatar-success rounded-circle">KG
+
+                                <div class="ic-scroll p-2" style="height:380px" id="notification-list">
+                                    {{-- Load latest notifications --}}
+                                    @forelse(auth()->user()->notifications->take(10) as $notification)
+                                        <div
+                                            class="d-flex align-items-center p-2 bg-action-light rounded mb-1
+                                            {{ $notification->read_at ? '' : 'border-start border-3 border-primary' }}">
+
+                                            <div class="d-inline-block">
+                                                <div class="avatar avatar-sm avatar-primary rounded-circle">
+                                                    <i class="fa fa-bell"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="clearfix ms-2">
+                                                <h6 class="fs-13 mb-0 fw-semibold">
+                                                    {{ $notification->data['title'] ?? 'Notification' }}
+                                                </h6>
+                                                <p><small>{{ $notification->data['message'] ?? 'Notification' }}</small></p>
+                                                <small>{{ $notification->created_at->diffForHumans() }}</small>
                                             </div>
                                         </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">Report created successfully
-                                            </h6>
-                                            <small>Today - 01:15 PM</small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-center p-2 bg-action-light rounded">
-                                        <div class="d-inline-block">
-                                            <div class="avatar avatar-sm avatar-primary rounded-circle"><i
-                                                    class="fa fa-bell"></i></div>
-                                        </div>
-                                        <div class="clearfix ms-2">
-                                            <h6 class="fs-13 mb-0 fw-semibold">System Update Complete!</h6>
-                                            <small>Yesterday - 10:30 AM</small>
-                                        </div>
-                                    </div>
+                                    @empty
+                                        <p class="text-center text-muted">No notifications</p>
+                                    @endforelse
                                 </div>
-                                <a class="d-block text-center p-3 border-top" href="javascript:void(0);">See
-                                    all notifications <i class="fa fa-arrow-right"></i></a>
+
+                                <a class="d-block text-center p-3 border-top"
+                                    href="{{ route('notifications.index') }}">
+                                    See all notifications <i class="fa fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </li>
+
 
                     <li class="nav-item notification_dropdown">
                         <a class="nav-link btn-chatbox" href="javascript:void(0);" aria-label="Sidabar Chatbox">
@@ -737,6 +741,7 @@
                 </ul>
                 </li>
                 </ul>
+
             </div>
         </nav>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Vendor;
+use Clue\Redis\Protocol\Model\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -15,7 +16,8 @@ class VendorRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->user()->id);
+        $vendorId = $this->input('id');
+        // dd($vendorId);
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -24,7 +26,7 @@ class VendorRequest extends FormRequest
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(Vendor::class)->ignore($this->user()->id),
+                Rule::unique(Vendor::class)->ignore($vendorId),
             ],
             'company_name' => ['required','string' ,'max:225'],
             'gst_number' => ['nullable' , 'max:50'],
@@ -33,7 +35,6 @@ class VendorRequest extends FormRequest
             'state' => ['nullable' ,'max:225'],
             'pincode' => ['nullable' ,'max:10'],
             'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-
         ];
     }
 }

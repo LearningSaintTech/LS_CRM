@@ -31,11 +31,14 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
+<script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.bundle.min.js') }}"></script>
 <script src="{{ url('assets/vendor/@yaireo/tagify/dist/tagify.js') }}"></script>
 <script src="{{ url('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ url('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
 <script src="{{ url('assets/js/custom.js') }}"></script>
 <script src="{{ url('assets/js/icnav-init.js') }}"></script>
+<script src="{{ asset('assets/vendor/dropzone/dropzone.min.js') }}"></script>
+<script src="{{ asset('assets/js/dashboard/dashboard.js') }}"></script>
 
 <!-- Vite App JS (includes Echo configuration) -->
 @vite(['resources/js/app.js'])

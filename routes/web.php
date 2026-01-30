@@ -5,6 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::any('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/notifications', [NotificationController::class, 'notificationindex'])
+    ->name('notifications.index');
     // Role management routes with permissions
     Route::prefix('users')->group(function () {
         Route::get('roles/edit/{id}', [RoleController::class, 'editroles'])->name('roles.edit');
@@ -48,8 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/permissionedit', [PermissionController::class, 'edit'])->name('permission.edit');
     Route::get('/create-role', [RoleController::class, 'create'])->name(name: 'create-role');
     Route::get('/role-menusetting', [RoleController::class, 'rolemenusetting'])->name('role-menusetting');
-    
-
     Route::resource('permission', PermissionController::class);
 
 });

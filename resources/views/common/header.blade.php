@@ -10,18 +10,17 @@
     <link href="{{ url('assets/vendor/@yaireo/tagify/dist/tagify.css') }}" rel="stylesheet">
     <link href="{{ url('assets/vendor/@flaticon/flaticon-uicons/css/all/all.css') }}" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{{ url('assets/images/learning_logo.svg') }}">
+    <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/dropzone/dropzone.min.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/plugins.css') }}" rel="stylesheet">
     <link href="{{ url('assets/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-    {{-- Toastr CSS --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     @stack('styles')
 </head>
 
 <body>
-
     @include('layouts.spinner')
     @include('layouts.navbar')
     @include('layouts.topbar')
@@ -46,7 +45,7 @@
                                 title: notification.title,
                                 text: notification.message,
                                 showConfirmButton: false,
-                                timer: 40000
+                                timer: 30000
                             });
                             console.log('Notification:', notification);
                         });

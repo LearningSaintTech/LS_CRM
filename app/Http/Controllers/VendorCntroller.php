@@ -19,8 +19,10 @@ class VendorCntroller extends Controller
 {
     protected $id;
     public function vendorlist()
-    {
-        return view('vendor.index');
+    {   
+        $vender = null;
+        $data = Vendor::orderBy('id', 'DESC')->get();
+        return view('vendor.indexnew' , compact('data' ,'vender'));
     }
 
     public function vendordata(Request $request)
