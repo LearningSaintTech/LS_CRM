@@ -18,7 +18,7 @@
                     <div class="card-header py-3 d-sm-flex d-block align-items-center">
                         <h4 class="card-title">Website</h4>
                         <div class="me-3">
-                            <a href="{{ route('add.websites', [$vendor]) }}" class="btn btn-info btn-sm shadow-sm">
+                            <a href="{{ route('add.websites', [base64_encode(convert_uuencode($vendor))]) }}" class="btn btn-info btn-sm shadow-sm">
                                 <i class="fas fa-plus me-1"></i> Add
                             </a>
                         </div>

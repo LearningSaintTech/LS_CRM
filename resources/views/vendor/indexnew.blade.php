@@ -77,6 +77,7 @@
                             </div>
                         </form>
                     </div>
+                    
                     <div class="card-body table-card-body px-0 pt-0 pb-2">
                         <div class="table-responsive">
                             <table id="employeesTable" class="table">
@@ -127,20 +128,23 @@
                                                         <i class="fa-solid fa-ellipsis"></i>
                                                     </button>
 
+                                                        {{-- @php
+                                                            use Illuminate\Support\Facades\Crypt;
+                                                        @endphp --}}
+
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('vendor.edit', ['id' => $datas->id]) }}">Edit</a>
+                                                                href="{{ route('vendor.edit', ['id' => base64_encode(convert_uuencode($datas->id))]) }}">Edit</a>
                                                         </li>
-                                                        {{-- <li><a class="dropdown-item"
-                                                                href="javascript:void(0);">View</a></li> --}}
+                                                       
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('user.view', ['id' => $datas->id]) }}">View
+                                                                href="{{ route('user.view', ['id'=> base64_encode(convert_uuencode($datas->id))]) }}">View
                                                                 User</a></li>
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('websites.list', ['id' => $datas->id]) }}">View
+                                                                href="{{ route('websites.list', ['id' => base64_encode(convert_uuencode($datas->id))]) }}">View
                                                                 Websites</a></li>
                                                         <li><a class="dropdown-item"
-                                                                href="{{ route('course.list', ['id' => $datas->id]) }}">View
+                                                                href="{{ route('course.list', ['id' => base64_encode(convert_uuencode($datas->id))]) }}">View
                                                                 Course</a></li>
 
                                                         <li>

@@ -30,6 +30,7 @@
 
                         <div class="col-md-4">
                             <input type="hidden" name="id" value="{{ $vender?->id }}">
+                            <input type="hidden" name="type" value="vendor">
                             <label for="" class="form-label"> Name<strong class="text-danger"> * </strong>
                             </label>
                             <input type="text" name="name" value="{{ old('name' , $vender?->name) }}" class="form-control" id="" placeholder="Name"

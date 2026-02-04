@@ -11,6 +11,7 @@ class UserHelper
 {
     public static function store_user($vendor, $password, $role)
     {
+        // dd($vendor);
         $user = new User();
         $user->name = $vendor?->name;
         $user->email = $vendor?->email;
@@ -18,8 +19,14 @@ class UserHelper
         $user->type = 'Sub-Admin';
         $user->status = 'Active';
         $user->password = Hash::make($password);
-        $user->vendor_id = $vendor?->id;
+        if ($vendor->type == 'vendoruser') {
+            $user->vendor_user_id = $vendor?->id;
+            $user->vendor_id = $vendor?->vendor_id;
+        } else {
+            $user->vendor_id = $vendor?->id;
+        }
         $user->created_by = Auth::id();
+        // $user->vendor_user_id = $ve
         $user->save();
         // DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($role);

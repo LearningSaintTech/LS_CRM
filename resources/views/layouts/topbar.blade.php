@@ -569,12 +569,10 @@
                             </button>
 
                             <div class="dropdown-menu dropdown-menu-end py-0">
-
-                                <div class="ic-scroll p-2" style="height:380px" id="notification-list">
+                                <div class="card ic-scroll p-1 mb-1" style="height:380px" id="notification-list">
                                     {{-- Load latest notifications --}}
                                     @forelse(auth()->user()->notifications->take(10) as $notification)
-                                        <div
-                                            class="d-flex align-items-center p-2 bg-action-light rounded mb-1
+                                        <div class="d-flex align-items-center p-2 bg-action-light rounded mb-1
                                             {{ $notification->read_at ? '' : 'border-start border-3 border-primary' }}">
 
                                             <div class="d-inline-block">
@@ -601,6 +599,7 @@
                                     See all notifications <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
+                            
                         </div>
                     </li>
 

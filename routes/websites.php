@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::group(['prefix' => 'course', 'middleware' => 'auth'], function () {
 
      Route::get('course-delete/{id}', [WebsiteController::class, 'coursedelete'])
     ->name('course.delete');
-
 });
+
+Route::group(['prefix' => 'meeting', 'middleware' => 'auth'], function () {
+
+    Route::get('meeting-list', [MeetingController::class, 'meetinglist'])->name('meeting.list');
+    Route::get('add-meting', [MeetingController::class, 'addmeting'])->name('add.meting');
+   
+});
+
+
 

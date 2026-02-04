@@ -6,6 +6,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,6 +53,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-role', [RoleController::class, 'create'])->name(name: 'create-role');
     Route::get('/role-menusetting', [RoleController::class, 'rolemenusetting'])->name('role-menusetting');
     Route::resource('permission', PermissionController::class);
+    Route::get('payment' ,[PaymentController::class ,'paymentlist'])->name('payment');
+    Route::get('get-websites' ,[PaymentController::class ,'getwebsites'])->name('get.websites');
+    Route::post('payment-insert' ,[PaymentController::class ,'paymentinsert'])->name('payment.insert');
+    Route::post('payment-insert' ,[PaymentController::class ,'paymentinsert'])->name('payment.insert');
+    // Route::get('payment-edit' ,[PaymentController::class ,'paymentedit'])->name('payment.edit');
+    Route::get('/payment/{id}/edit', [PaymentController::class, 'paymentedit'])
+    ->name('payment.edit');
+
 
 });
 

@@ -14,15 +14,32 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Crypt;
+
 
 class VendorCntroller extends Controller
 {
     protected $id;
     public function vendorlist()
-    {   
+    {
         $vender = null;
-        $data = Vendor::orderBy('id', 'DESC')->get();
-        return view('vendor.indexnew' , compact('data' ,'vender'));
+
+        $user = auth()->user();
+        // dd($user?->vendor_id);
+        // dd([
+        //     'roles' => $user->getRoleNames(),
+        //     'is_vendor' => $user->hasRole('vendor'),
+        //     'is_admin' => $user->hasRole('admin'),
+        // ]);
+
+        if ($user->hasExactRoles(['vendor'])) {
+            $data = Vendor::orderBy('id', 'DESC')->where('id', $user?->vendor_id)->get();
+        } elseif ($user->hasRole('admin')) {
+            $data = Vendor::orderBy('id', 'DESC')->get();
+        } else {
+            $data = null;
+        }
+        return view('vendor.indexnew', compact('data', 'vender'));
     }
 
     public function vendordata(Request $request)
@@ -89,13 +106,17 @@ class VendorCntroller extends Controller
         return back()->with('success', 'Vendor status updated successfully');
     }
 
-    public function userview(Request $request)
+    public function userview(Request $request, )
     {
-        $vendor = Vendor::where('id', $request?->id)->first();
-        $this->setId($request);
+        if ($request->id) {
+            $userId = convert_uudecode(base64_decode($request->id));
+            $vendor = Vendor::where('id', $userId)->first();
+            $this->setId($request);
+        } else {
+            $vendor = null;
+        }
         return view('vendor.vendoruser', compact('vendor'));
     }
-
 
     public function vendoruserinsert(Request $request)
     {
@@ -113,7 +134,7 @@ class VendorCntroller extends Controller
                 'email' => 'required|max:70|unique:users,email',
             ]);
         }
-
+        // dd($request->all());
         DB::beginTransaction();
         $input = $request->all();
         if (!empty($input['password'])) {
@@ -130,11 +151,12 @@ class VendorCntroller extends Controller
                 $name = substr($request?->name, 0, 3);
                 $password = $name . '' . $random_nmber;
             }
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->vendor_id = $request->vendor_id;
-            $user->description = $request->description;
+            $user->name = $request?->name;
+            $user->type = 'vendoruser';
+            $user->email = $request?->email;
+            $user->phone = $request?->phone;
+            $user->vendor_id = $request->vendor_id ?? auth()->user()->vendor_id;
+            $user->description = $request?->description;
             $user->created_by = Auth::user()->id;
 
             // if (!empty($input['password'])) {
@@ -148,25 +170,20 @@ class VendorCntroller extends Controller
             if ($request?->vendor_user_id) {
                 $user = UserHelper::update_user($user);
             } else {
-                $user = UserHelper::store_user($user, $password, $role = 'vendor');
+                $user = UserHelper::store_user($user, $password, $role = 'vendorUser');
                 if ($user) {
                     Mail::to($user->email)->send(new UserCredentialsMail($user, $password));
                 }
             }
-            // session()->flash('test', 'working');
-            // dd(session()->all());
-
-
-            return redirect()->route('user.view', ['id' => $request->vendor_id])->with('success', 'Vendor user saved successfully!');
+            return redirect()->route('user.view', ['id' => base64_encode(convert_uuencode($request->vendor_id))])->with('success', 'Vendor user saved successfully!');
         } catch (\Exception $e) {
-            // session(['error' => 'Error updating user: ' . $e->getMessage()]);
-            // dd($e->getMessage());
             return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();
         }
     }
 
     public function setId(Request $request)
     {
+        // dd($request->id);
         session(['vendor_id' => $request->id]);
     }
 
@@ -178,17 +195,32 @@ class VendorCntroller extends Controller
 
     public function vendoredit(Request $request)
     {
-        $vender = Vendor::where('id', $request->id)->first();
+        $userId = convert_uudecode(base64_decode($request->id));
+        $vender = Vendor::where('id', $userId)->first();
         return view('vendor.add', compact('vender'));
     }
 
     public function vendoruserdata(Request $request)
     {
+        $vendorData = session('vendor_id');
+        $user = auth()->user();
 
-        $id = session('vendor_id');
-        //   dd($id);
+        if ($vendorData == null) {
+
+        } else {
+            $id = convert_uudecode(base64_decode($vendorData));
+        }
+        // dd($id);
+        // dd($user->hasExactRoles(['vendor']));
         if ($request->ajax()) {
-            $data = Vendoruser::where('vendor_id', $id)->select('*')->orderBy('id', 'DESC');
+
+            if ($user->hasExactRoles(['vendor'])) {
+                $data = Vendoruser::where('vendor_id', $id)->select('*')->orderBy('id', 'DESC');
+            } elseif ($user->hasRole('admin') && $vendorData != null) {
+                $data = Vendoruser::select('*')->where('vendor_id', $id)->orderBy('id', 'DESC');
+            } else {
+                $data = Vendoruser::select('*')->orderBy('id', 'DESC');
+            }
             return datatables()->of($data)
 
                 ->addColumn('status', function ($row) {
@@ -299,11 +331,7 @@ class VendorCntroller extends Controller
         } catch (\Exception $e) {
             // dd($e);  
             DB::rollBack();
-            return $this->alertRedirect(
-                'vendor.list',
-                'error',
-                'Something went wrong!'
-            );
+            return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();
         }
     }
 }

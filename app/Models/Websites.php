@@ -23,6 +23,7 @@ class Websites extends Model
         'bccEmail',
         'certificateAuthority',
         'certificateUrl',
+        'smtp_security',
     ];
 
     public function vendor(){

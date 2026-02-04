@@ -14,7 +14,8 @@ class WebsiteController extends Controller
 
     public function websiteslist(Request $request)
     {
-        $vendor = $request->id;
+        $vendor = convert_uudecode(base64_decode($request->id));
+        // $vendor = $request->id;
         $this->setId($request);
         return view('websites.index', compact('vendor'));
     }
@@ -26,7 +27,8 @@ class WebsiteController extends Controller
 
     public function websitesdata(Request $request)
     {
-        $id = session('vendor_id');
+        $vendor_id = session('vendor_id');
+        $id = convert_uudecode(base64_decode($vendor_id));
         if ($request->ajax()) {
             $data = Websites::where('vendor_id', $id)->select('*')->orderBy('id', 'DESC');
             return datatables()->of($data)
@@ -53,8 +55,8 @@ class WebsiteController extends Controller
 
                 ->addColumn('action', function ($row) {
                     $edit = route('website.edit', [
-                        'vendor' => $row?->vendor?->id,
-                        'id' => $row->id,
+                        'vendor' => base64_encode(convert_uuencode($row?->vendor?->id)),
+                        'id' => base64_encode(convert_uuencode($row->id)),
                     ]);
                     $addUser = route('user.view', ['vendor_id' => $row->vendor_id]);
                     $statusText = $row->status == 1 ? 'Inactive' : 'Active';
@@ -90,16 +92,19 @@ class WebsiteController extends Controller
     public function addwebsites($vendor)
     {
         $website = null;
-        $vendorId = $vendor ?? '';
+
+        $vendorId = convert_uudecode(base64_decode($vendor));
         return view('websites.add', compact('website', 'vendorId'));
     }
 
     public function editwebsites(Request $request, $id)
     {
-        $website = Websites::where('id', $id)->firstOrFail();
+        $websiteid = convert_uudecode(base64_decode($id));
+        $vendorid = convert_uudecode(base64_decode($request->query('vendor')));
+        $website = Websites::where('id', $websiteid)->firstOrFail();
         return view('websites.add', [
             'website' => $website,
-            'vendorId' => $request->query('vendor'),
+            'vendorId' => $vendorid,
         ]);
     }
 
@@ -120,33 +125,35 @@ class WebsiteController extends Controller
                 'bccEmail' => 'nullable|email|max:100',
                 'certificateAuthority' => 'nullable|string|max:200',
                 'certificateUrl' => 'nullable|url|max:200',
+                'smtp_security' => 'nullable|max:200',
             ]);
 
-            $website = Websites::updateOrCreate(
-                [
-                    'vendor_id' => $validated['vendor_id'],
-                    'sitename' => $validated['sitename'],
-                    'url' => $validated['url'],
-                    'email' => $validated['email'],
-                    'status' => 1,
-                    'logoUrl' => $validated['logoUrl'] ?? null,
-                    'smtpEmail' => $validated['smtpEmail'] ?? null,
-                    'smtpPassword' => $validated['smtpPassword'] ?? null,
-                    'smtpHost' => $validated['smtpHost'] ?? null,
-                    'smtpPort' => $validated['smtpPort'] ?? null,
-                    'ccEmail' => $validated['ccEmail'] ?? null,
-                    'bccEmail' => $validated['bccEmail'] ?? null,
-                    'certificateAuthority' => $validated['certificateAuthority'] ?? null,
-                    'certificateUrl' => $validated['certificateUrl'] ?? null,
-                ]
-            );
+            if ($request->id) {
+                $website = Websites::where('id', $request->id)->first();
+            } else {
+                $website = new Websites();
+            }
 
+            $website->vendor_id = $request->vendor_id;
+            $website->sitename = $request->sitename;
+            $website->url = $request->url;
+            $website->email = $request->email;
+            $website->status = 1;
+            $website->logoUrl = $request->logoUrl;
+            $website->smtpEmail = $request->smtpEmail;
+            $website->smtpPassword = $request->smtpPassword;
+            $website->smtpHost = $request->smtpHost;
+            $website->smtpPort = $request->smtpPort;
+            $website->smtp_security = $request->smtp_security;
+            $website->certificateAuthority = $request->certificateAuthority;
+            $website->certificateUrl = $request->certificateUrl;
+            $website->save();
             $message = $request->id
                 ? 'Website updated successfully!'
                 : 'Website added successfully!';
 
             return redirect()
-                ->route('websites.list', ['id' => $request->vendor_id])
+                ->route('websites.list', ['id' => base64_encode(convert_uuencode($request->vendor_id))])
                 ->with('success', $message);
 
         } catch (\Throwable $e) {
@@ -154,7 +161,7 @@ class WebsiteController extends Controller
                 'error' => $e->getMessage(),
                 'request' => $request->all(),
             ]);
-            return redirect()->back()->withInput()->with('error', 'Something went wrong. Please try again.');
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
     }
 
@@ -162,7 +169,7 @@ class WebsiteController extends Controller
 
     public function courselist(Request $request)
     {
-        $vendor = $request->id;
+        $vendor = convert_uudecode(base64_decode($request->id));
         // dd($vendor);
         $this->setId($request);
         return view('websites.courseindex', compact('vendor'));
@@ -170,7 +177,8 @@ class WebsiteController extends Controller
 
     public function coursedata(Request $request)
     {
-        $id = session('vendor_id');
+        $vendor_id = session('vendor_id');
+        $id = convert_uudecode(base64_decode($vendor_id));
         if ($request->ajax()) {
             $data = Course::where('vendor_id', $id)->select('*')->orderBy('id', 'DESC');
             return datatables()->of($data)
@@ -272,7 +280,7 @@ class WebsiteController extends Controller
     }
 
     public function coursedelete($id)
-    {   
+    {
         $course = Course::findOrFail($id);
         $course->delete();
         return redirect()->back()->with('success', 'Course deleted successfully!');

@@ -20,8 +20,7 @@ class UserController extends Controller
     //
     public function userlist(Request $request)
     {
-        $users = User::all();
-        // Flash any old messages again to ensure they show up
+        $users = User::where('status' ,'Active')->get();
         if (session('success')) {
             session()->flash('success', session('success'));
         }
@@ -39,7 +38,7 @@ class UserController extends Controller
 
     public function getUsers()
     {
-        $users = User::orderBy('id' ,'Desc')->select('users.*');
+        $users = User::orderBy('id', 'Desc')->select('users.*');
         return DataTables::of($users)
             ->addColumn('role', function ($user) {
                 $roleColors = [
@@ -99,13 +98,22 @@ class UserController extends Controller
     }
     public function userupdate(Request $request): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:100',
-            'phone' => 'required|max:12',
-            'email' => 'required|max:70|unique:users,email',
-            'password' => 'same:confirm-password',
-            'roles' => 'required',
-        ]);
+        if ($request->id) {
+            $validatedData = $request->validate([
+                'name' => 'required|max:100',
+                'phone' => 'required|max:12',
+                'email' => 'required|max:70',
+                'roles' => 'required',
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'name' => 'required|max:100',
+                'phone' => 'required|max:12',
+                'email' => 'required|max:70|unique:users,email',
+                'password' => 'same:confirm-password',
+                'roles' => 'required',
+            ]);
+        }
         DB::beginTransaction();
         $id = $request->id;
         $input = $request->all();

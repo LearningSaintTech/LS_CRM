@@ -18,10 +18,14 @@
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
-            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                class="btn btn-info btn-sm shadow-sm">
-                <i class="fas fa-plus me-1"></i> Add
-            </a>
+
+            @if($vendor?->id)
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    class="btn btn-info btn-sm shadow-sm">
+                    <i class="fas fa-plus me-1"></i> Add
+                </a>
+            @endif
+            
         </div>
     </div>
     <div class="card h-auto container">
@@ -54,19 +58,39 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            {{-- <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Vendor User</h1>
-                <button type="reser" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> --}}
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Vendor User</h1>
+                {{-- <button type="reser" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
             <div class="modal-body">
                 <form id="vendoruser" action="{{ route('vendoruser.insert') }}" method="post"
                     onSubmit="document.getElementById('submit').disabled=true;">
                     @csrf
+
+                    <div class="col-md-12">
+                        {{-- @if ($vendor?->id) --}}
+
+                            <input type="hidden" value="{{ $vendor?->id }}" name="vendor_id">
+                            <input type="hidden" name="type" value="vendoruser">
+
+                        {{-- @else
+                            <label for="recipient-name" class="col-form-label">Select Vendor: {{ $vendor?->id }}
+                                <strong class="text-danger"> * </strong> </label>
+                            <select name="vendor_id" id="" class="form-select">
+                                <option value="" disabled selected> please select vendor </option>
+                                @foreach ($vendordata as $vendordatas)
+                                    <option value="{{ $vendordatas?->id }}">{{ $vendordatas?->name }}</option>
+                                @endforeach
+                            </select>
+                        @endif --}}
+
+                    </div>
+
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <input type="hidden" value="{{ $vendor?->id }}" name="vendor_id">
+
                                     <input type="hidden" name="vendor_user_id" id="vendor_user_id">
                                     <label for="recipient-name" class="col-form-label">Name: <strong
                                             class="text-danger"> * </strong> </label>

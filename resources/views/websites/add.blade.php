@@ -95,23 +95,23 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="" class="form-label">CC Email (Optional) </label>
-                            <input type="email" class="form-control"
-                                value="{{ old('ccEmail', $website?->ccEmail) }}" name="ccEmail"
-                                placeholder="CC Email" maxlength="100">
+                            <label for="" class="form-label">SMTP Security (Optional) </label>
+                            <input type="smtp_security" class="form-control"
+                                value="{{ old('smtp_security', $website?->smtp_security) }}" name="smtp_security"
+                                placeholder="SMTP Security" maxlength="100">
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <label for="" class="form-label">BCC Email</label>
                             <input type="email" name="bccEmail" value="{{ old('bccEmail', $website?->bccEmail) }}"
                                 class="form-control" placeholder="BCC Emaillance" id="" maxlength="100">
-                        </div>
+                        </div> --}}
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="" class="form-label">Certificate Authority</label>
                             <input type="name" name="certificateAuthority"
                                 value="{{ old('certificateAuthority', $website?->certificateAuthority) }}"
@@ -119,7 +119,7 @@
                                 maxlength="200">
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label for="" class="form-label">Certificate Url</label>
                             <input type="url" name="certificateUrl"
                                 value="{{ old('certificateUrl', $website?->certificateUrl) }}" class="form-control"

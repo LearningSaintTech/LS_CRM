@@ -32,9 +32,9 @@
             {{-- start  by amarjeet kushwaha all menu should be same --}}
 
 
-            @can('View Customer')
+            {{-- @can('View Customer')
                 <x-sidebar-menu-item route="employee.list" icon="fi fi-rs-employees" text="Employees" />
-            @endcan
+            @endcan --}}
 
             {{-- <x-sidebar-menu-item route="blog.list" icon="fi fi-rs-book" text="BLog" /> --}}
 
@@ -42,15 +42,28 @@
 
             {{-- <x-sidebar-menu-item route="vendor.list" icon="fi fi-rr-users" text="Vendor"/> --}}
 
-            <li class="sidebar-item {{ request()->routeIs('vendor.*' ,'user.view' ,'websites.list' ,'add.websites','website.edit' ,'course.*') ? 'active' : '' }}">
-                <a href="{{ route('vendor.list') }}" class="sidebar-link">
-                    <i class="fi fi-rr-users"></i>
-                    <span>Vendor</span>
-                </a>
-            </li>
+            @can('view-vendor')
+                <li
+                    class="sidebar-item {{ request()->routeIs('vendor.*', 'websites.list', 'add.websites', 'website.edit', 'course.*') ? 'active' : '' }}">
+                    <a href="{{ route('vendor.list') }}" class="sidebar-link">
+                        <i class="fi fi-rr-users"></i>
+                        <span>Vendor</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-vendor-user')
+                <li class="sidebar-item {{ request()->routeIs('user.view') ? 'active' : '' }}">
+                    <a href="{{ route('user.view') }}" class="sidebar-link">
+                        <i class="fi fi-rr-users"></i>
+                        <span>Vendor User</span>
+                    </a>
+                </li>
+            @endcan
 
             @can('view-setting')
-                <li class="sidebar-item {{ request()->routeIs('settings.*' ,'user.list','role-list' ,'permission') ? 'active' : '' }}">
+                <li
+                    class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
                     <a href="{{ route('settings.index') }}" class="sidebar-link">
                         <i class="fi fi-rr-settings"></i>
                         <span>Setting</span>
@@ -58,6 +71,15 @@
                 </li>
             @endcan
 
+            @can('View Payment')
+                <li class="sidebar-item {{ request()->routeIs('payment') ? 'active' : '' }}">
+                    <a href="{{ route('payment') }}" class="sidebar-link">
+                        <i class="fi fi-rr-credit-card"></i>
+                        <span>Payment</span>
+                    </a>
+                </li>
+            @endcan
+            
         </ul>
     </div>
     {{-- <div class="icnav-footer">
