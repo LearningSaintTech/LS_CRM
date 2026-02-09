@@ -83,7 +83,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
@@ -202,9 +201,7 @@
 <script>
     $('#vendorSelect').on('change', function() {
         let vendorId = $(this).val();
-
         $('#websiteSelect').html('<option value="">Loading...</option>');
-
         if (vendorId) {
             $.ajax({
                 url: "{{ route('get.websites') }}",

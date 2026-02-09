@@ -79,7 +79,13 @@
                     </a>
                 </li>
             @endcan
-            
+
+        <li class="sidebar-item {{ request()->routeIs('meeting.*') ? 'active' : '' }}">
+            <a href="{{ route('meeting.list') }}" class="sidebar-link">
+                <i class="fi fi-rr-calendar-clock"></i>
+                <span>Meeting</span>
+            </a>
+        </li>
         </ul>
     </div>
     {{-- <div class="icnav-footer">

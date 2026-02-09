@@ -1,104 +1,198 @@
 @include('common.header')
 
+<style>
+    .ai-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .ai-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e7eaf0;
+        padding: 1.25rem 1.5rem;
+        position: relative;
+        transition: all .25s ease;
+    }
+
+    /* AI Accent Line */
+    .ai-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        bottom: 12px;
+        width: 4px;
+        background: linear-gradient(180deg, #0d6efd, #6610f2);
+        border-radius: 4px;
+        opacity: .85;
+    }
+
+    .ai-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(13,110,253,.12);
+        border-color: #dbe2ff;
+    }
+
+    .ai-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .6rem;
+    }
+
+    .ai-id {
+        font-size: .7rem;
+        letter-spacing: .6px;
+        text-transform: uppercase;
+        color: #6c757d;
+        font-weight: 600;
+    }
+
+    .ai-status-active {
+        font-size: .75rem;
+        font-weight: 600;
+        color: #198754;
+    }
+
+    .ai-status-inactive {
+        font-size: .75rem;
+        font-weight: 600;
+        color: #dc3545;
+    }
+
+    .ai-name {
+        font-size: .95rem;
+        font-weight: 600;
+        color: #212529;
+        margin-bottom: .25rem;
+    }
+
+    .ai-email {
+        font-size: .75rem;
+        color: #6c757d;
+    }
+
+    .ai-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        margin-top: .75rem;
+    }
+
+    .ai-tag {
+        font-size: .7rem;
+        padding: .3rem .7rem;
+        border-radius: 50px;
+        background: #f1f3f9;
+        border: 1px solid #e1e5ef;
+        white-space: nowrap;
+    }
+
+    .ai-message {
+        margin-top: .75rem;
+        font-size: .82rem;
+        color: #343a40;
+        line-height: 1.6;
+        max-width: 1000px;
+    }
+
+    .ai-footer {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        gap: .75rem;
+    }
+
+    .ai-date {
+        font-size: .7rem;
+        color: #6c757d;
+    }
+</style>
+
 <main class="content-body">
+
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <div class="page-title mt-0">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url('/') }}">Meeting</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page"> Meeting </li>
-                    </ol>
-                </nav>
-            </div>
+            <h6 class="fw-semibold mb-1">AI Meeting Research Feed</h6>
+            <small class="text-muted">
+                Intelligent academic & professional interactions
+            </small>
         </div>
-        <div class="me-3">
+
+        <div class="d-flex gap-2">
             <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm shadow-sm">
-                <i class="fas fa-arrow-left me-1"></i> Back
+                Back
             </a>
-
-            <a href="{{ route('add.meting') }}"
-                class="btn btn-info btn-sm shadow-sm">
-                <i class="fas fa-plus me-1"></i> Add
+            <a href="{{ route('add.meting') }}" class="btn btn-info btn-sm">
+                + New Meeting
             </a>
-
         </div>
     </div>
-    <div class="card h-auto container">
-        <div class="card-body table-card-body pt-0 px-0 pb-1">
 
-            <div class="table-responsive check-wrapper table-container">
-                <table id="vendoruserTable" class="table table-striped table-hover table-bordered mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th>ID </th>
-                            <th>Site Name </th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Course</th>
-                            <th>Support Type</th>
-                            <th>Meeting Date</th>
-                            <th>Meeting Link</th>
-                            <th>Message</th>
-                            <th>Level</th>
-                            <th>Vendor Name</th>
-                            <th>Status</th>
-                            <th>Created At </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($meetings as $payment)
-                            <tr>
-                                <td>{{ $payment?->id }}</td>
-                                <td>{{ $payment?->siteId }}</td>
-                                <td>{{ $payments?->name }}</td>
-                                <td>{{ $payments?->email }}</td>
-                                <td>{{ $payments?->course }}</td>
-                                <td>{{ $payments?->supportType }}</td>
-                                <td>{{ $payments?->meetingDate }}</td>
-                                <td>{{ $payments?->meetingLink }}</td>
-                                <td>{{ $payments?->message }}</td>
-                                <td>{{ $payments?->level }}</td>
-                                <td>{{ $payments?->vendor_id }}</td>
-                                <td>
-                                    <span class="badge badge-success light">
-                                        @if ($payments?->status == 1)
-                                            Active
-                                        @else
-                                            In-Active
-                                        @endif
-                                    </span>
-                                </td>
-                                <td>{{ $payments?->created_at }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button type="button" class="btn btn-sm btn-primary light btn-square"
-                                            data-bs-toggle="dropdown">
-                                            <i class="fa-solid fa-ellipsis"></i>
-                                        </button>
+    <!-- Feed -->
+    <div class="ai-feed">
 
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item edit-payment-user"
-                                                    data-url="{{ route('payment.edit', $payments->id) }}" href="#"
-                                                    data-id="{{ $payments->id }}">Edit</a></li>
-                                            <li><a class="dropdown-item text-danger"
-                                                    href="javascript:void(0);">Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+        @forelse ($meetings as $meeting)
 
-                    </tbody>
-                </table>
+            <div class="ai-card">
+
+                <!-- Top -->
+                <div class="ai-top">
+                    <span class="ai-id">
+                        MEETING #{{ $meeting->id }} • {{ $meeting?->site?->sitename }}
+                    </span>
+
+                    @if ($meeting->status == 1)
+                        <span class="ai-status-active">● ACTIVE</span>
+                    @else
+                        <span class="ai-status-inactive">● INACTIVE</span>
+                    @endif
+                </div>
+
+                <!-- Identity -->
+                <div class="ai-name">{{ $meeting->name }}</div>
+                <div class="ai-email">{{ $meeting->email }}</div>
+
+                <!-- Tags -->
+                <div class="ai-tags">
+                    <span class="ai-tag">🎓 {{ $meeting->course }}</span>
+                    <span class="ai-tag">🧠 {{ $meeting->supportType }}</span>
+                    <span class="ai-tag">📊 Level: {{ $meeting->level }}</span>
+                    <span class="ai-tag">🏢 {{ $meeting?->vendorId?->name }}</span>
+                    <span class="ai-tag">📅 {{ $meeting->meetingDate }}</span>
+                </div>
+
+                <!-- Message -->
+                <div class="ai-message">
+                    {{ $meeting->message }}
+                </div>
+
+                <!-- Footer -->
+                <div class="ai-footer">
+                    @if($meeting->meetingLink)
+                        <a href="{{ $meeting->meetingLink }}" target="_blank"
+                           class="btn btn-sm btn-outline-primary rounded-pill">
+                            Join Meeting
+                        </a>
+                    @endif
+
+                    <span class="ai-date ms-auto">
+                        Created {{ $meeting->created_at->format('d M Y') }}
+                    </span>
+                </div>
+
             </div>
-        </div>
-    </div>
-</main>
 
+        @empty
+            <div class="text-center text-muted py-4">
+                No meetings available
+            </div>
+        @endforelse
+
+    </div>
+
+</main>
 
 @include('common.footer')

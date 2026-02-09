@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meetings extends Model
 {
-     protected $table = "meetings";
-     protected $fillable = [        
+    protected $table = "meetings";
+    protected $fillable = [
         'siteId',
         'name',
         'email',
@@ -21,4 +21,23 @@ class Meetings extends Model
         'vendor_id',
         'status',
     ];
+
+
+    public function site()
+    {
+        return $this->belongsTo(Websites::class, 'siteId');
+    }
+
+    public function vendorUserId()
+    {
+        return $this->belongsTo(Vendoruser::class, 'vendorUser_id');
+    }
+
+    public function vendorId()
+    {
+        return $this->belongsTo(Vendor::class, 'vendor_id');
+    }
 }
+
+
+
