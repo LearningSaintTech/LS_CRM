@@ -19,13 +19,10 @@
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
 
-
             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                 class="btn btn-info btn-sm shadow-sm">
                 <i class="fas fa-plus me-1"></i> Add
             </a>
-
-
         </div>
     </div>
     <div class="card h-auto container">
@@ -50,8 +47,8 @@
                             <tr>
                                 <td>{{ $payments?->id }}</td>
                                 <td>{{ $payments?->name }}</td>
-                                <td>{{ $payments?->secret_key }}</td>
-                                <td>{{ $payments?->key }}</td>
+                                <td class="blur-text" style="filter: blur(1px);user-select: none;">{{ Str::mask($payments?->secret_key ,'*' ,4) }}</td>
+                                <td class="blur-text" style="filter: blur(1px);user-select: none;">{{ Str::mask($payments?->key , '*' ,4) }}</td>
                                 <td>{{ $payments?->website?->sitename }}</td>
                                 <td>
                                     <span class="badge badge-success light">

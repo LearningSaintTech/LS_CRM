@@ -49,7 +49,6 @@ class MeetingController extends Controller
                 ]);
 
         $accessToken = $tokenResponse['access_token'];
-
         $meetingResponse = Http::withToken($accessToken)->post(
             'https://api.zoom.us/v2/users/me/meetings',
             [

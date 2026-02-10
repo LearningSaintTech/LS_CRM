@@ -16,6 +16,4 @@ Route::get('vendor-list', [VendorCntroller::class, 'vendorlist'])->name('vendor.
     Route::get('/vendor-user-data', [VendorCntroller::class, 'vendoruserdata'])->name('vendor.user.data');
     Route::get('vendor-user/{id}', [VendorCntroller::class, 'vendoreuserdit'])
      ->name('vendoruser.edit');
-
-
 });
