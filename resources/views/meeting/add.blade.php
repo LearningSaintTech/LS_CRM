@@ -49,10 +49,10 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="" class="form-label"> Vendor User Name<strong class="text-danger"> *
+                            <label for="" class="form-label"> Meeting Host<strong class="text-danger"> *
                                 </strong>
                             </label>
-                            <select name="vendorUser_id[]" class="form-select select2" id="vendorUser_id" multiple>
+                            <select name="vendorUser_id" class="form-select" id="vendorUser_id">
 
                             </select>
                         </div>
@@ -63,19 +63,19 @@
 
                 <div class="col-md-12">
                     <div class="row">
+
+                        <div class="col-md-4">
+                            <label for="" class="form-label">CC Email</label>
+                            <input type="email" name="bccEmail" value="{{ old('bccEmail', $meeting?->bccEmail) }}"
+                                class="form-control" placeholder="CC Email" id="" maxlength="100">
+                        </div>
+
+
                         <div class="col-md-4">
                             <label for="" class="form-label"> Name <strong class="text-danger"> * </strong>
                             </label>
                             <input type="text" name="name" class="form-control"
                                 value="{{ old('name', $meeting?->name) }}" placeholder="Name" required maxlength="100">
-                        </div>
-
-
-
-                        <div class="col-md-4">
-                            <label for="" class="form-label"> Phone </label>
-                            <input type="text" name="phone" value="{{ old('phone', $meeting?->phone) }}"
-                                class="form-control" id="" placeholder="Phone" maxlength="12">
                         </div>
 
                         <div class="col-md-4">
@@ -104,22 +104,24 @@
                         </div> --}}
 
                         <div class="col-md-4">
+                            <label for="" class="form-label"> Phone </label>
+                            <input type="text" name="phone" value="{{ old('phone', $meeting?->phone) }}"
+                                class="form-control" id="" placeholder="Phone" maxlength="12">
+                        </div>
+
+                        <div class="col-md-4">
                             <label for="" class="form-label">Message (Optional) </label>
                             <input type="text" class="form-control"
                                 value="{{ old('message', $meeting?->message) }}" name="message"
                                 placeholder="Message">
                         </div>
+                        
                     </div>
                 </div>
 
                 <div class="col-md-12">
                     <div class="row">
-                        {{-- <div class="col-md-4">
-                            <label for="" class="form-label">BCC Email</label>
-                            <input type="email" name="bccEmail" value="{{ old('bccEmail', $meeting?->bccEmail) }}"
-                                class="form-control" placeholder="BCC Emaillance" id="" maxlength="100">
-                        </div> --}}
-
+                        
                         <div class="col-md-4">
                             <label for="" class="form-label"> Course <strong class="text-danger"> *
                                 </strong> </label>

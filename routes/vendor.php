@@ -4,9 +4,9 @@ use App\Http\Controllers\VendorCntroller;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
-Route::get('vender-list', [VendorCntroller::class, 'vendorlist'])->name('vendor.list');
+Route::get('vendor-list', [VendorCntroller::class, 'vendorlist'])->name('vendor.list');
     Route::get('add-vendor' ,[VendorCntroller::class ,'addvendor'])->name('add.vender');
-    Route::post('insert-vender' ,[VendorCntroller::class ,'insertvender'])->name('insert.vender');
+    Route::post('insert-vendor' ,[VendorCntroller::class ,'insertvender'])->name('insert.vender');
     Route::get('vendor-data' ,[VendorCntroller::class ,'vendordata'])->name('vendor.data');
     Route::get('vendor-edit' ,[VendorCntroller::class ,'vendoredit'])->name('vendor.edit');
     Route::get('vendor/status/{id}', [VendorCntroller::class, 'toggleStatus'])

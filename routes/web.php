@@ -61,7 +61,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/payment/{id}/edit', [PaymentController::class, 'paymentedit'])
     ->name('payment.edit');
 
-
 });
 
 Route::get('lang/{lang}', function ($lang) {

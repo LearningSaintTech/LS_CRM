@@ -16,7 +16,7 @@ class MeetingController extends Controller
 {
     public function meetinglist()
     {
-        $meetings = Meetings::with(['site:id,sitename', 'vendorUserId:id,name', 'vendorId:id,name'])->orderBy('id' ,'DESC')->get();
+        $meetings = Meetings::with(['site:id,sitename', 'vendorUserId:id,name', 'vendorId:id,name'])->orderBy('id', 'DESC')->get();
         return view('meeting.index', compact('meetings'));
     }
 
@@ -85,17 +85,17 @@ class MeetingController extends Controller
             'status' => 'required|max:10',
         ]);
 
-        
+        // dd($request->all());
+
         $meeting = $request->id
-        ? Meetings::findOrFail($request->id)
-        : new Meetings();
-        
+            ? Meetings::findOrFail($request->id)
+            : new Meetings();
+
         $zoom = $this->createZoomMeeting(
             'Support Meeting - ' . $request->name,
             $request->meetingDate
-            );
-            
-            // dd($zoom);
+        );
+
         $meeting->fill([
             'siteId' => $request->siteId,
             'name' => $request->name,
@@ -111,22 +111,35 @@ class MeetingController extends Controller
             'vendorUser_id' => json_encode($request->vendorUser_id),
             'status' => $request->status,
         ]);
-
         $meeting->save();
-        foreach ($request->vendorUser_id as $vendoruser) {
-            $vendorUser = Vendoruser::find($vendoruser);
-            if ($vendorUser && $vendorUser->email) {
+        $vendorUser = Vendoruser::find($request->vendorUser_id);
+        $ccmail = $request?->bccEmail;
+            if ($vendorUser && !empty($vendorUser->email)) {
                 Mail::send('emails.meeting', [
                     'meeting' => $meeting,
                     'vendorUser' => $vendorUser
-                ], function ($mail) use ($vendorUser) {
+                ], function ($mail) use ($vendorUser, $ccmail) {
                     $mail->to('amarjeetkushwaha379@gmail.com')
                         ->subject('Meeting Scheduled – Zoom Link');
+                    if (!empty($ccmail)) {
+                        $mail->cc($ccmail);
+                    }
                 });
             }
-        }
 
-
+        // foreach ($request->vendorUser_id as $vendoruser) {
+        //     $vendorUser = Vendoruser::find($vendoruser);
+        //     if ($vendorUser && $vendorUser->email) {
+        //         Mail::send('emails.meeting', [
+        //             'meeting' => $meeting,
+        //             'vendorUser' => $vendorUser
+        //         ], function ($mail) use ($vendorUser) {
+        //             $mail->to('amarjeetkushwaha379@gmail.com')
+        //                 ->subject('Meeting Scheduled – Zoom Link');
+        //         });
+        //     }
+        // }
+        
         return redirect()->route('meeting.list')
             ->with('success', $request->id ? 'Meeting updated successfully!' : 'Meeting created successfully!');
     }

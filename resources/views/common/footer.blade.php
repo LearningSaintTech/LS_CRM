@@ -54,13 +54,13 @@
             });
         }
 
-        if ($('#vendorUser_id').length) {
-            $('#vendorUser_id').select2({
-                placeholder: "Select Vendor User",
-                allowClear: true,
-                width: '100%'
-            });
-        }
+        // if ($('#vendorUser_id').length) {
+        //     $('#vendorUser_id').select2({
+        //         placeholder: "Select Vendor User",
+        //         allowClear: true,
+        //         width: '100%'
+        //     });
+        // }
 
         if ($('#multiple-menus').length) {
             $('#multiple-menus').select2({

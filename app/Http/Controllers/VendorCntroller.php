@@ -106,8 +106,9 @@ class VendorCntroller extends Controller
         return back()->with('success', 'Vendor status updated successfully');
     }
 
-    public function userview(Request $request, )
+    public function userview(Request $request)
     {
+        // dd($request?->all() , $id);
         if ($request->id) {
             $userId = convert_uudecode(base64_decode($request->id));
             $vendor = Vendor::where('id', $userId)->first();
@@ -115,6 +116,13 @@ class VendorCntroller extends Controller
         } else {
             $vendor = null;
         }
+        return view('vendor.vendoruser', compact('vendor'));
+    }
+
+    public function alluserview(Request $request)
+    {
+            
+        $vendor = null;
         return view('vendor.vendoruser', compact('vendor'));
     }
 
@@ -184,8 +192,11 @@ class VendorCntroller extends Controller
 
     public function setId(Request $request)
     {
+       
+        // session(['vendor_id' => $request->id]);
+        // $vendor_id = $request?->id;
         // dd($request->id);
-        session(['vendor_id' => $request->id]);
+        return $request->id;
     }
 
     public function addvendor()
@@ -194,18 +205,20 @@ class VendorCntroller extends Controller
         return view('vendor.add', compact('vender'));
     }
 
-    public function vendoredit(Request $request)
+    public function vendoredit(Request $request ,$id)
     {
-        $userId = convert_uudecode(base64_decode($request->id));
+        $userId = convert_uudecode(base64_decode($id));
         $vender = Vendor::where('id', $userId)->first();
         return view('vendor.add', compact('vender'));
     }
 
     public function vendoruserdata(Request $request)
     {
-        $vendorData = session('vendor_id');
+        // $vendorData = session('vendor_id');
+        $vendorData = $this->setId($request);
+        // dd($vendorData);
         $user = auth()->user();
-
+        
         if ($vendorData == null) {
 
         } else {
@@ -265,7 +278,6 @@ class VendorCntroller extends Controller
     public function vendoreuserdit($id)
     {
         $user = Vendoruser::findOrFail($id);
-
         return response()->json([
             'id' => $user->id,
             'name' => $user->name,
@@ -276,10 +288,8 @@ class VendorCntroller extends Controller
         ]);
     }
 
-
     public function insertvender(VendorRequest $request)
     {
-        // dd($request->all());
         DB::beginTransaction();
         try {
             if ($request->id) {
@@ -330,7 +340,6 @@ class VendorCntroller extends Controller
             );
 
         } catch (\Exception $e) {
-            // dd($e);  
             DB::rollBack();
             return redirect()->back()->with('error', 'Error saving data: ' . $e->getMessage())->withInput();
         }

@@ -37,7 +37,7 @@ class UserHelper
     {
         return User::where('vendor_id', $vendor?->id)->update([
             'name' => $vendor?->name,
-            'email' => $vendor?->email,
+            // 'email' => $vendor?->email,
             'phone' => $vendor?->phone,
             'created_by' => Auth::id(),
         ]);

@@ -62,8 +62,7 @@
             @endcan
 
             @can('view-setting')
-                <li
-                    class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
+                <li class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
                     <a href="{{ route('settings.index') }}" class="sidebar-link">
                         <i class="fi fi-rr-settings"></i>
                         <span>Setting</span>

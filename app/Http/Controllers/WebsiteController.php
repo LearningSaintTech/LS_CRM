@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
 class WebsiteController extends Controller
 {
 
-    public function websiteslist(Request $request)
+    public function websiteslist(Request $request ,$id)
     {
-        $vendor = convert_uudecode(base64_decode($request->id));
+        // dd($request?->all() ,$id);
+        $vendor = convert_uudecode(base64_decode($id));
         // $vendor = $request->id;
         $this->setId($request);
         return view('websites.index', compact('vendor'));
@@ -110,6 +111,7 @@ class WebsiteController extends Controller
 
     public function insertwebsite(Request $request)
     {
+        // dd($request?->all());
         try {
             $validated = $request->validate([
                 'vendor_id' => 'required',

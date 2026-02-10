@@ -133,9 +133,7 @@
                                                         @endphp --}}
 
                                                     <ul class="dropdown-menu dropdown-menu-end">
-                                                        <li><a class="dropdown-item"
-                                                                href="{{ route('vendor.edit', ['id' => base64_encode(convert_uuencode($datas->id))]) }}">Edit</a>
-                                                        </li>
+                                                        <li><a class="dropdown-item" href="{{ route('vendor.edit', ['id' => base64_encode(convert_uuencode($datas->id))]) }}">Edit</a></li>
                                                        
                                                         <li><a class="dropdown-item"
                                                                 href="{{ route('user.view', ['id'=> base64_encode(convert_uuencode($datas->id))]) }}">View
