@@ -20,6 +20,7 @@ class Meetings extends Model
         'level',
         'vendor_id',
         'status',
+        'bccEmail'
     ];
 
 

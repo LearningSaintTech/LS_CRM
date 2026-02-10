@@ -94,11 +94,13 @@ class MeetingController extends Controller
             'Support Meeting - ' . $request->name,
             $request->meetingDate
         );
-
+    // dd($request?->all());
+    
         $meeting->fill([
             'siteId' => $request->siteId,
             'name' => $request->name,
             'email' => $request->email,
+            'bccEmail' => $request->bccEmail,
             'course' => $request->course,
             'phone' => $request->phone,
             'supportType' => $request->supportType,
@@ -107,9 +109,10 @@ class MeetingController extends Controller
             'message' => $request->message,
             'level' => $request->level,
             'vendor_id' => $request->vendor_id,
-            'vendorUser_id' => json_encode($request->vendorUser_id),
+            'vendorUser_id' => $request->vendorUser_id,
             'status' => $request->status,
         ]);
+
         $meeting->save();
         $vendorUser = Vendoruser::find($request->vendorUser_id);
         $ccmail = $request?->bccEmail;
@@ -118,7 +121,7 @@ class MeetingController extends Controller
                     'meeting' => $meeting,
                     'vendorUser' => $vendorUser
                 ], function ($mail) use ($vendorUser, $ccmail) {
-                    $mail->to('amarjeetkushwaha379@gmail.com')
+                    $mail->to($vendorUser?->email)
                         ->subject('Meeting Scheduled – Zoom Link');
                     if (!empty($ccmail)) {
                         $mail->cc($ccmail);
