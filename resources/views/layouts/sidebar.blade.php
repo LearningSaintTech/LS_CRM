@@ -62,7 +62,8 @@
             @endcan
 
             @can('view-setting')
-                <li class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
+                <li
+                    class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
                     <a href="{{ route('settings.index') }}" class="sidebar-link">
                         <i class="fi fi-rr-settings"></i>
                         <span>Setting</span>
@@ -79,12 +80,29 @@
                 </li>
             @endcan
 
-        <li class="sidebar-item {{ request()->routeIs('meeting.*') ? 'active' : '' }}">
-            <a href="{{ route('meeting.list') }}" class="sidebar-link">
-                <i class="fi fi-rr-calendar-clock"></i>
-                <span>Meeting</span>
-            </a>
-        </li>
+            @can('View Payment')
+                <li class="sidebar-item {{ request()->routeIs('meeting.*') ? 'active' : '' }}">
+                    <a href="{{ route('meeting.list') }}" class="sidebar-link">
+                        <i class="fi fi-rr-calendar-clock"></i>
+                        <span>Meeting</span>
+                    </a>
+                </li>
+            @endcan
+            @can('View Enrolment')
+                <li class="sidebar-item {{ request()->routeIs('enrolment.*') ? 'active' : '' }}">
+                    <a href="{{ route('enrolment.list') }}" class="sidebar-link">
+                        <i class="fi fi-rr-user-graduate"></i>
+                        <span>Enrolment</span>
+                    </a>
+                </li>
+            @endcan
+            <li class="sidebar-item {{ request()->routeIs('reviews.*') ? 'active' : '' }}">
+                <a href="{{ route('reviews.list') }}" class="sidebar-link">
+                    <i class="fi fi-rr-star-comment-alt"></i>
+                    {{-- <i class="fi fi-rr-star"></i> --}}
+                    <span>Reviews</span>
+                </a>
+            </li>
         </ul>
     </div>
     {{-- <div class="icnav-footer">
