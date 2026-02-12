@@ -29,13 +29,16 @@
                 <td><span> @for ($i = 1; $i <= ($datas?->rating); $i++)
                             {{' ⭐' }}
                         @endfor </span></td>
-                <td><span class="badge badge-success light">
+                <td>
+                    <span class="badge badge-success light">
                         @if ($datas?->status == 1)
                             Active
                         @else
                             In-Active
                         @endif
-                    </span></td>
+                    </span>
+                </td>
+                
                 <td class="">
                     <div class="dropdown">
                         <button type="button" class="btn btn-sm btn-primary light btn-square"

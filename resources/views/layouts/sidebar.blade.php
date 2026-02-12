@@ -96,13 +96,17 @@
                     </a>
                 </li>
             @endcan
-            <li class="sidebar-item {{ request()->routeIs('reviews.*') ? 'active' : '' }}">
-                <a href="{{ route('reviews.list') }}" class="sidebar-link">
-                    <i class="fi fi-rr-star-comment-alt"></i>
-                    {{-- <i class="fi fi-rr-star"></i> --}}
-                    <span>Reviews</span>
-                </a>
-            </li>
+
+            @can('View Reviews')
+                <li class="sidebar-item {{ request()->routeIs('reviews.*') ? 'active' : '' }}">
+                    <a href="{{ route('reviews.list') }}" class="sidebar-link">
+                        <i class="fi fi-rr-star-comment-alt"></i>
+                        {{-- <i class="fi fi-rr-star"></i> --}}
+                        <span>Reviews</span>
+                    </a>
+                </li>
+            @endcan
+
         </ul>
     </div>
     {{-- <div class="icnav-footer">
