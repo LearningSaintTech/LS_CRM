@@ -133,6 +133,7 @@ class UserController extends Controller
             $user->save();
             DB::table('model_has_roles')->where('model_id', $id)->delete();
             $user->assignRole($request->input('roles'));
+            DB::commit();
             return redirect()->route('user.list')->with('success', 'User updated successfully');
         } catch (\Exception $e) {
             DB::rollBack();
