@@ -9,7 +9,7 @@ Route::group(['prefix' => 'enrolment', 'middleware' => 'auth'], function () {
     Route::post('enrolment-edit', [EnrolmentController::class, 'enrolmentedit'])->name('enrolment.edit');
     Route::post('insert-enrolment', [EnrolmentController::class, 'insertenrolment'])->name('insert.enrolment');
     Route::get('delete-enrolmen', [EnrolmentController::class, 'deleteenrolmen'])->name('delete.enrolment');
-
+    Route::get('view-payment/{id}' ,[EnrolmentController::class ,'viewpayment'])->name('view.payment');
 });
 
 Route::group(['prefix' => 'reviews', 'middlewere' => 'auth'], function () {
@@ -17,4 +17,5 @@ Route::group(['prefix' => 'reviews', 'middlewere' => 'auth'], function () {
     Route::post('insert-reviews', [ReviewController::class, 'insertreviews'])->name('insert.reviews');
     Route::post('reviews-edit', [ReviewController::class, 'reviewsedit'])->name('reviews.edit');
     Route::get('delete.reviews', [ReviewController::class, 'deletereviews'])->name('delete.reviews');
+    
 });

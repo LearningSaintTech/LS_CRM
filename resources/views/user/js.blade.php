@@ -16,7 +16,7 @@
         { data: 'status', name: 'status', orderable: false, searchable: false },
         { data: 'action', name: 'action', orderable: false, searchable: false },
     ],
-    order: [[0, 'asc']],
+    order: [[0, 'desc']],
     pageLength: 10
 });
 

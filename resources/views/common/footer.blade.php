@@ -6,20 +6,10 @@
     </div>
 </div>
 
-<!-- ========================= -->
-<!-- REQUIRED CORE LIBRARIES -->
-<!-- ========================= -->
-
-<!-- jQuery (MUST BE FIRST) -->
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap -->
 <script src="{{ url('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-
-<!-- ========================= -->
-<!-- JQUERY DEPENDENT PLUGINS -->
-<!-- ========================= -->
 
 <script src="{{ url('assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
 <script src="{{ url('assets/vendor/metismenu/dist/metisMenu.min.js') }}"></script>
@@ -32,11 +22,11 @@
 
 
 <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.bundle.min.js') }}"></script>
-<script src="{{ url('assets/vendor/@yaireo/tagify/dist/tagify.js') }}"></script>
-<script src="{{ url('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-<script src="{{ url('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
-<script src="{{ url('assets/js/custom.js') }}"></script>
-<script src="{{ url('assets/js/icnav-init.js') }}"></script>
+<script src="{{ asset('assets/vendor/@yaireo/tagify/dist/tagify.js') }}"></script>
+<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/apexcharts/dist/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/icnav-init.js') }}"></script>
 <script src="{{ asset('assets/vendor/dropzone/dropzone.min.js') }}"></script>
 <script src="{{ asset('assets/js/dashboard/dashboard.js') }}"></script>
 

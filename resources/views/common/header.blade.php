@@ -1,27 +1,26 @@
+@include('layouts.spinner')
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'CRM')</title>
-    {{-- Core CSS --}}
-    <link href="{{ url('assets/vendor/metismenu/dist/metisMenu.min.css') }}" rel="stylesheet">
-    <link href="{{ url('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/metismenu/dist/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('assets/vendor/swiper/swiper-bundle.min.css') }}">
-    <link href="{{ url('assets/vendor/@yaireo/tagify/dist/tagify.css') }}" rel="stylesheet">
-    <link href="{{ url('assets/vendor/@flaticon/flaticon-uicons/css/all/all.css') }}" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="{{ url('assets/images/learning_logo.svg') }}">
+    <link href="{{ asset('assets/vendor/@yaireo/tagify/dist/tagify.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/@flaticon/flaticon-uicons/css/all/all.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/learning_logo.svg') }}">
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/dropzone/dropzone.min.css') }}" rel="stylesheet">
-    <link href="{{ url('assets/css/plugins.css') }}" rel="stylesheet">
-    <link href="{{ url('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/plugins.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
     @stack('styles')
 </head>
 
 <body>
-    @include('layouts.spinner')
     @include('layouts.navbar')
     @include('layouts.topbar')
     @include('layouts.sidebar')

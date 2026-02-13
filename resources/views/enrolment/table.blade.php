@@ -3,6 +3,7 @@
         <tr>
             <th class="mw-120"> ID</th>
             <th class="mw-150">Student Name</th>
+            {{-- <th class="mw-150">Student ID</th> --}}
             <th class="mw-150">Course Name</th>
             <th class="mw-150">Email </th>
             <th class="mw-150">Contact </th>
@@ -22,7 +23,7 @@
                             class="avatar avatar-sm me-2" alt="">
                         <div class="clearfix">
                             <h6 class="mb-0">{{ $datas?->student_name }}</h6>
-                            {{-- <small>{{ $datas?->company_name }}</small> --}}
+                            <small>{{ $datas?->student_id  }}</small>
                         </div>
                     </div>
                 </td>
@@ -45,6 +46,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item editBtn" data-id="{{ $datas?->id }}">Edit</a></li>
+                            <li><a href="{{ route('view.payment' ,['id' =>  base64_encode(convert_uuencode($datas->id))]) }}" class="dropdown-item"> Payment </a></li>
                             <li>
                                 <a class="dropdown-item text-danger toggle-status" data-id="{{ $datas?->id }}" data-url="{{ route('delete.enrolment') }}"  href="javascript:void(0);">
                                     Delete

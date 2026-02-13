@@ -86,7 +86,7 @@
                 searchPlaceholder: "Search roles...",
                 lengthMenu: "Show _MENU_ entries"
             },
-            order: [[0, 'asc']],
+            order: [[0, 'desc']],
             pageLength: 10
         });
     });
