@@ -21,6 +21,11 @@ class WebsiteController extends Controller
         return view('websites.index', compact('vendor'));
     }
 
+    public function menuwebsiteslist(){
+        $vendor = null;
+        return view('websites.index', compact('vendor'));
+    }
+
     public function setId(Request $request)
     {
         session(['vendor_id' => $request->id]);
@@ -93,7 +98,6 @@ class WebsiteController extends Controller
     public function addwebsites($vendor)
     {
         $website = null;
-
         $vendorId = convert_uudecode(base64_decode($vendor));
         return view('websites.add', compact('website', 'vendorId'));
     }

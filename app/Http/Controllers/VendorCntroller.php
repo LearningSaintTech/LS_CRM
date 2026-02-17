@@ -108,26 +108,41 @@ class VendorCntroller extends Controller
 
     public function userview(Request $request)
     {
-        // dd($request?->all() , $id);
+
+        $user = auth()->user();
+        $selectedVendor = null;
+        $vendors = collect();
+        // dd();
         if ($request->id) {
+
             $userId = convert_uudecode(base64_decode($request->id));
-            $vendor = Vendor::where('id', $userId)->first();
+            $selectedVendor = Vendor::where('id', $userId)->first();
             $this->setId($request);
+
+        } elseif ($user->hasExactRoles(['vendor'])) {
+
+            $selectedVendor = Vendor::where('id', $user->vendor_id)->first();
+
         } else {
-            $vendor = null;
+
+            $vendors = Vendor::where('status', 1)->get();
+
         }
-        return view('vendor.vendoruser', compact('vendor'));
+
+        return view('vendor.vendoruser', compact('selectedVendor', 'vendors'));
+
     }
 
     public function alluserview(Request $request)
     {
-            
+
         $vendor = null;
         return view('vendor.vendoruser', compact('vendor'));
     }
 
     public function vendoruserinsert(Request $request)
     {
+
         $id = $request->vendor_user_id;
         if ($id) {
             $validatedData = $request->validate([
@@ -159,6 +174,7 @@ class VendorCntroller extends Controller
                 $name = substr($request?->name, 0, 3);
                 $password = $name . '' . $random_nmber;
             }
+            // dd(auth()->user()->vendor_id);
             $user->name = $request?->name;
             $user->type = 'vendoruser';
             $user->email = $request?->email;
@@ -192,7 +208,7 @@ class VendorCntroller extends Controller
 
     public function setId(Request $request)
     {
-       
+
         // session(['vendor_id' => $request->id]);
         // $vendor_id = $request?->id;
         // dd($request->id);
@@ -205,7 +221,7 @@ class VendorCntroller extends Controller
         return view('vendor.add', compact('vender'));
     }
 
-    public function vendoredit(Request $request ,$id)
+    public function vendoredit(Request $request, $id)
     {
         $userId = convert_uudecode(base64_decode($id));
         $vender = Vendor::where('id', $userId)->first();
@@ -218,25 +234,28 @@ class VendorCntroller extends Controller
         $vendorData = $this->setId($request);
         // dd($vendorData);
         $user = auth()->user();
-        
+
         if ($vendorData == null) {
 
         } else {
             $id = convert_uudecode(base64_decode($vendorData));
         }
-        // dd($id);
-        // dd($user->hasExactRoles(['vendor']));
+
         if ($request->ajax()) {
 
             if ($user->hasExactRoles(['vendor'])) {
-                $data = Vendoruser::where('vendor_id', $id)->select('*')->orderBy('id', 'DESC');
+                $vendorId = Auth::user()->vendor_id;
+                $data = Vendoruser::where('vendor_id', $vendorId)->select('*')->with('vendor')->orderBy('id', 'DESC');
             } elseif ($user->hasRole('admin') && $vendorData != null) {
-                $data = Vendoruser::select('*')->where('vendor_id', $id)->orderBy('id', 'DESC');
-            } else {
-                $data = Vendoruser::select('*')->orderBy('id', 'DESC');
+                $data = Vendoruser::select('*')->with('vendor')->where('vendor_id', $id)->orderBy('id', 'DESC');
+            }elseif($user->hasExactRoles(['vendorUser'])){
+                $data = Vendoruser::select('*')->with('vendor')->where('id', $user?->vendor_user_id)->orderBy('id', 'DESC');
+            }else {
+                $data = Vendoruser::select('*')->with('vendor')->orderBy('id', 'DESC');
             }
+            //  dd($data?->vendor?->name);
             return datatables()->of($data)
-
+           
                 ->addColumn('status', function ($row) {
                     if ($row->status == '1') {
                         return '<span class="badge bg-success">Active</span>';
@@ -247,6 +266,10 @@ class VendorCntroller extends Controller
 
                 ->addColumn('created_at', function ($row) {
                     return $row?->created_at->format('d M, Y');
+                })
+
+                ->addColumn('vendor' ,function($row){
+                    return $row?->vendor?->name;
                 })
 
                 ->addColumn('action', function ($row) {
@@ -270,7 +293,7 @@ class VendorCntroller extends Controller
                                     </ul>
                                 </div>';
                 })
-                ->rawColumns(['created_at', 'action', 'status'])
+                ->rawColumns(['created_at', 'action', 'status' ,'vendor'])
                 ->make(true);
         }
     }
@@ -290,6 +313,7 @@ class VendorCntroller extends Controller
 
     public function insertvender(VendorRequest $request)
     {
+
         DB::beginTransaction();
         try {
             if ($request->id) {

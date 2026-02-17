@@ -147,7 +147,7 @@ class RoleController extends Controller
      */
     public function editroles(Role $role, $id, Request $request): View
     {
-
+        $id = convert_uudecode(base64_decode($id));
         $role = Role::with(['permissions.Menu_details'])->findOrFail($id);
         $all_menus = Menu::all();
         $permission_list = $role->permissions->pluck('id')->toArray();

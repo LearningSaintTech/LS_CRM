@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('role-list', [RoleController::class, 'index'])->name('role.index');
     // Route::get('permission', [PermissionController::class ,'index'])->name('permission.index');
     Route::get('/permissioncreate', [PermissionController::class, 'create'])->name('permission.create');
-    Route::get('/permissionedit', [PermissionController::class, 'edit'])->name('permission.edit');
+    Route::get('/permissionedit/{id}', [PermissionController::class, 'edit'])->name('permission.edit');
     Route::get('/create-role', [RoleController::class, 'create'])->name(name: 'create-role');
     Route::get('/role-menusetting', [RoleController::class, 'rolemenusetting'])->name('role-menusetting');
     Route::resource('permission', PermissionController::class);

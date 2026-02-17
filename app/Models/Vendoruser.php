@@ -17,4 +17,9 @@ class Vendoruser extends Model
         'vendor_id',
         'created_by'
     ];
+
+    public function vendor()
+        {
+            return $this->belongsTo(Vendor::class, 'vendor_id');
+        }
 }

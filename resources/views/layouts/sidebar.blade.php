@@ -61,13 +61,41 @@
                 </li>
             @endcan
 
-            @can('view-setting')
+            @can('view-website')
                 <li
-                    class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
-                    <a href="{{ route('settings.index') }}" class="sidebar-link">
-                        <i class="fi fi-rr-settings"></i>
-                        <span>Setting</span>
+                    class="sidebar-item {{ request()->routeIs('websites.list', 'add.websites', 'website.edit') ? 'active' : '' }}">
+                    <a href="{{ route('menu.websites.list') }}" class="sidebar-link">
+                        <i class="fi fi-rr-globe"></i>
+                        <span>Websites</span>
                     </a>
+                </li>
+            @endcan
+
+            {{-- 
+                @can('view-setting')
+                    <li class="sidebar-item {{ request()->routeIs('settings.*', 'user.list', 'role-list', 'permission') ? 'active' : '' }}">
+                        <a href="{{ route('settings.index') }}" class="sidebar-link">
+                            <i class="fi fi-rr-settings"></i>
+                            <span>Setting</span>
+                        </a>
+                    </li>
+                @endcan 
+            --}}
+
+
+            @can('view-setting')
+                <li>
+                    <a class="has-arrow" href="javascript:void(0);" aria-expanded="false">
+                        <div class="menu-icon">
+                            <i class="fi fi-rr-settings"></i>
+                        </div>
+                        <span class="nav-text" data-i18n="Task">Setting</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ route('user.list') }}" data-i18n="User">User</a></li>
+                        <li><a href="{{ route('role.index') }}" data-i18n="Role">Role</a></li>
+                        <li><a href="{{ url('permission') }}" data-i18n="Permission">Permission</a></li>
+                    </ul>
                 </li>
             @endcan
 
@@ -88,6 +116,7 @@
                     </a>
                 </li>
             @endcan
+
             @can('View Enrolment')
                 <li class="sidebar-item {{ request()->routeIs('enrolment.*') ? 'active' : '' }}">
                     <a href="{{ route('enrolment.list') }}" class="sidebar-link">

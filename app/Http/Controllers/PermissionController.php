@@ -64,9 +64,9 @@ class PermissionController extends Controller
 
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request ,$id)
     {
-        $id = $request->id;
+        $id = convert_uudecode(base64_decode($id));
         $menuset = Menu::get();
         $permission = Permission::find($id);
         return view('setting.permission.new', compact('menuset', 'permission'));
@@ -74,11 +74,9 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         $permission = Permission::findOrFail($id);
-
         if ($permission->roles->count() > 0) {
-            return redirect()->back()->withErrors(['permission' => 'Cannot delete this permission because it is assigned to one or more roles.']);
+            return redirect()->back()->with('error' , 'Cannot delete this permission because it is assigned to one or more roles.');
         }
-
         $permission->delete();
         return redirect()->route(route: 'permission.index')->with('success', 'Permission deleted successfully.');
     }

@@ -19,13 +19,13 @@
                 <i class="fas fa-arrow-left me-1"></i> Back
             </a>
 
-            @if($vendor?->id)
+            @can('add-vendor-user')
                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     class="btn btn-info btn-sm shadow-sm">
                     <i class="fas fa-plus me-1"></i> Add
                 </a>
-            @endif
-            
+             @endcan
+
         </div>
     </div>
     <div class="card h-auto container">
@@ -39,7 +39,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        {{-- <th>Company Name</th> --}}
+                        <th>Vendor Name</th>
                         <th> Status</th>
                         <th> Created At </th>
                         <th>Action</th>
@@ -70,8 +70,27 @@
                     <div class="col-md-12">
                         {{-- @if ($vendor?->id) --}}
 
-                            <input type="hidden" value="{{ $vendor?->id }}" name="vendor_id">
-                            <input type="hidden" name="type" value="vendoruser">
+                        @if ($selectedVendor)
+                            <input type="hidden" value="{{ $selectedVendor->id }}" name="vendor_id">
+                        @else
+                            <label class="col-form-label">
+                                Select Vendor:
+                                <strong class="text-danger">*</strong>
+                            </label>
+
+                            <select name="vendor_id" class="form-select" required>
+                                <option value="" disabled selected>Please select vendor</option>
+
+                                @foreach ($vendors as $vendordatas)
+                                    <option value="{{ $vendordatas->id }}">
+                                        {{ $vendordatas->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        @endif
+
+
+                        <input type="hidden" name="type" value="vendoruser">
 
                         {{-- @else
                             <label for="recipient-name" class="col-form-label">Select Vendor: {{ $vendor?->id }}
@@ -175,6 +194,13 @@
                 {
                     data: 'phone',
                     name: 'phone',
+                },
+
+                {
+                    data: 'vendor',
+                    name: 'vendor',
+                    orderable: false,
+                    searchable: false
                 },
 
                 {

@@ -6,6 +6,7 @@ use App\Http\Requests\EnrolmentRequest;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use App\Models\Enrolment;
+use Number;
 
 class EnrolmentController extends Controller
 {
@@ -95,7 +96,6 @@ class EnrolmentController extends Controller
             $enrolment = Enrolment::where('id', $request->id)->first();
             $enrolment->delete();
             return redirect()->back()->with('success', 'Enrolment deleted successfully!');
-
         } else {
             return redirect()->back()->with('error', 'Something went wrong!');
         }

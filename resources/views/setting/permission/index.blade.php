@@ -43,7 +43,7 @@
                                 <td style="width:10%">{{ $permission->name }}</td>
                                 <td style="width:10%">{{ $permission?->Menu_details?->menu_name }}</td>
                                 <td style="width:10%">
-                                    <a href="{{ route('permission.edit', ['id' => $permission->id]) }}"
+                                    <a href="{{ route('permission.edit', base64_encode(convert_uuencode($permission->id))) }}"
                                         class="btn btn-square btn-warning btn-sm me-1">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
