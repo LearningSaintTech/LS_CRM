@@ -8,10 +8,10 @@ use Spatie\Permission\Models\Role as SpatieRole;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+
 class Role extends SpatieRole
 {
     use HasFactory, SoftDeletes;
-    
     protected static function boot()
     {
         parent::boot();

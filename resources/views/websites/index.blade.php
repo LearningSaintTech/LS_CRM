@@ -18,7 +18,8 @@
                     <div class="card-header py-3 d-sm-flex d-block align-items-center">
                         <h4 class="card-title">Website</h4>
                         <div class="me-3">
-                            <a href="{{ route('add.websites', [base64_encode(convert_uuencode($vendor))]) }}" class="btn btn-info btn-sm shadow-sm">
+                            <a href="{{ route('add.websites', [base64_encode(convert_uuencode($vendor))]) }}"
+                                class="btn btn-info btn-sm shadow-sm">
                                 <i class="fas fa-plus me-1"></i> Add
                             </a>
                         </div>
@@ -95,23 +96,22 @@
     });
 
     // Handle status toggle
-    $(document).on('click', '.toggle-status', function(e) {
+    $(document).on('click', '.delete-website', function(e) {
         e.preventDefault();
+
         let url = $(this).data('url');
-        let vendorId = $(this).data('id');
-        let currentStatus = $(this).data('status');
-        let actionText = currentStatus == 1 ? 'inactive' : 'active';
+        let id = $(this).data('id');
 
         Swal.fire({
             title: 'Are you sure?',
-            text: `Do you want to ${actionText} this vendor?`,
+            text: 'Do you want to delete?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, ' + actionText,
+            confirmButtonText: 'Yes',
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = url;
+                window.location.href = url +'?id=' + id ;
             }
         });
     });

@@ -47,6 +47,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item editBtn" data-id="{{ $datas?->id }}">Edit</a></li>
                             <li><a href="{{ route('view.payment' ,['id' =>  base64_encode(convert_uuencode($datas->id))]) }}" class="dropdown-item"> Payment </a></li>
+                            <li><a href="{{ URL::signedRoute('view.student', ['id' => $datas->id]) }}" class="dropdown-item">View </a></li>
                             <li>
                                 <a class="dropdown-item text-danger toggle-status" data-id="{{ $datas?->id }}" data-url="{{ route('delete.enrolment') }}"  href="javascript:void(0);">
                                     Delete

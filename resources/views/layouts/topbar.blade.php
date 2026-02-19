@@ -1,4 +1,8 @@
 <!-- Start - Sidebar Chat Box  -->
+@php
+    $vendors = \App\Helpers\VendorHelper::getvendor();
+@endphp
+
 
 <div class="chatbox">
     <div class="chatbox-close"></div>
@@ -530,7 +534,7 @@
                 </div>
                 <li class="nav-item dropdown" style="margin-left: 2rem">
 
-                    {{-- <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         🌐 {{ strtoupper(app()->getLocale()) }}
                     </a>
@@ -547,7 +551,19 @@
                                 🇮🇳 हिन्दी
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown" style="margin-left: 2rem">
+                    <select name="vendor_id" class="form-select" id="vendors_Select">
+                        <option value="">Select Vendor</option>
+                        @foreach ($vendors as $vendor)
+                            <option value="{{ $vendor->id }}"
+                                {{ session('vendor_id') == $vendor->id ? 'selected' : '' }}>
+                                {{ $vendor->name }}
+                            </option>
+                        @endforeach
+                    </select>
                 </li>
 
 
@@ -559,7 +575,8 @@
                                 <i class="fi fi-rr-bell"></i>
 
                                 @if (auth()->user()->unreadNotifications->count())
-                                    <span id="notif-count" class="badge badge-sm badge-danger rounded-circle position-absolute"
+                                    <span id="notif-count"
+                                        class="badge badge-sm badge-danger rounded-circle position-absolute"
                                         style="top:0px; right:0px; background-color: red;">
                                         {{ auth()->user()->unreadNotifications->count() }}
                                     </span>
@@ -572,7 +589,8 @@
                                 <div class="card ic-scroll p-1 mb-1" style="height:380px" id="notification-list">
                                     {{-- Load latest notifications --}}
                                     @forelse(auth()->user()->notifications->take(10) as $notification)
-                                        <div class="d-flex align-items-center p-2 bg-action-light rounded mb-1
+                                        <div
+                                            class="d-flex align-items-center p-2 bg-action-light rounded mb-1
                                             {{ $notification->read_at ? '' : 'border-start border-3 border-primary' }}">
 
                                             <div class="d-inline-block">
@@ -585,7 +603,8 @@
                                                 <h6 class="fs-13 mb-0 fw-semibold">
                                                     {{ $notification->data['title'] ?? 'Notification' }}
                                                 </h6>
-                                                <p><small>{{ $notification->data['message'] ?? 'Notification' }}</small></p>
+                                                <p><small>{{ $notification->data['message'] ?? 'Notification' }}</small>
+                                                </p>
                                                 <small>{{ $notification->created_at->diffForHumans() }}</small>
                                             </div>
                                         </div>
@@ -599,7 +618,7 @@
                                     See all notifications <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
-                            
+
                         </div>
                     </li>
 
@@ -745,4 +764,24 @@
         </nav>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('#vendors_Select').on('change', function() {
+        let vendorId = $(this).val();
+        console.log(vendorId);
+        $.ajax({
+            url: "{{ route('set.vendor') }}",
+            type: "POST",
+            data: {
+                vendor_id: vendorId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function() {
+                location.reload();
+            }
+        });
+    });
+</script>
+
 <!-- End - Header -->

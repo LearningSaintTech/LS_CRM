@@ -10,6 +10,10 @@ Route::group(['prefix' => 'enrolment', 'middleware' => 'auth'], function () {
     Route::post('insert-enrolment', [EnrolmentController::class, 'insertenrolment'])->name('insert.enrolment');
     Route::get('delete-enrolmen', [EnrolmentController::class, 'deleteenrolmen'])->name('delete.enrolment');
     Route::get('view-payment/{id}' ,[EnrolmentController::class ,'viewpayment'])->name('view.payment');
+    Route::get('/view-student/{id}', [EnrolmentController::class, 'viewstudent'])
+    ->name('view.student')
+    ->middleware('signed');
+
 });
 
 Route::group(['prefix' => 'reviews', 'middlewere' => 'auth'], function () {

@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\BelongsToVendor;
+
 
 class Meetings extends Model
 {
+
+    use BelongsToVendor;
     protected $table = "meetings";
     protected $fillable = [
         'siteId',

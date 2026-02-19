@@ -39,6 +39,19 @@ Route::middleware('auth')->group(function () {
         Route::get('role-menusetting', [RoleController::class, 'rolemenusetting'])->name('role-menusetting');
     });
 
+
+    Route::post('/set-vendor', function (Illuminate\Http\Request $request) {
+
+        if ($request->vendor_id) {
+            session(['vendor_id' => $request->vendor_id]);
+        } else {
+            session()->forget('vendor_id'); // VERY IMPORTANT
+        }
+
+        return response()->json(['success' => true]);
+    })->name('set.vendor');
+
+
     Route::get('settings', [SettingController::class, 'settingIndex'])->name('settings.index');
     Route::get('user-list', [UserController::class, 'userlist'])->name('user.list');
     Route::get('add-user' ,[UserController::class , 'adduser'])->name('add.user');

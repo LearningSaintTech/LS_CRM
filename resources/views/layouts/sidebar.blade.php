@@ -61,15 +61,14 @@
                 </li>
             @endcan
 
-            @can('view-website')
-                <li
-                    class="sidebar-item {{ request()->routeIs('websites.list', 'add.websites', 'website.edit') ? 'active' : '' }}">
+            {{-- @can('view-website')
+                <li class="sidebar-item {{ request()->routeIs('websites.list', 'add.websites', 'website.edit') ? 'active' : '' }}">
                     <a href="{{ route('menu.websites.list') }}" class="sidebar-link">
                         <i class="fi fi-rr-globe"></i>
                         <span>Websites</span>
                     </a>
                 </li>
-            @endcan
+            @endcan --}}
 
             {{-- 
                 @can('view-setting')

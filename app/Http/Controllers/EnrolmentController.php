@@ -12,7 +12,7 @@ class EnrolmentController extends Controller
 {
     public function enrolmentlist()
     {
-        $data = Enrolment::orderBy('id' ,'desc')->get();
+        $data = Enrolment::orderBy('id', 'desc')->get();
         $vendor = Vendor::where('status', 1)->get();
         return view('enrolment.index', compact('data', 'vendor'));
     }
@@ -38,9 +38,9 @@ class EnrolmentController extends Controller
                     $formattedNumber = str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
                     $unique_number = $firstName . '-' . $formattedNumber;
                 }
-                
+
             }
-                
+
             // dd($unique_number);
             if ($request->hasFile('profile')) {
 
@@ -101,8 +101,16 @@ class EnrolmentController extends Controller
         }
     }
 
-    public function viewpayment(Request $request ,$id){
+    public function viewpayment(Request $request, $id)
+    {
         $enrolment_id = convert_uudecode(base64_decode($id));
-        return view('enrolment.payment' ,compact('enrolment_id'));
+        return view('enrolment.payment', compact('enrolment_id'));
     }
+
+    public function viewstudent(Request $request, $id)
+    {
+        $enrolment = Enrolment::findOrFail($id);
+        return view('enrolment.viewstudent', compact('enrolment'));
+    }
+
 }

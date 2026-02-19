@@ -79,8 +79,8 @@ class WebsiteController extends Controller
                                     </li>
                                     <li>
                                         <a class="dropdown-item text-danger delete-website"
-                                        href="javascript:void(0)"
-                                        data-id="' . $row->id . '">
+                                        href="javascript:void(0)" data-url="' . route('website.delete') . '"
+                                        data-id="' . base64_encode(convert_uuencode($row->id)) . '">
                                             Delete
                                         </a>
                                     </li>
@@ -92,6 +92,17 @@ class WebsiteController extends Controller
                 ->rawColumns(['created_at', 'action', 'status', 'vendor', 'url'])
                 ->make(true);
 
+        }
+    }
+
+    public function websitedelete(Request $request){
+        $id = convert_uudecode(base64_decode($request->id));
+        // dd($id);
+        $website = Websites::where('id', $id)->delete();
+        if($website){
+            return redirect()->back()->with('success' ,'website deleted successfully!');
+        }else{
+            return redirect()->back()->with('error' ,'Something went wrong!');
         }
     }
 
@@ -267,7 +278,6 @@ class WebsiteController extends Controller
             return redirect()->back()->with('success', 'Course updated successfully!');
         } else {
             return redirect()->back()->with('success', 'Course added successfully!');
-
         }
     }
 

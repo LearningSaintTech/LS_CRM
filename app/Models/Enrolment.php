@@ -3,9 +3,13 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\BelongsToVendor;
+
 
 class Enrolment extends Model
 {
+    use BelongsToVendor;
+    
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = "enrolments";

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\BelongsToVendor;
 
 class Payment extends Model
 {
+    use BelongsToVendor;
     protected $table = "payment";
     protected $fillable = [
         'name',

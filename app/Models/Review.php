@@ -5,9 +5,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\BelongsToVendor;
+
 
 class Review extends Model
 {
+    use BelongsToVendor;
     protected $dates = ['deleted_at'];
 
     protected $table = "reviews";

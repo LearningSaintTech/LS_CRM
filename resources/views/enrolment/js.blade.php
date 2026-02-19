@@ -54,7 +54,7 @@
         e.preventDefault();
         let url = $(this).data('url');
         let enrolment_id = $(this).data('id');
-        console.log(url + '-----' + url);
+        
         Swal.fire({
             title: 'Are you sure?',
             text: `Do you want to delete this ?`,

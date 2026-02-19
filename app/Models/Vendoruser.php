@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+use App\Traits\BelongsToVendor;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Vendoruser extends Model
 {
     //
+    use BelongsToVendor;
     protected $table = 'vendoruser';
     protected $fillable = [
         'name',
