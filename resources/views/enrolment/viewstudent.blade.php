@@ -1,12 +1,12 @@
 @include('common.header')
 
 <style>
-    .card-profile {
+    /* .card-profile {
         overflow: hidden;
         border-radius: 15px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         border: none;
-    }
+    } */
 
     /* Banner */
     .cover-photo {
@@ -32,10 +32,10 @@
     /* Profile Image */
     .profile-photo img {
         width: 130px;
-        height: 130px;
+        height: 121px;
         object-fit: cover;
         margin-top: 13px;
-        background: #fff;
+        background: #e50022;
         padding: 5px;
     }
 
@@ -50,16 +50,15 @@
     }
 </style>
 
-
 <div id="main-wrapper">
     <main class="content-body">
         <div class="page-title">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="index.html">Dashboard</a>
+                        <a href="#">Enrolment</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">App Profile</li>
+                    <li class="breadcrumb-item active" aria-current="page">Student Enrolment</li>
                 </ol>
             </nav>
         </div>
@@ -71,11 +70,11 @@
                         <!-- Banner Section -->
                         <div class="cover-photo rounded-top">
                             <div class="banner-logo">
-                                    
+
                             </div>
                         </div>
 
-                        <!-- Profile Section -->
+
                         <div class="p-sm-4 p-3 d-sm-flex w-100 align-items-center">
                             <div class="profile-photo me-sm-4 text-center">
                                 <img src="{{ asset('assets/images/profile/profile.png') }}"
@@ -98,19 +97,29 @@
                                     </button>
 
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">
-                                                <i class="fa fa-user-circle text-primary me-2"></i> View Profile</a>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fa fa-user-circle text-primary me-2"></i> View Profile
+                                            </a>
                                         </li>
+
                                         <li><a class="dropdown-item" href="#">
-                                                <i class="fa fa-users text-primary me-2"></i> Add to Friends</a>
+                                                <i class="fa fa-users text-primary me-2"></i> Add to Friends
+                                            </a>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">
-                                                <i class="fa fa-ban text-danger me-2"></i> Block</a>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fa fa-ban text-danger me-2"></i> Block
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -129,14 +138,12 @@
                                             <span class="text-muted">Complete student profile information</span>
                                         </div>
 
-                                        <span class="badge bg-success fs-6 px-3 py-2">
+                                        <span class="badge badge-success light fs-6 px-3 py-2">
                                             Active
                                         </span>
                                     </div>
 
-                                    <!-- Main Info -->
                                     <div class="row g-4 text-center mb-4">
-
                                         <div class="col-md-3 col-6">
                                             <span class="h5 fw-bold text-primary d-block">ENR-145</span>
                                             <span class="text-muted">Enrolment ID</span>
@@ -178,14 +185,10 @@
                                             <span class="h5 fw-bold text-danger d-block">₹ 15,000</span>
                                             <span class="text-muted">Pending Amount</span>
                                         </div>
-
                                     </div>
-
                                     <hr>
 
-                                    <!-- Contact Info -->
                                     <div class="row g-4">
-
                                         <div class="col-md-4">
                                             <span class="fw-bold d-block">Email</span>
                                             <span class="text-muted">student@email.com</span>
@@ -200,7 +203,6 @@
                                             <span class="fw-bold d-block">Admission Date</span>
                                             <span class="text-muted">12 Jan 2025</span>
                                         </div>
-
                                     </div>
 
                                     <!-- Buttons -->
@@ -214,16 +216,15 @@
                                             Send Message
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <!-- Start - Profile Feed -->
                 <div class="col-xl-8 col-xxl-8">
+
                     <div class="card h-auto">
                         <div class="card-header">
                             <ul class="nav nav-underline card-header-tabs" id="nav-tab" role="tablist">
@@ -240,35 +241,55 @@
                                 <li class="nav-item">
                                     <button class="nav-link" id="underline-setting-tab" data-bs-toggle="tab"
                                         data-bs-target="#underline-setting" type="button" role="tab"
-                                        aria-controls="underline-setting" aria-selected="false">Setting</button>
+                                        aria-controls="underline-setting" aria-selected="false">History</button>
                                 </li>
                             </ul>
                         </div>
+
                         <div class="card-body">
                             <div class="tab-content" id="underline-tabContent">
+
                                 <div class="tab-pane fade show active" id="underline-Posts" role="tabpanel"
                                     aria-labelledby="underline-Posts-tab" tabindex="0">
                                     <div class="clearfix mb-4">
-                                        <textarea name="textarea" id="textarea" rows="5" class="form-control"
-                                            placeholder="Please type what you want...."></textarea>
+                                        <h3>Status Update</h3>
+                                        <select name="status" id="" class="form-select mb-3">
+                                            <option value="">Please select status</option>
+                                            <option value="Not Interested">Not Interested</option>
+                                            <option value="HOT">HOT</option>
+                                            <option value="COLD">COLD</option>
+                                            <option value="DND">DND</option>
+                                        </select>
+                                        <textarea name="textarea" id="textarea" rows="2" class="form-control"
+                                            placeholder="Please Enter the resion for status update...."></textarea>
                                         <div class="mt-3">
-                                            <a href="javascript:void(0);"
+                                            {{-- <a href="javascript:void(0);"
                                                 class="btn btn-square btn-primary light me-1" data-bs-toggle="modal"
                                                 data-bs-target="#linkModal">
                                                 <i class="fa fa-link"></i>
-                                            </a>
-                                            <a href="javascript:void(0);"
+                                            </a> --}}
+                                            {{-- <a href="javascript:void(0);"
                                                 class="btn btn-square btn-primary light me-1" data-bs-toggle="modal"
                                                 data-bs-target="#cameraModal">
                                                 <i class="fa fa-camera"></i>
-                                            </a>
+                                            </a> --}}
                                             <a href="javascript:void(0);" class="btn btn-primary me-1"
-                                                data-bs-toggle="modal" data-bs-target="#postModal">Post</a>
+                                                data-bs-toggle="modal" data-bs-target="#postModal">Update</a>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="clearfix mb-4">
+                                        <h3>Add Remark</h3>
 
+                                        <textarea name="textarea" id="textarea" rows="2" class="form-control" placeholder="Enter Remarks Test..."></textarea>
+                                        <div class="mt-3">
 
+                                            <a href="javascript:void(0);" class="btn btn-primary me-1"
+                                                data-bs-toggle="modal" data-bs-target="#postModal">Add Remark</a>
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="underline-about" role="tabpanel"
                                     aria-labelledby="underline-about-tab" tabindex="0">
                                     <div class="pt-4 border-bottom-1 pb-3">
@@ -355,64 +376,98 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="tab-pane fade" id="underline-setting" role="tabpanel"
                                     aria-labelledby="underline-setting-tab" tabindex="0">
-                                    <h4 class="text-primary">Account Setting</h4>
-                                    <form>
-                                        <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Email</label>
-                                                <input type="email" placeholder="Email" class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label class="form-label">Password</label>
-                                                <input type="password" autocomplete="current-password"
-                                                    placeholder="Password" class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-12">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" placeholder="1234 Main St"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-12">
-                                                <label class="form-label">Address 2</label>
-                                                <input type="text" placeholder="Apartment, studio, or floor"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label">City</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label">State</label>
-                                                <select class="selectpicker form-select">
-                                                    <option selected="">Choose...</option>
-                                                    <option>Option 1</option>
-                                                    <option>Option 2</option>
-                                                    <option>Option 3</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-3 col-md-4">
-                                                <label class="form-label">Zip</label>
-                                                <input type="number" class="form-control type-number">
-                                            </div>
-                                            <div class="mb-3 col-md-12">
-                                                <div class="form-check custom-checkbox">
-                                                    <input type="checkbox" class="form-check-input" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck"> Check me
-                                                        out</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <button class="btn btn-primary" type="submit">Sign in</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
 
+                                    <h4 class="text-primary mb-4">Enrolment History</h4>
+
+                                    <div class="card shadow-sm border-0">
+                                        <div class="card-body">
+
+                                            <ul class="list-group list-group-flush">
+
+                                                <!-- Status Update Example -->
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <span class="badge bg-danger me-2">HOT</span>
+                                                            <strong>Status Updated</strong>
+                                                            <p class="mb-1 mt-2 text-muted">
+                                                                Candidate is very interested and ready for next round.
+                                                            </p>
+                                                            <small class="text-secondary">
+                                                                Updated by Admin
+                                                            </small>
+                                                        </div>
+                                                        <small class="text-muted">20 Feb 2026</small>
+                                                    </div>
+                                                </li>
+
+                                                <!-- Remark Example -->
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <span class="badge bg-info me-2">Remark</span>
+                                                            <strong>Follow-up Call</strong>
+                                                            <p class="mb-1 mt-2 text-muted">
+                                                                Called student, will submit documents tomorrow.
+                                                            </p>
+                                                            <small class="text-secondary">
+                                                                Added by Counselor
+                                                            </small>
+                                                        </div>
+                                                        <small class="text-muted">18 Feb 2026</small>
+                                                    </div>
+                                                </li>
+
+                                                <!-- Another Status -->
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <span class="badge bg-secondary me-2">COLD</span>
+                                                            <strong>Status Updated</strong>
+                                                            <p class="mb-1 mt-2 text-muted">
+                                                                Not responding to calls.
+                                                            </p>
+                                                            <small class="text-secondary">
+                                                                Updated by Admin
+                                                            </small>
+                                                        </div>
+                                                        <small class="text-muted">15 Feb 2026</small>
+                                                    </div>
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            <span class="badge bg-primary me-2">DND</span>
+                                                            <strong>Status Updated</strong>
+                                                            <p class="mb-1 mt-2 text-muted">
+                                                                Not responding to calls.
+                                                            </p>
+                                                            <small class="text-secondary">
+                                                                Updated by Admin
+                                                            </small>
+                                                        </div>
+                                                        <small class="text-muted">15 Feb 2026</small>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
                 <!-- End - Profile Feed -->
 
@@ -420,10 +475,7 @@
 
         </div>
     </main>
-    <!-- End - Content Body -->
 
-    
-    <!-- Start - Modal Send Message -->
     <div class="modal fade" id="sendMessageModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -455,8 +507,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <input type="submit" value="Post Comment" class="submit btn btn-primary"
-                                    name="submit">
+                                <input type="submit" value="Send Message" class="submit btn btn-primary" name="submit">
                             </div>
                         </div>
                     </form>
@@ -464,9 +515,6 @@
             </div>
         </div>
     </div>
-    <!-- End - Modal Send Message -->
-
-
 
 </div>
 <!-- End - Main Wrapper -->

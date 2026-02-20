@@ -61,6 +61,8 @@
                 </li>
             @endcan
 
+            
+
             {{-- @can('view-website')
                 <li class="sidebar-item {{ request()->routeIs('websites.list', 'add.websites', 'website.edit') ? 'active' : '' }}">
                     <a href="{{ route('menu.websites.list') }}" class="sidebar-link">
@@ -134,6 +136,13 @@
                     </a>
                 </li>
             @endcan
+
+            <li class="sidebar-item {{ request()->routeIs('scholarships.list') ? 'active' : '' }}">
+                <a href="{{ route('scholarships.list') }}" class="sidebar-link">
+                    <i class="fi fi-rr-hand-holding-usd"></i>
+                    <span>Scholar Ships</span>
+                </a>
+            </li>
 
         </ul>
     </div>

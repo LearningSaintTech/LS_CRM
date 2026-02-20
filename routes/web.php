@@ -89,3 +89,4 @@ require __DIR__ . '/blog.php';
 require __DIR__ . '/vendor.php';
 require __DIR__ . '/websites.php';
 require __DIR__ . '/enrolment.php';
+require __DIR__ . '/scholorship.php';
